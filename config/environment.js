@@ -5,6 +5,7 @@ module.exports = function(environment) {
     modulePrefix: 'foosball',
     environment: environment,
     contentSecurityPolicy: { 'connect-src': "'self' https://auth.firebase.com wss://*.firebaseio.com" },
+    podModulePrefix: 'foosball/pods',
     firebase: 'https://netuitivefoosball.firebaseio.com/',
     baseURL: '/',
     locationType: 'auto',
@@ -27,6 +28,14 @@ module.exports = function(environment) {
     // ENV.APP.LOG_TRANSITIONS = true;
     // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
+    ENV.contentSecurityPolicy = {
+     'img-src': "*",
+     'font-src': "https://fonts.gstatic.com http://localhost:4200 http://www.fontsaddict.com",
+     'style-src': "'self' 'unsafe-inline'",
+     'connect-src': "'self' http://localhost:3000 https://*.firebaseio.com wss://*.firebaseio.com",
+     'report-uri': "'none'",
+     'script-src': "*"
+   };
   }
 
   if (environment === 'test') {
