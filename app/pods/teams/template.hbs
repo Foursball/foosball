@@ -1,3 +1,19 @@
-{{#each model as |team|}}
-  <p>{{team.player1.name}} - {{team.player2.name}}</p>
-{{/each}}
+{{#paper-toolbar}}
+  <div class="md-toolbar-tools">
+    {{#paper-sidenav-toggle as |toggle|}}
+      {{#paper-button target=toggle action="toggleMenu" icon-button=true}}{{paper-icon icon="menu"}}{{/paper-button}}
+    {{/paper-sidenav-toggle}}
+    <span class="md-breadcrumb-page">Teams</span>
+  </div>
+{{/paper-toolbar}}
+{{#paper-content class="md-padding"}}
+  {{#paper-content class="md-whiteframe-z1 list-demo"}}
+    {{#paper-list}}
+      {{#each model as |team|}}
+        {{#paper-item}}
+          <p>{{team.player1.name}} - {{team.player2.name}}</p>
+        {{/paper-item}}
+      {{/each}}
+    {{/paper-list}}
+  {{/paper-content}}
+{{/paper-content}}

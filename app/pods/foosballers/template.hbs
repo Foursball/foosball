@@ -1,3 +1,19 @@
-{{#each model as |foosballer|}}
-  <p>{{foosballer.name}}</p>
-{{/each}}
+{{#paper-toolbar}}
+  <div class="md-toolbar-tools">
+    {{#paper-sidenav-toggle as |toggle|}}
+      {{#paper-button target=toggle action="toggleMenu" icon-button=true}}{{paper-icon icon="menu"}}{{/paper-button}}
+    {{/paper-sidenav-toggle}}
+    <span class="md-breadcrumb-page">Foosballers</span>
+  </div>
+{{/paper-toolbar}}
+{{#paper-content class="md-padding"}}
+  {{#paper-content class="md-whiteframe-z1 list-demo"}}
+    {{#paper-list}}
+      {{#each sortedFoosballers as |foosballer|}}
+        {{#paper-item}}
+          <p>{{foosballer.name}}</p>
+        {{/paper-item}}
+      {{/each}}
+    {{/paper-list}}
+  {{/paper-content}}
+{{/paper-content}}
