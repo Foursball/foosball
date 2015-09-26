@@ -4,7 +4,8 @@ const { Route } = Ember;
 
 export default Route.extend({
   model() {
-    return this.store.filter('game', { orderBy: 'time' }, () => true);
+    // return this.store.filter('game', { orderBy: 'time' }, () => true);
+    return this.store.findAll('game');
   }
 
   // afterModel(games) {

@@ -25,5 +25,8 @@ export default DS.Model.extend({
     let team2Wins = get(this, 'team2Wins');
 
     return team1Wins > team2Wins ? 'team1' : 'team2';
-  })
+  }),
+
+  team1IsWinner: computed.equal('winner', 'team1'),
+  team2IsWinner: computed.equal('winner', 'team2')
 });

@@ -13,8 +13,13 @@
 
       {{#each model as |game|}}
         {{#paper-item}}
-          <p>{{game.team1.player1.name}} - {{game.team1.player2.name}}</p>
-          <p>{{game.team2.player1.name}} - {{game.team2.player2.name}}</p>
+          {{#if game.team1IsWinner}}
+            <p><strong>{{game.team1.player1.displayName}} - {{game.team1.player2.displayName}}</strong></p>
+            <p>{{game.team2.player1.displayName}} - {{game.team2.player2.displayName}}</p>
+          {{else}}
+            <p>{{game.team1.player1.displayName}} - {{game.team1.player2.displayName}}</p>
+            <p><strong>{{game.team2.player1.displayName}} - {{game.team2.player2.displayName}}</strong></p>
+          {{/if}}
         {{/paper-item}}
       {{/each}}
 

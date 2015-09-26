@@ -7,10 +7,21 @@ export default DS.Model.extend({
   name: DS.attr('string'),
 
   firstName: computed('name', function() {
-    return get(this, 'name').split(' ')[0];
+    let name = get(this, 'name');
+    const [first] = name ? name.split(' ') : ['', ''];
+    return first;
   }),
 
   lastName: computed('name', function() {
-    return get(this, 'name').split(' ')[1];
+    let name = get(this, 'name');
+    const [, last] = name ? name.split(' ') : ['', ''];
+    return last;
+  }),
+
+  displayName: computed('firstName', 'lastName', function() {
+    let firstName = get(this, 'firstName');
+    const [last] = get(this, 'lastName');
+
+    return `${firstName} ${last}`;
   })
 });
