@@ -5,7 +5,7 @@ const { Controller, get, computed, inject } = Ember;
 export default Controller.extend({
   gamesController: inject.controller('games'),
 
-  games: computed('gamesController.model.[]', function () {
+  games: computed('gamesController.model.[]', function() {
     let gamesController = get(this, 'gamesController');
 
     return get(gamesController, 'model');
