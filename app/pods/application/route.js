@@ -10,6 +10,10 @@ export default Route.extend({
 
     goToGame(game) {
       this.transitionTo('game', game);
+    },
+
+    goToTeam(team) {
+      this.transitionTo('team', team);
     }
   }
 });

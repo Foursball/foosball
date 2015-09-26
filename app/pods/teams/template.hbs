@@ -10,7 +10,7 @@
   {{#paper-content class="md-whiteframe-z1 list-demo"}}
     {{#paper-list}}
       {{#each model as |team|}}
-        {{#paper-item}}
+        {{#paper-item param=team action="goToTeam"}}
           <p>{{team.player1.name}} - {{team.player2.name}}</p>
         {{/paper-item}}
       {{/each}}
