@@ -10,19 +10,21 @@
   {{#paper-content class="md-whiteframe-z1 list-demo"}}
     {{#paper-list}}
 
-
       {{#each model as |game|}}
-        {{#paper-item}}
-          {{#if game.team1IsWinner}}
-            <p><strong>{{game.team1.player1.displayName}} - {{game.team1.player2.displayName}}</strong></p>
-            <p>{{game.team2.player1.displayName}} - {{game.team2.player2.displayName}}</p>
-          {{else}}
-            <p>{{game.team1.player1.displayName}} - {{game.team1.player2.displayName}}</p>
-            <p><strong>{{game.team2.player1.displayName}} - {{game.team2.player2.displayName}}</strong></p>
-          {{/if}}
+        {{#paper-item param=game action="goToGame"}}
+          <p class="ta-c">
+            <strong>
+              {{game.winningTeam.player1.displayName}}
+              {{game.winningTeam.player2.displayName}}
+            </strong>
+          </p>
+          <p class="ta-c">VS</p>
+          <p class="ta-c">
+            {{game.losingTeam.player1.displayName}}
+            {{game.losingTeam.player2.displayName}}
+          </p>
         {{/paper-item}}
       {{/each}}
-
 
     {{/paper-list}}
   {{/paper-content}}

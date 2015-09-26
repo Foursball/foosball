@@ -1,0 +1,19 @@
+{{#paper-toolbar}}
+  <div class="md-toolbar-tools">
+    {{#paper-sidenav-toggle as |toggle|}}
+      {{#paper-button target=toggle action="toggleMenu" icon-button=true}}{{paper-icon icon="menu"}}{{/paper-button}}
+    {{/paper-sidenav-toggle}}
+    <span class="md-breadcrumb-page">Game</span>
+  </div>
+{{/paper-toolbar}}
+{{#paper-content class="md-padding"}}
+  {{#paper-card}}
+    {{#paper-card-content}}
+      <h2>{{model.winningTeam.player1.displayName}} & {{model.winningTeam.player2.displayName}}</h2>
+      <p>Black - {{model.winningTeamBlackWins}} Yellow - {{model.winningTeamYellowWins}}</p>
+      <h4>{{model.losingTeam.player1.displayName}} & {{model.losingTeam.player2.displayName}}</h4>
+      <p>Black - {{model.losingTeamBlackWins}} Yellow - {{model.losingTeamYellowWins}}</p>
+      <h5><i>Played on {{moment-format model.time "MMM. Do, YYYY @ h:m a"}}</i></h5>
+    {{/paper-card-content}}
+  {{/paper-card}}
+{{/paper-content}}

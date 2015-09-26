@@ -6,9 +6,10 @@ let Router = Ember.Router.extend({
 });
 
 Router.map(function() {
-  this.route('foosballers');
-  this.route('teams');
-  this.route('games');
+  this.route('foosballers', { path: 'f' });
+  this.route('teams', { path: 't' });
+  this.route('games', { path: 'g' });
+  this.route('game', { path: 'g/:game_id' });
 });
 
 export default Router;

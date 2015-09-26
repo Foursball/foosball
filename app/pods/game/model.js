@@ -28,5 +28,43 @@ export default DS.Model.extend({
   }),
 
   team1IsWinner: computed.equal('winner', 'team1'),
-  team2IsWinner: computed.equal('winner', 'team2')
+  team2IsWinner: computed.equal('winner', 'team2'),
+
+  winningTeam: computed('team1IsWinner', function() {
+    let team1IsWinner = get(this, 'team1IsWinner');
+
+    return team1IsWinner ? get(this, 'team1') : get(this, 'team2');
+  }),
+
+  losingTeam: computed('team1IsWinner', function() {
+    let team1IsWinner = get(this, 'team1IsWinner');
+
+    return team1IsWinner ? get(this, 'team2') : get(this, 'team1');
+  }),
+
+  winningTeamBlackWins: computed('winner', function() {
+    let winner = get(this, 'winner');
+
+    return get(this, `${winner}WinsBlack`);
+  }),
+
+  winningTeamYellowWins: computed('winner', function() {
+    let winner = get(this, 'winner');
+
+    return get(this, `${winner}WinsYellow`);
+  }),
+
+  losingTeamBlackWins: computed('winner', function() {
+    let winner = get(this, 'winner');
+    let team = winner === 'team1' ? 'team2' : 'team1';
+
+    return get(this, `${team}WinsBlack`);
+  }),
+
+  losingTeamYellowWins: computed('winner', function() {
+    let winner = get(this, 'winner');
+    let team = winner === 'team1' ? 'team2' : 'team1';
+
+    return get(this, `${team}WinsYellow`);
+  })
 });
