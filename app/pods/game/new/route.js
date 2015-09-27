@@ -46,15 +46,13 @@ export default Route.extend({
             team2
           });
 
-          game.save();
+          game
+            .save()
+            .then((game) => {
+              this.transitionTo('game.edit');
+            });
         });
       });
-    },
-
-    cancelGame(game) {
-      game
-        .destroyRecord()
-        .then(() => this.transitionTo('application'));
     }
   }
 });

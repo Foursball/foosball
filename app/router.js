@@ -12,6 +12,7 @@ Router.map(function() {
   this.route('games', { path: 'g' });
   this.route('game', { path: 'g/:game_id' }, function() {
     this.route('new', { path: 'n' });
+    this.route('edit', { path: 'e' });
   });
 });
 

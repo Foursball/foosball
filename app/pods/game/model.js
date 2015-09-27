@@ -10,7 +10,7 @@ export default DS.Model.extend({
   team1WinsYellow: DS.attr('number'),
   team2WinsBlack: DS.attr('number'),
   team2WinsYellow: DS.attr('number'),
-  time: DS.attr('date'),
+  time: DS.attr('string'),
 
   team1Wins: computed('team1WinsBlack', 'team1WinsYellow', function() {
     return get(this, 'team1WinsBlack') + get(this, 'team1WinsYellow');
