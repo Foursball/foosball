@@ -10,7 +10,9 @@ Router.map(function() {
   this.route('teams', { path: 't' });
   this.route('team', { path: 't/:team_id' });
   this.route('games', { path: 'g' });
-  this.route('game', { path: 'g/:game_id' });
+  this.route('game', { path: 'g/:game_id' }, function() {
+    this.route('new', { path: 'n' });
+  });
 });
 
 export default Router;

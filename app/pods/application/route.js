@@ -14,6 +14,14 @@ export default Route.extend({
 
     goToTeam(team) {
       this.transitionTo('team', team);
+    },
+
+    newGame() {
+      let game = this.store.createRecord('game');
+
+      game
+        .save()
+        .then((game) => this.transitionTo('game.new', game));
     }
   }
 });

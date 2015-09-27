@@ -7,6 +7,10 @@ export default DS.Transform.extend({
   },
 
   serialize(deserialized) {
-    return deserialized.format();
+    if (deserialized) {
+      return deserialized.format();
+    } else {
+      return '';
+    }
   }
 });
