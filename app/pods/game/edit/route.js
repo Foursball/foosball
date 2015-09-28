@@ -26,7 +26,7 @@ export default Route.extend({
       if (!t2yw) {
         set(game, 'team2WinsYellow', 0);
       }
-      
+
       set(game, 'time', moment());
 
       game

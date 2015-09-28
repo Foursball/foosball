@@ -48,7 +48,7 @@ export default Route.extend({
 
           game
             .save()
-            .then((game) => {
+            .then(() => {
               this.transitionTo('game.edit');
             });
         });
