@@ -5,9 +5,7 @@ const { Route, get } = Ember;
 export default Route.extend({
   actions: {
     cancelGame(game) {
-      let isNewGame = !get(game, 'time');
-
-      if (isNewGame) {
+      if (get(game, 'isNotFullyCreated')) {
         game
           .destroyRecord()
           .then(() => this.transitionTo('application'));
@@ -15,6 +13,10 @@ export default Route.extend({
         game.rollback();
         this.transitionTo('application');
       }
+    },
+
+    editGame(game) {
+      this.transitionTo('game.edit', game);
     }
   }
 });

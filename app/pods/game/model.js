@@ -66,5 +66,7 @@ export default DS.Model.extend({
     let team = winner === 'team1' ? 'team2' : 'team1';
 
     return get(this, `${team}WinsYellow`);
-  })
+  }),
+
+  isNotFullyCreated: computed.not('time')
 });

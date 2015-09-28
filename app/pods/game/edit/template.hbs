@@ -7,7 +7,7 @@
     <p>{{paper-input type="number" value=model.team2WinsBlack label="Black"}} {{paper-input type="number" value=model.team2WinsYellow label="Yellow"}}</p>
 
     <div class="md-actions" layout="row" layout-align="end center">
-      {{#paper-button action="cancelGame" param=model}}Cancel{{/paper-button}}
+      {{#paper-button action="cancelGame" param=model}}{{cancelOrDelete}}{{/paper-button}}
       {{#paper-button raised=true primary=true param=model action="saveGame" disabled=cannotStart}}Save{{/paper-button}}
     </div>
     {{/paper-card-content}}
