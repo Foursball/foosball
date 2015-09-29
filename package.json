@@ -1,5 +1,5 @@
 {
-  "name": "foosball",
+  "name": "dev-foosball",
   "version": "0.0.0",
   "description": "Small description for foosball goes here",
   "private": true,
@@ -33,7 +33,7 @@
     "ember-cli-qunit": "^1.0.0",
     "ember-cli-release": "0.2.3",
     "ember-cli-sass": "4.2.0",
-    "ember-cli-sri": "^1.0.3",
+    "ember-cli-sri": "^1.1.0",
     "ember-cli-uglify": "^1.2.0",
     "ember-data": "1.13.8",
     "ember-disable-proxy-controllers": "^1.0.0",
