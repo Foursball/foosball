@@ -2,13 +2,15 @@
   {{#paper-card}}
     {{#paper-card-content}}
     <h4>{{model.team1.player1.displayName}} & {{model.team1.player2.displayName}} Wins</h4>
-    <p>{{paper-input type="number" value=model.team1WinsBlack label="Black"}} {{paper-input type="number" value=model.team1WinsYellow label="Yellow"}}</p>
+    {{paper-slider flex=true discrete=true value=model.team1WinsBlack step='1' min='0' max='2' warn=true}}
+    {{paper-slider flex=true discrete=true value=model.team1WinsYellow step='1' min='0' max='2' accent=true}}
     <h4>{{model.team2.player1.displayName}} & {{model.team2.player2.displayName}} Wins</h4>
-    <p>{{paper-input type="number" value=model.team2WinsBlack label="Black"}} {{paper-input type="number" value=model.team2WinsYellow label="Yellow"}}</p>
+    {{paper-slider flex=true discrete=true value=model.team2WinsBlack step='1' min='0' max='2' warn=true}}
+    {{paper-slider flex=true discrete=true value=model.team2WinsYellow step='1' min='0' max='2' accent=true}}
 
     <div class="md-actions" layout="row" layout-align="end center">
       {{#paper-button action="cancelGame" param=model}}{{cancelOrDelete}}{{/paper-button}}
-      {{#paper-button raised=true primary=true param=model action="saveGame" disabled=cannotStart}}Save{{/paper-button}}
+      {{#paper-button raised=true primary=true param=model action="saveGame" disabled=cannotSave}}Save{{/paper-button}}
     </div>
     {{/paper-card-content}}
   {{/paper-card}}
