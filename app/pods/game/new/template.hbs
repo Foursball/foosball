@@ -2,35 +2,35 @@
   {{#paper-card}}
     {{#paper-card-content}}
       <h4>Team 1</h4>
-      {{paper-autocomplete
-        floating=true
-        placeholder="Player 1"
-        source=players
-        lookupKey="name"
-        model=team1Player1
-      }}
-      {{paper-autocomplete
-        floating=true
-        placeholder="Player 2"
-        source=players
-        lookupKey="name"
-        model=team1Player2
-      }}
+      <div class="inline-auto">
+        {{paper-autocomplete
+          placeholder="Foosballer 1"
+          source=players
+          lookupKey="name"
+          model=team1Player1
+        }}
+        {{paper-autocomplete
+          placeholder="Foosballer 2"
+          source=players
+          lookupKey="name"
+          model=team1Player2
+        }}
+      </div>
       <h4>Team 2</h4>
-      {{paper-autocomplete
-        floating=true
-        placeholder="Player 1"
-        source=players
-        lookupKey="name"
-        model=team2Player1
-      }}
-      {{paper-autocomplete
-        floating=true
-        placeholder="Player 2"
-        source=players
-        lookupKey="name"
-        model=team2Player2
-      }}
+      <div class="inline-auto">
+        {{paper-autocomplete
+          placeholder="Foosballer 1"
+          source=players
+          lookupKey="name"
+          model=team2Player1
+        }}
+        {{paper-autocomplete
+          placeholder="Foosballer 2"
+          source=players
+          lookupKey="name"
+          model=team2Player2
+        }}
+      </div>
 
       <div class="md-actions" layout="row" layout-align="end center">
         {{#paper-button action="cancelGame" param=model}}Cancel{{/paper-button}}

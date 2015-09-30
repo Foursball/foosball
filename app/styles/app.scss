@@ -1,12 +1,53 @@
 @import 'color-palette';
 
 $primary: $color-green;
+$accent: $color-yellow;
+$warn: (
+  '50': #000,
+  '100': #000,
+  '200': #000,
+  '300': #000,
+  '400': #000,
+  '500': #000,
+  '600': #000,
+  '700': #000,
+  '800': #000,
+  '900': #000,
+  'A100': #000,
+  'A200': #000,
+  'A400': #000,
+  'A700': #000,
+  'contrast': $light-contrast-color
+);
 
  @import 'ember-paper';
 
  .ember-application {
    max-width: 100%;
    max-height: 100%;
+   background-color: color($color-grey, '300');
  }
 
 .ta-c {text-align: center;}
+
+md-toolbar {
+  &.md-default-theme {
+    color: white;
+    md-icon {
+      color: white;
+    }
+  }
+}
+
+.md-button.md-default-theme.md-primary.md-raised {
+  color: white;
+}
+
+.inline-auto {
+  display: flex;
+  md-autocomplete {
+    flex: 1 1 calc(50% - 8px);
+    min-width: auto;
+    margin-right: 8px;
+  }
+}

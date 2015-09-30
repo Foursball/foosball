@@ -54,6 +54,10 @@ export default DS.Model.extend({
     return get(this, `${winner}WinsYellow`);
   }),
 
+  winningTeamWins: computed('winningTeamYellowWins', 'winningTeamBlackWins', function() {
+    return get(this, 'winningTeamYellowWins') + get(this, 'winningTeamBlackWins');
+  }),
+
   losingTeamBlackWins: computed('winner', function() {
     let winner = get(this, 'winner');
     let team = winner === 'team1' ? 'team2' : 'team1';
@@ -66,6 +70,10 @@ export default DS.Model.extend({
     let team = winner === 'team1' ? 'team2' : 'team1';
 
     return get(this, `${team}WinsYellow`);
+  }),
+
+  losingTeamWins: computed('losingTeamYellowWins', 'losingTeamBlackWins', function() {
+    return get(this, 'losingTeamYellowWins') + get(this, 'losingTeamBlackWins');
   }),
 
   isNotFullyCreated: computed.not('time')

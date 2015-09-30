@@ -8,7 +8,9 @@
       <h5><i>Played on {{moment-format model.time "MMM. Do, YYYY @ h:m a"}}</i></h5>
 
       <div class="md-actions" layout="row" layout-align="end center">
-        {{#paper-button raised=true primary=true param=model action="editGame"}}Edit{{/paper-button}}
+        {{#if model.isNotFullyCreated}}
+          {{#paper-button raised=true primary=true param=model action="editGame"}}Edit{{/paper-button}}
+        {{/if}}
       </div>
     {{/paper-card-content}}
   {{/paper-card}}
