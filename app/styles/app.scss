@@ -42,3 +42,12 @@ md-toolbar {
 .md-button.md-default-theme.md-primary.md-raised {
   color: white;
 }
+
+.inline-auto {
+  display: flex;
+  md-autocomplete {
+    flex: 1 1 calc(50% - 8px);
+    min-width: auto;
+    margin-right: 8px;
+  }
+}
