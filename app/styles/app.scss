@@ -51,3 +51,14 @@ md-toolbar {
     margin-right: 8px;
   }
 }
+
+.metrics-container {
+  span {
+    display: inline-block;
+    margin-right: 16px;
+  }
+}
+
+.is-asc, .is-desc, .is-sort-win-percentage, .is-sort-losses, .is-sort-wins {
+  background-color: rgba(0, 0, 0, 0.0980392) !important;
+}

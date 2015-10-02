@@ -6,15 +6,33 @@
     <span class="md-breadcrumb-page">Teams</span>
   </div>
 {{/paper-toolbar}}
+
+{{#paper-content}}
+  {{#paper-button icon-button=true action="sortDown" class=isDesc}}{{paper-icon icon="arrow-drop-down"}}{{/paper-button}}
+  {{#paper-button icon-button=true action="sortUp" class=isAsc}}{{paper-icon icon="arrow-drop-up"}}{{/paper-button}}
+  {{#paper-button icon-button=true action="sortBy" param="winPercentage" class=isSortWinPercentage}}%{{/paper-button}}
+  {{#paper-button icon-button=true action="sortBy" param="wins" class=isSortWins}}W{{/paper-button}}
+  {{#paper-button icon-button=true action="sortBy" param="losses" class=isSortLosses}}L{{/paper-button}}
+{{/paper-content}}
 {{#paper-content class="md-padding"}}
   {{#paper-content class="md-whiteframe-z1 list-demo"}}
     {{#paper-list}}
-      {{#each model as |team|}}
-        {{#paper-item param=team action="goToTeam"}}
-          <p>{{team.player1.name}} - {{team.player2.name}}</p>
-        {{/paper-item}}
-        {{paper-divider}}
-      {{/each}}
+
+      {{#teams-sorter
+        teams=model
+        sortAscending=sortAscending
+        sortBy=sortBy
+        as |sortedDecoratedTeams|}}
+
+        {{#each sortedDecoratedTeams as |decoratedTeam|}}
+          {{#paper-item param=decoratedTeam.team action="goToTeam"}}
+            {{team-display decoratedTeam=decoratedTeam}}
+          {{/paper-item}}
+          {{paper-divider}}
+        {{/each}}
+
+      {{/teams-sorter}}
+
     {{/paper-list}}
   {{/paper-content}}
 {{/paper-content}}
