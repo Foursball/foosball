@@ -36,6 +36,7 @@ module.exports = function(environment) {
      'report-uri': "'none'",
      'script-src': "*"
    };
+    ENV.firebase = 'https://dev-foosball.firebaseio.com/';
   }
 
   if (environment === 'test') {
