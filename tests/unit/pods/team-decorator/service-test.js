@@ -1,12 +1,12 @@
 import { moduleFor, test } from 'ember-qunit';
 
-moduleFor('transform:date', 'Unit | Transform | date', {
+moduleFor('service:team-decorator', 'Unit | Service | team decorator', {
   // Specify the other units that are required for this test.
-  // needs: ['serializer:foo']
+  // needs: ['service:foo']
 });
 
 // Replace this with your real tests.
 test('it exists', function(assert) {
-  let transform = this.subject();
-  assert.ok(transform);
+  let service = this.subject();
+  assert.ok(service);
 });

@@ -9,12 +9,18 @@
 {{#paper-content class="md-padding"}}
   {{#paper-content class="md-whiteframe-z1 list-demo"}}
     {{#paper-list}}
-      {{#each model as |team|}}
-        {{#paper-item param=team action="goToTeam"}}
-          <p>{{team.player1.name}} - {{team.player2.name}}</p>
-        {{/paper-item}}
-        {{paper-divider}}
-      {{/each}}
+
+      {{#teams-sorter teams=model as |sortedDecoratedTeams|}}
+
+        {{#each sortedDecoratedTeams as |decoratedTeam|}}
+          {{#paper-item param=decoratedTeam.team action="goToTeam"}}
+            {{team-display decoratedTeam=decoratedTeam}}
+          {{/paper-item}}
+          {{paper-divider}}
+        {{/each}}
+
+      {{/teams-sorter}}
+
     {{/paper-list}}
   {{/paper-content}}
 {{/paper-content}}
