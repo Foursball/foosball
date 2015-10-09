@@ -28,8 +28,6 @@ $warn: (
    background-color: color($color-grey, '300');
  }
 
-.ta-c {text-align: center;}
-
 md-toolbar {
   &.md-default-theme {
     color: white;
@@ -62,3 +60,12 @@ md-toolbar {
 .is-asc, .is-desc, .is-sort-win-percentage, .is-sort-losses, .is-sort-wins {
   background-color: rgba(0, 0, 0, 0.0980392) !important;
 }
+
+// utils
+.pl-16 { padding-left: 16px; }
+.pr-16 { padding-right: 16px; }
+.mb-8 { margin-bottom: 8px; }
+.d-b { display: block; }
+
+.ta-c { text-align: center; }
+.ta-r { text-align: right; }

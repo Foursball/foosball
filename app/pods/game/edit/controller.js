@@ -21,7 +21,7 @@ export default Controller.extend({
       return false;
     }
 
-    return totalWins === 2 || totalWins === 3;
+    return (totalWins === 2 || totalWins === 3) && (t1wins > 1 || t2wins > 1);
   }),
 
   cannotSave: computed.not('canSave')

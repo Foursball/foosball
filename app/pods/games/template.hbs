@@ -12,7 +12,7 @@
   {{#paper-content class="md-whiteframe-z1 list-demo"}}
     {{#paper-list}}
 
-      {{#each model as |game|}}
+      {{#each sortedGames as |game|}}
         {{#paper-item param=game action="goToGame"}}
           <p class="ta-c">
             <strong>
@@ -26,6 +26,7 @@
             {{game.losingTeam.player2.displayName}}
           </p>
         {{/paper-item}}
+        <small class="pr-16 d-b mb-8 ta-r"><i>{{moment-format game.time "MMM. Do, YYYY @ h:m a"}}</i></small>
         {{paper-divider}}
       {{/each}}
 
