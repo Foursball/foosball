@@ -16,6 +16,10 @@ export default Route.extend({
       this.transitionTo('team', team);
     },
 
+    goToFoosballer(foosballer) {
+      this.transitionTo('foosballer', foosballer);
+    },
+
     newGame() {
       let game = this.store.createRecord('game');
 

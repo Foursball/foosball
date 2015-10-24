@@ -23,7 +23,7 @@
     as |sortedDecoratedFoosballers|}}
 
         {{#each sortedDecoratedFoosballers as |decoratedFoosballer|}}
-          {{#paper-item param=decoratedFoosballer.foosballer}}
+          {{#paper-item param=decoratedFoosballer.foosballer action="goToFoosballer"}}
             {{foosballer-display decoratedFoosballer=decoratedFoosballer}}
           {{/paper-item}}
           {{paper-divider}}
