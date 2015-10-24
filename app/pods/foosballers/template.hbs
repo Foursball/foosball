@@ -6,14 +6,31 @@
     <span class="md-breadcrumb-page">Foosballers</span>
   </div>
 {{/paper-toolbar}}
+{{#paper-content}}
+{{#paper-button icon-button=true action="sortDown" class=isDesc}}{{paper-icon icon="arrow-drop-down"}}{{/paper-button}}
+{{#paper-button icon-button=true action="sortUp" class=isAsc}}{{paper-icon icon="arrow-drop-up"}}{{/paper-button}}
+{{#paper-button icon-button=true action="sortBy" param="winLossRatio" class=isSortWinLossRatio}}W/L{{/paper-button}}
+{{#paper-button icon-button=true action="sortBy" param="winPercentage" class=isSortWinPercentage}}%{{/paper-button}}
+{{/paper-content}}
 {{#paper-content class="md-padding"}}
   {{#paper-content class="md-whiteframe-z1 list-demo"}}
     {{#paper-list}}
-      {{#each sortedFoosballers as |foosballer|}}
-        {{#paper-item}}
-          <p>{{foosballer.name}}</p>
-        {{/paper-item}}
-      {{/each}}
+
+    {{#foosballers-sorter
+    foosballers=model
+    sortAscending=sortAscending
+    sortBy=sortBy
+    as |sortedDecoratedFoosballers|}}
+
+        {{#each sortedDecoratedFoosballers as |decoratedFoosballer|}}
+          {{#paper-item param=decoratedFoosballer.foosballer}}
+            {{foosballer-display decoratedFoosballer=decoratedFoosballer}}
+          {{/paper-item}}
+          {{paper-divider}}
+        {{/each}}
+
+      {{/foosballers-sorter}}
+
     {{/paper-list}}
   {{/paper-content}}
 {{/paper-content}}

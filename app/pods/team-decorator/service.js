@@ -17,7 +17,9 @@ export default Service.extend({
         losses: 0,
         lossesBlack: 0,
         lossesYellow: 0,
-        winPercentage: 0
+        winPercentage: 0,
+        winLossRatio: 0
+
       };
       scoreKeeper = gamesPlayedIn.reduce((prev, curr) => {
         let isTeam1 = get(curr, 'team1.id') === teamId ? true : false;
@@ -44,6 +46,13 @@ export default Service.extend({
       if (scoreKeeper.losses || scoreKeeper.wins) {
         let percentage = scoreKeeper.wins / (scoreKeeper.wins + scoreKeeper.losses) * 100;
         set(scoreKeeper, 'winPercentage', parseFloat(percentage.toFixed(2)));
+      }
+
+      if (scoreKeeper.losses) {
+        let ratio = scoreKeeper.wins / scoreKeeper.losses;
+        set(scoreKeeper, 'winLossRatio', parseFloat(ratio.toFixed(2)));
+      } else {
+        set(scoreKeeper, 'winLossRatio', scoreKeeper.wins);
       }
 
       return scoreKeeper;
