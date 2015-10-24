@@ -5,7 +5,7 @@
       <p>Black - {{model.winningTeamBlackWins}} Yellow - {{model.winningTeamYellowWins}}</p>
       <h4>{{model.losingTeam.player1.displayName}} & {{model.losingTeam.player2.displayName}}</h4>
       <p>Black - {{model.losingTeamBlackWins}} Yellow - {{model.losingTeamYellowWins}}</p>
-      <h5><i>Played on {{moment-format model.time "MMM. Do, YYYY @ h:m a"}}</i></h5>
+      <h5><i>Played on {{moment-format model.time "MMM. Do, YYYY @ h:mm a"}}</i></h5>
 
       <div class="md-actions" layout="row" layout-align="end center">
         {{#if model.isNotFullyCreated}}
