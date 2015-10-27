@@ -64,8 +64,24 @@ md-toolbar {
 // utils
 .pl-16 { padding-left: 16px; }
 .pr-16 { padding-right: 16px; }
+
 .mb-8 { margin-bottom: 8px; }
+.ml-8 { margin-left: 8px; }
+.m-8 { margin: 8px; }
+
 .d-b { display: block; }
+.d-ib { display: inline-block; }
 
 .ta-c { text-align: center; }
 .ta-r { text-align: right; }
+
+.black { color: #000; }
+.yellow { color: map-get($accent, '500'); }
+
+.bold { font-weight: bold; }
+
+.fs-24 { font-size: 24px; }
+
+.p-r { position: relative; }
+
+.t-4 { top: 4px; }
