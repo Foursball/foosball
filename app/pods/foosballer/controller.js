@@ -22,7 +22,7 @@ export default Controller.extend({
     return teamDecorator.decorate(teams, games);
   }),
 
-  foosballer: computed('model', 'foosballers.[]', function() {
+  foosballer: computed('model', 'foosballers.[]', 'decoratedTeams.[]', function() {
     let model = get(this, 'model');
     let decoratedTeams = get(this, 'decoratedTeams');
     let foosballerDecorator = get(this, 'foosballerDecorator');
