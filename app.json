@@ -1,0 +1,16 @@
+{
+  "name":"foosball",
+  "scripts":{},
+  "env":{
+    "BUILDPACK_URL":{
+      "required":true
+    },
+    "EMBER_ENV":{
+      "required":true
+    },
+    "REBUILD_ALL":{
+      "required":true
+    }
+  },
+  "addons":[]
+}
