@@ -8,8 +8,7 @@
     "REBUILD_ALL":{
       "required":true
     },
-    "EMBER_ENV":"development"
-    }
+    "EMBER_ENV": "production"
   },
   "addons":[]
 }
