@@ -5,11 +5,10 @@
     "BUILDPACK_URL":{
       "required":true
     },
-    "EMBER_ENV":{
-      "required":true
-    },
     "REBUILD_ALL":{
       "required":true
+    },
+    "EMBER_ENV":"development"
     }
   },
   "addons":[]
