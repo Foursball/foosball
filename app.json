@@ -8,7 +8,7 @@
     "REBUILD_ALL":{
       "required":true
     },
-    "EMBER_ENV": "production"
+    "EMBER_ENV": "development"
   },
   "addons":[]
 }
