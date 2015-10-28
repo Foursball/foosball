@@ -75,8 +75,8 @@ md-toolbar {
 .ta-c { text-align: center; }
 .ta-r { text-align: right; }
 
-.black { color: #000; }
-.yellow { color: map-get($accent, '500'); }
+.black { color: #000; text-shadow: -2px 2px 2px map-get($color-grey, '300'); }
+.yellow { color: map-get($accent, '500'); text-shadow: -2px 2px 2px map-get($color-grey, '300'); }
 
 .bold { font-weight: bold; }
 
@@ -85,3 +85,6 @@ md-toolbar {
 .p-r { position: relative; }
 
 .t-4 { top: 4px; }
+
+.bc-black { background-color: black; color: white; }
+.bc-yellow { background-color: map-get($accent, '500'); color: black; }
