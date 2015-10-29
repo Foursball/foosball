@@ -1,0 +1,21 @@
+{{#nf-graph paddingTop=10 paddingRight=10 width=width}}
+  {{#nf-x-axis tickCount=5 useTemplate=true as |tick|}}
+    <text>{{moment-format tick.value "M/D"}}</text>
+  {{/nf-x-axis}}
+
+  {{#nf-y-axis as |tick|}}
+    <text>{{tick.value}}</text>
+  {{/nf-y-axis}}
+
+  {{#nf-graph-content}}
+    {{#if accumulated}}
+      {{#nf-area-stack aggregate=true}}
+        {{nf-area data=graphData.black yprop="stacked" class="black-series"}}
+        {{nf-area data=graphData.yellow yprop="stacked" class="yellow-series"}}
+      {{/nf-area-stack}}
+    {{else}}
+      {{nf-line data=graphData.black class="black-series"}}
+      {{nf-line data=graphData.yellow class="yellow-series"}}
+    {{/if}}
+  {{/nf-graph-content}}
+{{/nf-graph}}

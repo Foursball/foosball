@@ -38,6 +38,7 @@
     "ember-disable-proxy-controllers": "^1.0.0",
     "ember-export-application-global": "1.0.4",
     "ember-moment": "4.0.1",
+    "ember-nf-graph": "1.0.0-beta.31",
     "ember-paper": "0.2.8",
     "ember-suave": "1.1.0",
     "emberfire": "1.5.0"

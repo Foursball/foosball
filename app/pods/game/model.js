@@ -12,6 +12,14 @@ export default DS.Model.extend({
   team2WinsYellow: DS.attr('number'),
   time: DS.attr('string'),
 
+  blackWins: computed('team1WinsBlack', 'team2WinsBlack', function() {
+    return get(this, 'team1WinsBlack') + get(this, 'team2WinsBlack');
+  }),
+
+  yellowWins: computed('team1WinsYellow', 'team2WinsYellow', function() {
+    return get(this, 'team1WinsYellow') + get(this, 'team2WinsYellow');
+  }),
+
   team1Wins: computed('team1WinsBlack', 'team1WinsYellow', function() {
     return get(this, 'team1WinsBlack') + get(this, 'team1WinsYellow');
   }),
