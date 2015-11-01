@@ -24,8 +24,8 @@
         as |sortedDecoratedTeams|}}
 
         {{#each sortedDecoratedTeams as |decoratedTeam|}}
-          {{#paper-item param=decoratedTeam.team action="goToTeam"}}
-            {{team-display decoratedTeam=decoratedTeam}}
+          {{#paper-item param=decoratedTeam.team action="expandTeam"}}
+            {{team-display decoratedTeam=decoratedTeam expandedId=expandedId}}
           {{/paper-item}}
           {{paper-divider}}
         {{/each}}

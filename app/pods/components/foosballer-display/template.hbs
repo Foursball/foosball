@@ -5,3 +5,8 @@
   <span>{{decoratedFoosballer.winPercentage}}%</span>
 
 </p>
+
+{{#if shouldExpand}}
+  <p><strong>Wins</strong> Black - {{decoratedFoosballer.winsBlack}} Yellow - {{decoratedFoosballer.winsYellow}}</p>
+  <p><strong>Losses</strong> Black - {{decoratedFoosballer.lossesBlack}} Yellow - {{decoratedFoosballer.lossesYellow}}</p>
+{{/if}}

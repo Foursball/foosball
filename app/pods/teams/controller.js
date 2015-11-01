@@ -3,7 +3,7 @@ import Ember from 'ember';
 const { Controller, set, computed } = Ember;
 
 export default Controller.extend({
-  queryParams: ['sortAscending', 'sortBy'],
+  queryParams: ['sortAscending', 'sortBy', 'expandedId'],
 
   sortAscending: false,
 
@@ -25,6 +25,10 @@ export default Controller.extend({
 
     sortBy(prop) {
       set(this, 'sortBy', prop);
+    },
+
+    expandTeam(team) {
+      set(this, 'expandedId', team.id);
     }
   }
 });
