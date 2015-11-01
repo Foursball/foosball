@@ -3,5 +3,9 @@
   <span>{{decoratedTeam.wins}} : {{decoratedTeam.losses}}</span>
   <span>({{decoratedTeam.winLossRatio}})</span>
   <span>{{decoratedTeam.winPercentage}}%</span>
-
 </p>
+
+{{#if shouldExpand}}
+  <p><strong>Wins</strong> Black - {{decoratedTeam.winsBlack}} Yellow - {{decoratedTeam.winsYellow}}</p>
+  <p><strong>Losses</strong> Black - {{decoratedTeam.lossesBlack}} Yellow - {{decoratedTeam.lossesYellow}}</p>
+{{/if}}

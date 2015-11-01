@@ -7,10 +7,10 @@
   </div>
 {{/paper-toolbar}}
 {{#paper-content}}
-{{#paper-button icon-button=true action="sortBy" param="winLossRatio" class=isSortWinLossRatio}}W/L{{/paper-button}}
-{{#paper-button icon-button=true action="sortBy" param="winPercentage" class=isSortWinPercentage}}%{{/paper-button}}
-{{#paper-button icon-button=true action="sortDown" class=isDesc}}{{paper-icon icon="arrow-drop-down"}}{{/paper-button}}
-{{#paper-button icon-button=true action="sortUp" class=isAsc}}{{paper-icon icon="arrow-drop-up"}}{{/paper-button}}
+  {{#paper-button icon-button=true action="sortBy" param="winLossRatio" class=isSortWinLossRatio}}W/L{{/paper-button}}
+  {{#paper-button icon-button=true action="sortBy" param="winPercentage" class=isSortWinPercentage}}%{{/paper-button}}
+  {{#paper-button icon-button=true action="sortDown" class=isDesc}}{{paper-icon icon="arrow-drop-down"}}{{/paper-button}}
+  {{#paper-button icon-button=true action="sortUp" class=isAsc}}{{paper-icon icon="arrow-drop-up"}}{{/paper-button}}
 {{/paper-content}}
 {{#paper-content class="md-padding"}}
   {{#paper-content class="md-whiteframe-z1 list-demo"}}
@@ -23,8 +23,8 @@
     as |sortedDecoratedFoosballers|}}
 
         {{#each sortedDecoratedFoosballers as |decoratedFoosballer|}}
-          {{#paper-item param=decoratedFoosballer.foosballer action="goToFoosballer"}}
-            {{foosballer-display decoratedFoosballer=decoratedFoosballer}}
+          {{#paper-item param=decoratedFoosballer.foosballer action="expandFoosballer"}}
+            {{foosballer-display decoratedFoosballer=decoratedFoosballer expandedId=expandedId}}
           {{/paper-item}}
           {{paper-divider}}
         {{/each}}
