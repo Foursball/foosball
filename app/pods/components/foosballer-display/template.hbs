@@ -9,4 +9,19 @@
 {{#if shouldExpand}}
   <p><strong>Wins</strong> Black - {{decoratedFoosballer.winsBlack}} Yellow - {{decoratedFoosballer.winsYellow}}</p>
   <p><strong>Losses</strong> Black - {{decoratedFoosballer.lossesBlack}} Yellow - {{decoratedFoosballer.lossesYellow}}</p>
+
+  <h4>Win/Loss Ratio by Week</h4>
+  {{#nf-graph paddingTop=10 paddingRight=10}}
+    {{#nf-x-axis tickCount=5 useTemplate=true as |tick|}}
+      <text>{{moment-format tick.value "M/D"}}</text>
+    {{/nf-x-axis}}
+
+    {{#nf-y-axis as |tick|}}
+      <text>{{tick.value}}</text>
+    {{/nf-y-axis}}
+
+    {{#nf-graph-content}}
+        {{nf-line data=graphData class="black-series"}}
+    {{/nf-graph-content}}
+  {{/nf-graph}}
 {{/if}}

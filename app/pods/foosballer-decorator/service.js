@@ -3,6 +3,47 @@ import Ember from 'ember';
 const { Service, get, set } = Ember;
 
 export default Service.extend({
+  winLossByTimePeriod(foosballer, groupedGames) {
+    return Object.keys(groupedGames).reduce((prev, time) => {
+      let games = get(groupedGames, time);
+      let totalWins = 0;
+      let totalLosses = 0;
+      games.forEach((game) => {
+        let [wins, losses] = this.winLossInGame(foosballer, game);
+        totalWins += wins;
+        totalLosses += losses;
+      });
+
+      set(prev, time, { wins: totalWins, losses: totalLosses });
+
+      return prev;
+    }, {});
+  },
+
+  winLossRatioByTimePeriod(foosballer, groupedGames) {
+    let winLossByTimePeriod = this.winLossByTimePeriod(foosballer, groupedGames);
+
+    return Object.keys(winLossByTimePeriod).reduce((prev, time) => {
+      let obj = get(winLossByTimePeriod, time);
+      let ratio = get(obj, 'wins') / (get(obj, 'losses') ? get(obj, 'losses') : 1);
+      set(prev, time, ratio);
+
+      return prev;
+    }, {});
+  },
+
+  winLossInGame(foosballer, game) {
+    let teamPlayedOn = this.teamPlayedOn(foosballer, game);
+
+    return [get(game, `${teamPlayedOn}Wins`), get(game, `${teamPlayedOn}Losses`)];
+  },
+
+  teamPlayedOn(foosballer, game) {
+    let fId = get(foosballer, 'id');
+
+    return get(game, 'team1.player1.id') === fId || get(game, 'team1.player2.id') === fId ? 'team1' : 'team2';
+  },
+
   decorate(foosballers, decoratedTeams) {
     return foosballers.map((foosballer) => {
       let foosballerId = get(foosballer, 'id');
