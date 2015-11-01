@@ -24,9 +24,13 @@ export default DS.Model.extend({
     return get(this, 'team1WinsBlack') + get(this, 'team1WinsYellow');
   }),
 
+  team1Losses: computed.alias('team2Wins'),
+
   team2Wins: computed('team2WinsBlack', 'team2WinsYellow', function() {
     return get(this, 'team2WinsBlack') + get(this, 'team2WinsYellow');
   }),
+
+  team2Losses: computed.alias('team1Wins'),
 
   winner: computed('team1Wins', 'team2Wins', function() {
     let team1Wins = get(this, 'team1Wins');
