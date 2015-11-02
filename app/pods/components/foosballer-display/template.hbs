@@ -11,7 +11,7 @@
   <p><strong>Losses</strong> Black - {{decoratedFoosballer.lossesBlack}} Yellow - {{decoratedFoosballer.lossesYellow}}</p>
 
   <h4>Win/Loss Ratio by Week</h4>
-  {{#nf-graph paddingTop=10 paddingRight=10}}
+  {{#nf-graph paddingTop=10 paddingRight=10 xScaleType="ordinal"}}
     {{#nf-x-axis tickCount=5 useTemplate=true as |tick|}}
       <text>{{moment-format tick.value "M/D"}}</text>
     {{/nf-x-axis}}
