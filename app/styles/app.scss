@@ -79,6 +79,8 @@ md-content.md-default-theme.bc-grey {
 .ta-c { text-align: center; }
 .ta-r { text-align: right; }
 
+.va-t {vertical-align: top; }
+
 .black { color: #000; text-shadow: -2px 2px 2px map-get($color-grey, '300'); }
 .yellow { color: map-get($accent, '500'); text-shadow: -2px 2px 2px map-get($color-grey, '300'); }
 
