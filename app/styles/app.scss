@@ -1,6 +1,6 @@
 @import 'color-palette';
 
-$primary: $color-pink;
+$primary: $color-deep-purple;
 $accent: $color-yellow;
 $warn: (
   '50': #000,
@@ -25,7 +25,7 @@ $warn: (
  .ember-application {
    max-width: 100%;
    max-height: 100%;
-   background-color: color($color-grey, '300');
+   background-color: color($color-deep-purple, '200');
  }
 
 md-toolbar {
@@ -37,8 +37,8 @@ md-toolbar {
   }
 }
 
-md-content.md-default-theme.bc-grey {
-  background-color: map-get($color-grey, '300');
+md-content.md-default-theme.bc-purple {
+  background-color: map-get($color-deep-purple, '200');
 }
 
 .md-button.md-default-theme.md-primary.md-raised {
@@ -79,8 +79,10 @@ md-content.md-default-theme.bc-grey {
 .ta-c { text-align: center; }
 .ta-r { text-align: right; }
 
-.black { color: #000; text-shadow: -2px 2px 2px map-get($color-grey, '300'); }
-.yellow { color: map-get($accent, '500'); text-shadow: -2px 2px 2px map-get($color-grey, '300'); }
+.black { color: #000; }
+.yellow { color: map-get($accent, '500'); }
+
+.ts-grey { text-shadow: -2px 2px 2px map-get($color-grey, '300'); }
 
 .bold { font-weight: bold; }
 
@@ -93,9 +95,19 @@ md-content.md-default-theme.bc-grey {
 .bc-black { background-color: black; color: white; }
 .bc-yellow { background-color: map-get($accent, '500'); color: black; }
 .bc-grey { background-color: map-get($color-grey, '300'); }
+.bc-purple { background-color: map-get($color-deep-purple, '200'); }
+
 
 
 //NF-GRAPH
+.nf-graph-content-background {
+  fill: map-get($color-deep-purple, '200');
+}
+
+.nf-graph-background {
+  fill: map-get($color-deep-purple, '200');
+}
+
 .black-series {
   .nf-line-line {
     stroke: black;
