@@ -13,18 +13,8 @@
     {{#paper-list}}
 
       {{#each sortedGames as |game|}}
-        {{#paper-item param=game action="goToGame"}}
-          <p class="ta-c">
-            <strong>
-              {{game.winningTeam.player1.displayName}}
-              {{game.winningTeam.player2.displayName}}
-            </strong>
-          </p>
-          <p class="ta-c">{{game.winningTeamWins}} - {{game.losingTeamWins}}</p>
-          <p class="ta-c">
-            {{game.losingTeam.player1.displayName}}
-            {{game.losingTeam.player2.displayName}}
-          </p>
+        {{#paper-item param=game action="expandGame"}}
+          {{game-display game=game expandedId=expandedId}}
         {{/paper-item}}
         <small class="pr-16 d-b mb-8 ta-r"><i>{{moment-format game.time "MMM. Do, YYYY @ h:mm a"}}</i></small>
         {{paper-divider}}

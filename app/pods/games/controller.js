@@ -1,9 +1,11 @@
 import Ember from 'ember';
 import moment from 'moment';
 
-const { Controller, computed, get } = Ember;
+const { Controller, computed, get, set } = Ember;
 
 export default Controller.extend({
+  queryParams: ['expandedId'],
+
   sortedGames: computed('model.[]', function() {
     let games = get(this, 'model');
 
@@ -13,5 +15,11 @@ export default Controller.extend({
 
       return a > b ? -1 : a === b ? 0 : 1;
     });
-  })
+  }),
+
+  actions: {
+    expandGame(game) {
+      set(this, 'expandedId', game.id);
+    }
+  }
 });
