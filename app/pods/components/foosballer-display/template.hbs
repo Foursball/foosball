@@ -1,27 +1,17 @@
-<p>{{decoratedFoosballer.foosballer.name}}</p>
-<p class="metrics-container">
-  <span>{{decoratedFoosballer.wins}} : {{decoratedFoosballer.losses}}</span>
-  <span>({{decoratedFoosballer.winLossRatio}})</span>
-  <span>{{decoratedFoosballer.winPercentage}}%</span>
+<span class="md-avatar">{{rank}}</span>
+<div class="md-list-item-text">
+  <h3>{{decoratedFoosballer.foosballer.name}}</h3>
+  <p class="metrics-container">
+    <span>{{decoratedFoosballer.wins}} : {{decoratedFoosballer.losses}}</span>
+    <span>({{decoratedFoosballer.winLossRatio}})</span>
+    <span>{{decoratedFoosballer.winPercentage}}%</span>
 
-</p>
+  </p>
 
-{{#if shouldExpand}}
-  <p><strong>Wins</strong> Black - {{decoratedFoosballer.winsBlack}} Yellow - {{decoratedFoosballer.winsYellow}}</p>
-  <p><strong>Losses</strong> Black - {{decoratedFoosballer.lossesBlack}} Yellow - {{decoratedFoosballer.lossesYellow}}</p>
+  {{#if shouldExpand}}
+    <p><strong>Wins</strong> Black - {{decoratedFoosballer.winsBlack}} Yellow - {{decoratedFoosballer.winsYellow}}</p>
+    <p><strong>Losses</strong> Black - {{decoratedFoosballer.lossesBlack}} Yellow - {{decoratedFoosballer.lossesYellow}}</p>
 
-  <h4>Win/Loss Ratio by Week</h4>
-  {{#nf-graph paddingTop=10 paddingRight=10}}
-    {{#nf-x-axis tickCount=5 useTemplate=true as |tick|}}
-      <text>{{moment-format tick.value "M/D"}}</text>
-    {{/nf-x-axis}}
-
-    {{#nf-y-axis as |tick|}}
-      <text>{{tick.value}}</text>
-    {{/nf-y-axis}}
-
-    {{#nf-graph-content}}
-        {{nf-line data=graphData class="black-series"}}
-    {{/nf-graph-content}}
-  {{/nf-graph}}
-{{/if}}
+    {{high-charts content=graphData chartOptions=chartOptions theme=theme}}
+  {{/if}}
+</div>

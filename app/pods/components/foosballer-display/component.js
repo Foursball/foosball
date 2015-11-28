@@ -1,5 +1,6 @@
 import Ember from 'ember';
 import PaperItemExpandMixin from 'foosball/mixins/paper-item-expand';
+import DarkUnicaTheme from 'foosball/highchart-themes/dark-unica';
 
 const { Component, computed, inject, get } = Ember;
 
@@ -7,6 +8,8 @@ export default Component.extend(PaperItemExpandMixin, {
   store: inject.service(),
   foosballerDecorator: inject.service(),
   gamesService: inject.service('games'),
+
+  tagName: '',
 
   // Decorated foosballer produced from the foosballer-decorator service
   decoratedFoosballer: null,
@@ -17,6 +20,22 @@ export default Component.extend(PaperItemExpandMixin, {
     return get(this, 'store').peekAll('game');
   }),
 
+  theme: DarkUnicaTheme,
+
+  chartOptions: {
+    title: {
+      text: ''
+    },
+    xAxis: {
+      type: 'datetime'
+    },
+    yAxis: {
+      title: {
+          text: 'Win/Loss Ratio'
+      }
+    }
+  },
+
   graphData: computed('games.[]', 'decoratedFoosballer', function() {
     let foosballerDecorator = get(this, 'foosballerDecorator');
     let foosballer = get(this, 'decoratedFoosballer.foosballer');
@@ -26,8 +45,13 @@ export default Component.extend(PaperItemExpandMixin, {
     let gamesByWeek = gamesService.gamesByWeek(gamesPlayedIn);
     let winLossRatioByTimePeriod = foosballerDecorator.winLossRatioByTimePeriod(foosballer, gamesByWeek);
 
-    return Object.keys(winLossRatioByTimePeriod).map((time) => {
-      return { x: time, y: get(winLossRatioByTimePeriod, time) };
-    });
+    return [
+      {
+        name: 'win/loss',
+        data: Object.keys(winLossRatioByTimePeriod).map((time) => {
+          return { x: time, y: get(winLossRatioByTimePeriod, time) };
+        })
+      }
+    ];
   })
 });

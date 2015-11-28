@@ -41,8 +41,13 @@ md-content.md-default-theme.bc-purple {
   background-color: map-get($color-deep-purple, '200');
 }
 
-.md-button.md-default-theme.md-primary.md-raised {
-  color: white;
+.md-button.md-default-theme {
+  &.md-primary.md-raised {
+    color: white;
+  }
+  span[disabled="false"] {
+    flex: 1;
+  }
 }
 
 .inline-auto {
