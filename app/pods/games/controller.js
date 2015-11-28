@@ -1,5 +1,4 @@
 import Ember from 'ember';
-import moment from 'moment';
 
 const { Controller, computed, get, set } = Ember;
 
