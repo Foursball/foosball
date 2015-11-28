@@ -13,17 +13,11 @@
   <span class="yellow bold fs-24 d-ib p-r ml-8 t-4">{{wins.yellow}}</span>
 
   {{#paper-item}}
-    <div class="md-list-item-text">
-      <h4>Black and Yellow Wins</h4>
-      {{games/black-yellow-wins games=model width=280}}
-    </div>
+    {{games/black-yellow-wins games=model width=280}}
   {{/paper-item}}
 
   {{#paper-item}}
-    <div class="md-list-item-text">
-      <h4>Black and Yellow Wins Accumulated</h4>
-      {{games/black-yellow-wins games=model accumulated=true width=280}}
-    </div>
+    {{games/black-yellow-wins games=model accumulated=true}}
   {{/paper-item}}
   <div class="md-padding black">
     <p>This month's theme is brought to you for awareness of Pancreatic cancer, Epilepsy, and Alzheimer's disease.</p>

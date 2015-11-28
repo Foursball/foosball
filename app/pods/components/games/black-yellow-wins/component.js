@@ -1,5 +1,6 @@
 import Ember from 'ember';
 import moment from 'moment';
+import DarkUnicaTheme from 'foosball/highchart-themes/dark-unica';
 
 const { Component, computed, set, get } = Ember;
 
@@ -8,11 +9,41 @@ export default Component.extend({
 
   accumulate: false,
 
+  theme: DarkUnicaTheme,
+
+  chartOptions: {
+    title: {
+      text: 'Black and Yellow Wins'
+    },
+    xAxis: {
+      type: 'datetime'
+    },
+    yAxis: {
+      title: {
+        text: 'Games'
+      }
+    }
+  },
+
+  chartOptionsAccumulated: {
+    title: {
+      text: 'Black and Yellow Wins Accumulated'
+    },
+    xAxis: {
+      type: 'datetime'
+    },
+    yAxis: {
+      title: {
+        text: 'Games'
+      }
+    }
+  },
+
   graphData: computed('games.[]', function() {
     let games = get(this, 'games');
 
     let gamesDayObj = games.reduce((prev, game) => {
-      let day = moment(get(game, 'time')).startOf('day').valueOf().toString();
+      let day = moment(new Date(get(game, 'time'))).startOf('day').valueOf().toString();
       let blackWins = get(game, 'blackWins');
       let yellowWins = get(game, 'yellowWins');
       let prevObj = get(prev, day);
@@ -54,22 +85,49 @@ export default Component.extend({
       return prev;
     }, { black: [], yellow: [] });
 
-    for (let i = 0; i < seriesObj.black.length; i++) {
+    return [
+      {
+        name: 'black',
+        data: seriesObj.black
+      }, {
+        name: 'yellow',
+        data: seriesObj.yellow
+      }
+    ];
+  }),
+
+  graphDataAccumulated: computed('graphData', function() {
+    let graphData = get(this, 'graphData');
+    let stackedObj = [
+      {
+        name: 'black',
+        data: []
+      }, {
+        name: 'yellow',
+        data: []
+      }
+    ];
+    let blackSeries = graphData[0].data;
+    let yellowSeries = graphData[1].data;
+    let stackedBlackSeries = stackedObj[0].data;
+    let stackedYellowSeries = stackedObj[1].data;
+
+    for (let i = 0; i < blackSeries.length; i++) {
       if (i) {
-        seriesObj.black[i].stacked = seriesObj.black[i - 1].stacked + seriesObj.black[i].y;
+        stackedBlackSeries.push({ x: blackSeries[i].x, y: stackedBlackSeries[i - 1].y + blackSeries[i].y });
       } else {
-        seriesObj.black[i].stacked = seriesObj.black[i].y;
+        stackedBlackSeries[0] = { x: blackSeries[0].x, y: blackSeries[0].y };
       }
     }
 
-    for (let i = 0; i < seriesObj.yellow.length; i++) {
+    for (let i = 0; i < yellowSeries.length; i++) {
       if (i) {
-        seriesObj.yellow[i].stacked = seriesObj.yellow[i - 1].stacked + seriesObj.yellow[i].y;
+        stackedYellowSeries.push({ x: yellowSeries[i].x, y: stackedYellowSeries[i - 1].y + yellowSeries[i].y });
       } else {
-        seriesObj.yellow[i].stacked = seriesObj.yellow[i].y;
+        stackedYellowSeries[0] = { x: yellowSeries[0].x, y: yellowSeries[0].y };
       }
     }
 
-    return seriesObj;
+    return stackedObj;
   })
 });
