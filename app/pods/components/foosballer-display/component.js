@@ -31,7 +31,7 @@ export default Component.extend(PaperItemExpandMixin, {
     },
     yAxis: {
       title: {
-          text: 'Win/Loss Ratio'
+        text: 'Win/Loss Ratio'
       }
     }
   },

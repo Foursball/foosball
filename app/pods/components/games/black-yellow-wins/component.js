@@ -20,7 +20,7 @@ export default Component.extend({
     },
     yAxis: {
       title: {
-          text: 'Games'
+        text: 'Games'
       }
     }
   },
@@ -34,7 +34,7 @@ export default Component.extend({
     },
     yAxis: {
       title: {
-          text: 'Games'
+        text: 'Games'
       }
     }
   },
