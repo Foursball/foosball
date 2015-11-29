@@ -5,10 +5,14 @@ const { Controller, computed, get, set } = Ember;
 export default Controller.extend({
   queryParams: ['expandedId'],
 
-  sortedGames: computed('model.[]', function() {
-    let games = get(this, 'model');
+  legitGames: computed('model.[]', function() {
+    return get(this, 'model').filter((g) => get(g, 'time'));
+  }),
 
-    return games.toArray().sort((a, b) => {
+  sortedGames: computed('legitGames', function() {
+    let legitGames = get(this, 'legitGames');
+
+    return legitGames.toArray().sort((a, b) => {
       a = new Date(get(a, 'time')).getTime();
       b = new Date(get(b, 'time')).getTime();
 
