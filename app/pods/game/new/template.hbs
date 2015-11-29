@@ -2,35 +2,62 @@
   {{#paper-card}}
     {{#paper-card-content}}
       <h4>Team 1</h4>
-      <div class="inline-auto">
-        {{paper-autocomplete
-          placeholder="Foosballer 1"
-          source=players
-          lookupKey="name"
-          model=team1Player1
-        }}
-        {{paper-autocomplete
-          placeholder="Foosballer 2"
-          source=players
-          lookupKey="name"
-          model=team1Player2
-        }}
-      </div>
+      {{#paper-menu as |menu|}}
+        {{#paper-button target=menu action="toggleMenu" icon-button=true}}
+            {{paper-icon class="md-menu-origin" icon="accessibility"}}
+        {{/paper-button}}
+      {{else}}
+        {{#each players as |player|}}
+          {{#paper-menu-item action="team1Player1" param=player}}
+            {{paper-icon icon="add-box" class="md-menu-align-target"}}
+            <span>{{player.name}}</span>
+          {{/paper-menu-item}}
+        {{/each}}
+      {{/paper-menu}}
+      {{team1Player1.name}}
+
+      {{#paper-menu as |menu|}}
+        {{#paper-button target=menu action="toggleMenu" icon-button=true}}
+            {{paper-icon class="md-menu-origin" icon="accessibility"}}
+        {{/paper-button}}
+      {{else}}
+        {{#each players as |player|}}
+          {{#paper-menu-item action="team1Player2" param=player}}
+            {{paper-icon icon="add-box" class="md-menu-align-target"}}
+            <span>{{player.name}}</span>
+          {{/paper-menu-item}}
+        {{/each}}
+      {{/paper-menu}}
+      {{team1Player2.name}}
+
       <h4>Team 2</h4>
-      <div class="inline-auto">
-        {{paper-autocomplete
-          placeholder="Foosballer 1"
-          source=players
-          lookupKey="name"
-          model=team2Player1
-        }}
-        {{paper-autocomplete
-          placeholder="Foosballer 2"
-          source=players
-          lookupKey="name"
-          model=team2Player2
-        }}
-      </div>
+      {{#paper-menu as |menu|}}
+        {{#paper-button target=menu action="toggleMenu" icon-button=true}}
+            {{paper-icon class="md-menu-origin" icon="accessibility"}}
+        {{/paper-button}}
+      {{else}}
+        {{#each players as |player|}}
+          {{#paper-menu-item action="team2Player1" param=player}}
+            {{paper-icon icon="add-box" class="md-menu-align-target"}}
+            <span>{{player.name}}</span>
+          {{/paper-menu-item}}
+        {{/each}}
+      {{/paper-menu}}
+      {{team2Player1.name}}
+
+      {{#paper-menu as |menu|}}
+        {{#paper-button target=menu action="toggleMenu" icon-button=true}}
+            {{paper-icon class="md-menu-origin" icon="accessibility"}}
+        {{/paper-button}}
+      {{else}}
+        {{#each players as |player|}}
+          {{#paper-menu-item action="team2Player2" param=player}}
+            {{paper-icon icon="add-box" class="md-menu-align-target"}}
+            <span>{{player.name}}</span>
+          {{/paper-menu-item}}
+        {{/each}}
+      {{/paper-menu}}
+      {{team2Player2.name}}
 
       <div class="md-actions" layout="row" layout-align="end center">
         {{#paper-button action="cancelGame" param=model}}Cancel{{/paper-button}}
