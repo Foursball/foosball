@@ -23,9 +23,11 @@
     as |sortedDecoratedFoosballers|}}
 
         {{#each sortedDecoratedFoosballers as |decoratedFoosballer index|}}
-          {{#paper-item param=decoratedFoosballer.foosballer action="expandFoosballer" class="md-3-line"}}
-            {{foosballer-display decoratedFoosballer=decoratedFoosballer expandedId=expandedId rank=index}}
-          {{/paper-item}}
+          {{#index-plus-one index=index as |rank|}}
+            {{#paper-item param=decoratedFoosballer.foosballer action="expandFoosballer" class="md-3-line"}}
+              {{foosballer-display decoratedFoosballer=decoratedFoosballer expandedId=expandedId rank=rank}}
+            {{/paper-item}}
+          {{/index-plus-one}}
           {{paper-divider}}
         {{/each}}
 

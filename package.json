@@ -38,7 +38,7 @@
     "ember-export-application-global": "^1.0.4",
     "ember-highcharts": "0.2.1",
     "ember-moment": "4.0.1",
-    "ember-paper": "0.2.8",
+    "ember-paper": "0.2.10",
     "ember-suave": "1.2.3",
     "emberfire": "1.5.0"
   }

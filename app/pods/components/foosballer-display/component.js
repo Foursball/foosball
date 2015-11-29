@@ -49,7 +49,7 @@ export default Component.extend(PaperItemExpandMixin, {
       {
         name: 'win/loss',
         data: Object.keys(winLossRatioByTimePeriod).map((time) => {
-          return { x: time, y: get(winLossRatioByTimePeriod, time) };
+          return { x: parseInt(time, 10), y: get(winLossRatioByTimePeriod, time) };
         })
       }
     ];

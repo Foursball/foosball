@@ -23,10 +23,12 @@
         sortBy=sortBy
         as |sortedDecoratedTeams|}}
 
-        {{#each sortedDecoratedTeams as |decoratedTeam|}}
-          {{#paper-item param=decoratedTeam.team action="expandTeam"}}
-            {{team-display decoratedTeam=decoratedTeam expandedId=expandedId}}
-          {{/paper-item}}
+        {{#each sortedDecoratedTeams as |decoratedTeam index|}}
+          {{#index-plus-one index=index as |rank|}}
+            {{#paper-item param=decoratedTeam.team action="expandTeam"}}
+              {{team-display decoratedTeam=decoratedTeam expandedId=expandedId rank=rank}}
+            {{/paper-item}}
+          {{/index-plus-one}}
           {{paper-divider}}
         {{/each}}
 
