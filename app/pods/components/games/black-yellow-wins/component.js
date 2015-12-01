@@ -7,8 +7,6 @@ const { Component, computed, set, get } = Ember;
 export default Component.extend({
   games: [],
 
-  accumulate: false,
-
   theme: DarkUnicaTheme,
 
   chartOptions: {
@@ -19,20 +17,9 @@ export default Component.extend({
       type: 'datetime'
     },
     yAxis: {
-      title: {
-        text: 'Games'
-      }
-    }
-  },
-
-  chartOptionsAccumulated: {
-    title: {
-      text: 'Black and Yellow Wins Accumulated'
-    },
-    xAxis: {
-      type: 'datetime'
-    },
-    yAxis: {
+      type: 'logarithmic',
+      minorTickInterval: 0.1,
+      min: 1,
       title: {
         text: 'Games'
       }
@@ -92,42 +79,27 @@ export default Component.extend({
       }, {
         name: 'yellow',
         data: seriesObj.yellow
+      }, {
+        name: 'black - accumulated',
+        data: this.accumulate(seriesObj.black)
+      }, {
+        name: 'yellow - accumulated',
+        data: this.accumulate(seriesObj.yellow)
       }
     ];
   }),
 
-  graphDataAccumulated: computed('graphData', function() {
-    let graphData = get(this, 'graphData');
-    let stackedObj = [
-      {
-        name: 'black',
-        data: []
-      }, {
-        name: 'yellow',
-        data: []
-      }
-    ];
-    let blackSeries = graphData[0].data;
-    let yellowSeries = graphData[1].data;
-    let stackedBlackSeries = stackedObj[0].data;
-    let stackedYellowSeries = stackedObj[1].data;
+  accumulate(series) {
+    let accumulatedSeries = [];
 
-    for (let i = 0; i < blackSeries.length; i++) {
+    for (let i = 0; i < series.length; i++) {
       if (i) {
-        stackedBlackSeries.push({ x: blackSeries[i].x, y: stackedBlackSeries[i - 1].y + blackSeries[i].y });
+        accumulatedSeries.push({ x: series[i].x, y: accumulatedSeries[i - 1].y + series[i].y });
       } else {
-        stackedBlackSeries[0] = { x: blackSeries[0].x, y: blackSeries[0].y };
+        accumulatedSeries[0] = { x: series[0].x, y: series[0].y };
       }
     }
 
-    for (let i = 0; i < yellowSeries.length; i++) {
-      if (i) {
-        stackedYellowSeries.push({ x: yellowSeries[i].x, y: stackedYellowSeries[i - 1].y + yellowSeries[i].y });
-      } else {
-        stackedYellowSeries[0] = { x: yellowSeries[0].x, y: yellowSeries[0].y };
-      }
-    }
-
-    return stackedObj;
-  })
+    return accumulatedSeries;
+  }
 });
