@@ -1,10 +1,13 @@
 import Ember from 'ember';
 import PaperItemExpandMixin from 'foosball/mixins/paper-item-expand';
+import { alias } from 'ember-computed-decorators';
 
-const { Component, computed } = Ember;
+const { Component } = Ember;
 
 export default Component.extend(PaperItemExpandMixin, {
   tagName: '',
 
-  itemId: computed.alias('game.id')
+  /* jshint ignore:start */
+  @alias('game.id') itemId
+  /* jshint ignore:end */
 });

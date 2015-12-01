@@ -1,14 +1,18 @@
 import Ember from 'ember';
+import computed from 'ember-computed-decorators';
 
-const { Component, inject, get, computed } = Ember;
+const { Component, inject, get } = Ember;
 
 export default Component.extend({
   store: inject.service(),
   teamDecorator: inject.service(),
 
-  games: computed(function() {
+  /* jshint ignore:start */
+  @computed
+  /* jshint ignore:end */
+  games() {
     return get(this, 'store').findAll('game');
-  }),
+  },
 
   teams: [],
 
@@ -16,20 +20,21 @@ export default Component.extend({
 
   sortBy: 'winPercentage',
 
-  decoratedTeams: computed('teams.[]', 'games.[]', function() {
-    let games = get(this, 'games');
-    let teams = get(this, 'teams');
+  /* jshint ignore:start */
+  @computed('teams.[]', 'games.[]')
+  /* jshint ignore:end */
+  decoratedTeams(teams, games) {
     let teamDecorator = get(this, 'teamDecorator');
 
     return teamDecorator.decorate(teams, games);
-  }),
+  },
 
-  sortedTeams: computed('sortAscending', 'sortBy', 'decoratedTeams.[]', function() {
-    let sortAscending = get(this, 'sortAscending');
-    let sortBy = get(this, 'sortBy');
-    let decoratedTeams = get(this, 'decoratedTeams');
+  /* jshint ignore:start */
+  @computed('sortAscending', 'sortBy', 'decoratedTeams.[]')
+  /* jshint ignore:end */
+  sortedTeams(sortAscending, sortBy, decoratedTeams) {
     let sortedTeams = decoratedTeams.sortBy(sortBy);
 
     return sortAscending ? sortedTeams : sortedTeams.reverse();
-  })
+  }
 });
