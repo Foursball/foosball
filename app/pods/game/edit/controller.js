@@ -1,18 +1,26 @@
 import Ember from 'ember';
+import computed, { not } from 'ember-computed-decorators';
 
-const { Controller, computed, get } = Ember;
+const { Controller, get } = Ember;
 
 export default Controller.extend({
-  cancelOrDelete: computed('model.isNotFullyCreated', function() {
-    return get(this, 'model.isNotFullyCreated') ? 'Delete' : 'Cancel';
-  }),
 
-  canSave: computed('model.{team1WinsBlack,team1WinsYellow,team2WinsBlack,team2WinsYellow}', function() {
+  /* jshint ignore:start */
+  @computed('model.isNotFullyCreated')
+  /* jshint ignore:end */
+  cancelOrDelete(isNotFullyCreated) {
+    return isNotFullyCreated ? 'Delete' : 'Cancel';
+  },
+
+  /* jshint ignore:start */
+  @computed('model.{team1WinsBlack,team1WinsYellow,team2WinsBlack,team2WinsYellow}')
+  /* jshint ignore:end */
+  canSave(t1wb, t1wy, t2wb, t2wy) {
     let game = get(this, 'model');
-    let t1wb = get(game, 'team1WinsBlack') || 0;
-    let t1wy = get(game, 'team1WinsYellow') || 0;
-    let t2wb = get(game, 'team2WinsBlack') || 0;
-    let t2wy = get(game, 'team2WinsYellow') || 0;
+    t1wb = t1wb || 0;
+    t1wy = t1wy || 0;
+    t2wb = t2wb || 0;
+    t2wy = t2wy || 0;
     let t1wins = t1wb + t1wy;
     let t2wins = t2wb + t2wy;
     let totalWins = t1wins + t2wins;
@@ -22,7 +30,9 @@ export default Controller.extend({
     }
 
     return (totalWins === 2 || totalWins === 3) && (t1wins > 1 || t2wins > 1);
-  }),
+  },
 
-  cannotSave: computed.not('canSave')
+  /* jshint ignore:start */
+  @not('canSave') cannotSave
+  /* jshint ignore:end */
 });

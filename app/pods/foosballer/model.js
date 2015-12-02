@@ -1,27 +1,34 @@
 import DS from 'ember-data';
-import Ember from 'ember';
-
-const { computed, get } = Ember;
+import computed from 'ember-computed-decorators';
+import { attr } from 'ember-computed-decorators/ember-data';
 
 export default DS.Model.extend({
-  name: DS.attr('string'),
+  /* jshint ignore:start */
+  @attr('string') name,
+  /* jshint ignore:end */
 
-  firstName: computed('name', function() {
-    let name = get(this, 'name');
+  /* jshint ignore:start */
+  @computed('name')
+  /* jshint ignore:end */
+  firstName(name) {
     const [first] = name ? name.split(' ') : ['', ''];
     return first;
-  }),
+  },
 
-  lastName: computed('name', function() {
-    let name = get(this, 'name');
+  /* jshint ignore:start */
+  @computed('name')
+  /* jshint ignore:end */
+  lastName(name) {
     const [, last] = name ? name.split(' ') : ['', ''];
     return last;
-  }),
+  },
 
-  displayName: computed('firstName', 'lastName', function() {
-    let firstName = get(this, 'firstName');
-    const [last] = get(this, 'lastName');
+  /* jshint ignore:start */
+  @computed('firstName', 'lastName')
+  /* jshint ignore:end */
+  displayName(firstName, lastName) {
+    const [last] = lastName;
 
     return `${firstName} ${last}`;
-  })
+  }
 });
