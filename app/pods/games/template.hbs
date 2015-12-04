@@ -1,15 +1,15 @@
 {{#paper-toolbar}}
-  <div class="md-toolbar-tools">
+  <div class="md-toolbar-tools mc-xmas">
     {{#paper-sidenav-toggle as |toggle|}}
       {{#paper-button target=toggle action="toggleMenu" icon-button=true}}{{paper-icon icon="menu"}}{{/paper-button}}
     {{/paper-sidenav-toggle}}
     <span class="md-breadcrumb-page">Games</span>
   </div>
 {{/paper-toolbar}}
-{{#paper-content class="md-padding"}}
+{{#paper-content class="md-padding bc-xmas"}}
   {{#paper-button primary=true raised=true action="newGame"}}New Game{{/paper-button}}
 
-  {{#paper-content class="md-whiteframe-z1 list-demo"}}
+  {{#paper-content class="md-whiteframe-z1 list-demo bc-xmas"}}
     {{#paper-list}}
 
       {{#each sortedGames as |game index|}}

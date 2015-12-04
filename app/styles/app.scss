@@ -1,6 +1,6 @@
 @import 'color-palette';
 
-$primary: $color-deep-purple;
+$primary: $color-red;
 $accent: $color-yellow;
 $warn: (
   '50': #000,
@@ -25,7 +25,11 @@ $warn: (
  .ember-application {
    max-width: 100%;
    max-height: 100%;
-   background-color: color($color-deep-purple, '200');
+<<<<<<< Updated upstream
+   background-color: color($color-green, '900');
+=======
+   background-color: color($primary, '200');
+>>>>>>> Stashed changes
  }
 
 md-toolbar {
@@ -38,9 +42,16 @@ md-toolbar {
 }
 
 md-content.md-default-theme.bc-purple {
-  background-color: map-get($color-deep-purple, '200');
+  background-color: map-get($primary, '200');
+}
+md-content.md-default-theme.bc-xmas {
+  background-color: map-get($color-green, '900');
+  color: white;
 }
 
+.md-button.md-default-theme.md-primary.md-raised {
+  background-color: map-get($color-red, '900');
+}
 .md-button.md-default-theme {
   &.md-primary.md-raised {
     color: white;
@@ -63,6 +74,7 @@ md-content.md-default-theme.bc-purple {
   span {
     display: inline-block;
     margin-right: 16px;
+    color: white;
   }
 }
 
@@ -85,6 +97,7 @@ md-content.md-default-theme.bc-purple {
 .ta-r { text-align: right; }
 
 .black { color: #000; }
+.white { color: #fff; }
 .yellow { color: map-get($accent, '500'); }
 
 .ts-grey { text-shadow: -2px 2px 2px map-get($color-grey, '300'); }
@@ -97,7 +110,48 @@ md-content.md-default-theme.bc-purple {
 
 .t-4 { top: 4px; }
 
+.mc-xmas {  background-color: map-get($color-red, '900');  color: white; }
+
 .bc-black { background-color: black; color: white; }
 .bc-yellow { background-color: map-get($accent, '500'); color: black; }
 .bc-grey { background-color: map-get($color-grey, '300'); }
 .bc-purple { background-color: map-get($color-deep-purple, '200'); }
+<<<<<<< Updated upstream
+.bc-xmas { background-color: map-get($color-green, '900'); color: white;}
+=======
+
+
+
+//NF-GRAPH
+.nf-graph-content-background {
+  fill: map-get($primary, '200');
+}
+
+.nf-graph-background {
+  fill: map-get($primary, '200');
+}
+
+.black-series {
+  .nf-line-line {
+    stroke: black;
+  }
+  .nf-area-area {
+    fill: black;
+  }
+  .nf-area-line {
+    stroke: black;
+  }
+}
+
+.yellow-series {
+  .nf-line-line {
+    stroke: map-get($accent, '500');
+  }
+  .nf-area-area {
+    fill: map-get($accent, '500');
+  }
+  .nf-area-line {
+    stroke: map-get($accent, '500');
+  }
+}
+>>>>>>> Stashed changes
