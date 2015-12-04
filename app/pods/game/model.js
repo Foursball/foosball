@@ -1,92 +1,118 @@
 import DS from 'ember-data';
 import Ember from 'ember';
+import computed, { alias, equal, not } from 'ember-computed-decorators';
 
-const { computed, get } = Ember;
+const { get } = Ember;
 
 export default DS.Model.extend({
   team1: DS.belongsTo('team', { async: true }),
   team2: DS.belongsTo('team', { async: true }),
-  team1WinsBlack: DS.attr('number'),
-  team1WinsYellow: DS.attr('number'),
-  team2WinsBlack: DS.attr('number'),
-  team2WinsYellow: DS.attr('number'),
+  team1WinsBlack: DS.attr('number', { defaultValue: 0 }),
+  team1WinsYellow: DS.attr('number', { defaultValue: 0 }),
+  team2WinsBlack: DS.attr('number', { defaultValue: 0 }),
+  team2WinsYellow: DS.attr('number', { defaultValue: 0 }),
   time: DS.attr('string'),
 
-  blackWins: computed('team1WinsBlack', 'team2WinsBlack', function() {
-    return get(this, 'team1WinsBlack') + get(this, 'team2WinsBlack');
-  }),
+  /* jshint ignore:start */
+  @computed('team1WinsBlack', 'team2WinsBlack')
+  /* jshint ignore:end */
+  blackWins(team1WinsBlack, team2WinsBlack) {
+    return team1WinsBlack + team2WinsBlack;
+  },
 
-  yellowWins: computed('team1WinsYellow', 'team2WinsYellow', function() {
-    return get(this, 'team1WinsYellow') + get(this, 'team2WinsYellow');
-  }),
+  /* jshint ignore:start */
+  @computed('team1WinsYellow', 'team2WinsYellow')
+  /* jshint ignore:end */
+  yellowWins(team1WinsYellow, team2WinsYellow) {
+    return team1WinsYellow + team2WinsYellow;
+  },
 
-  team1Wins: computed('team1WinsBlack', 'team1WinsYellow', function() {
-    return get(this, 'team1WinsBlack') + get(this, 'team1WinsYellow');
-  }),
+  /* jshint ignore:start */
+  @computed('team1WinsBlack', 'team1WinsYellow')
+  /* jshint ignore:end */
+  team1Wins(team1WinsBlack, team1WinsYellow) {
+    return team1WinsBlack + team1WinsYellow;
+  },
 
-  team1Losses: computed.alias('team2Wins'),
+  /* jshint ignore:start */
+  @alias('team2Wins') team1Losses,
+  @alias('team1Wins') team2Losses,
+  @equal('winner', 'team1') team1IsWinner,
+  @equal('winner', 'team2') team2IsWinner,
+  @not('time') isNotFullyCreated,
+  /* jshint ignore:end */
 
-  team2Wins: computed('team2WinsBlack', 'team2WinsYellow', function() {
-    return get(this, 'team2WinsBlack') + get(this, 'team2WinsYellow');
-  }),
+  /* jshint ignore:start */
+  @computed('team2WinsBlack', 'team2WinsYellow')
+  /* jshint ignore:end */
+  team2Wins(team2WinsBlack, team2WinsYellow) {
+    return team2WinsBlack + team2WinsYellow;
+  },
 
-  team2Losses: computed.alias('team1Wins'),
-
-  winner: computed('team1Wins', 'team2Wins', function() {
-    let team1Wins = get(this, 'team1Wins');
-    let team2Wins = get(this, 'team2Wins');
-
+  /* jshint ignore:start */
+  @computed('team1Wins', 'team2Wins')
+  /* jshint ignore:end */
+  winner(team1Wins, team2Wins) {
     return team1Wins > team2Wins ? 'team1' : 'team2';
-  }),
+  },
 
-  team1IsWinner: computed.equal('winner', 'team1'),
-  team2IsWinner: computed.equal('winner', 'team2'),
-
-  winningTeam: computed('team1IsWinner', function() {
-    let team1IsWinner = get(this, 'team1IsWinner');
-
+  /* jshint ignore:start */
+  @computed('team1IsWinner')
+  /* jshint ignore:end */
+  winningTeam(team1IsWinner) {
     return team1IsWinner ? get(this, 'team1') : get(this, 'team2');
-  }),
+  },
 
-  losingTeam: computed('team1IsWinner', function() {
-    let team1IsWinner = get(this, 'team1IsWinner');
-
+  /* jshint ignore:start */
+  @computed('team1IsWinner')
+  /* jshint ignore:end */
+  losingTeam(team1IsWinner) {
     return team1IsWinner ? get(this, 'team2') : get(this, 'team1');
-  }),
+  },
 
-  winningTeamBlackWins: computed('winner', function() {
-    let winner = get(this, 'winner');
-
+  /* jshint ignore:start */
+  @computed('winner')
+  /* jshint ignore:end */
+  winningTeamBlackWins(winner) {
     return get(this, `${winner}WinsBlack`);
-  }),
+  },
 
-  winningTeamYellowWins: computed('winner', function() {
-    let winner = get(this, 'winner');
-
+  /* jshint ignore:start */
+  @computed('winner')
+  /* jshint ignore:end */
+  winningTeamYellowWins(winner) {
     return get(this, `${winner}WinsYellow`);
-  }),
+  },
 
-  winningTeamWins: computed('winningTeamYellowWins', 'winningTeamBlackWins', function() {
-    return get(this, 'winningTeamYellowWins') + get(this, 'winningTeamBlackWins');
-  }),
+  /* jshint ignore:start */
+  @computed('winningTeamYellowWins', 'winningTeamBlackWins')
+  /* jshint ignore:end */
+  winningTeamWins(winningTeamYellowWins, winningTeamBlackWins) {
+    return winningTeamYellowWins + winningTeamBlackWins;
+  },
 
-  losingTeamBlackWins: computed('winner', function() {
-    let winner = get(this, 'winner');
+  /* jshint ignore:start */
+  @computed('winner')
+  /* jshint ignore:end */
+  losingTeamBlackWins(winner) {
     let team = winner === 'team1' ? 'team2' : 'team1';
 
     return get(this, `${team}WinsBlack`);
-  }),
+  },
 
-  losingTeamYellowWins: computed('winner', function() {
-    let winner = get(this, 'winner');
+  /* jshint ignore:start */
+  @computed('winner')
+  /* jshint ignore:end */
+  losingTeamYellowWins(winner) {
     let team = winner === 'team1' ? 'team2' : 'team1';
 
     return get(this, `${team}WinsYellow`);
-  }),
+  },
 
-  losingTeamWins: computed('losingTeamYellowWins', 'losingTeamBlackWins', function() {
-    return get(this, 'losingTeamYellowWins') + get(this, 'losingTeamBlackWins');
-  }),
-
-  isNotFullyCreated: computed.not('time')
+  /* jshint ignore:start */
+  @computed('losingTeamYellowWins', 'losingTeamBlackWins')
+  /* jshint ignore:end */
+  losingTeamWins(losingTeamYellowWins, losingTeamBlackWins) {
+    return losingTeamYellowWins + losingTeamBlackWins;
+  }
 });
