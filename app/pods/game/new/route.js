@@ -3,6 +3,12 @@ import Ember from 'ember';
 const { Route, get, setProperties, RSVP } = Ember;
 
 export default Route.extend({
+  afterModel() {
+    const { store } = this;
+
+    return this.store.findAll('foosballer');
+  },
+
   actions: {
     startGame(game) {
       function getTeam(teams, players) {

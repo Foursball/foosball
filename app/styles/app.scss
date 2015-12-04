@@ -97,6 +97,7 @@ md-content.md-default-theme.bc-xmas {
 
 .d-b { display: block; }
 .d-ib { display: inline-block; }
+.d-f { display: flex; }
 
 .ta-c { text-align: center; }
 .ta-r { text-align: right; }
@@ -120,3 +121,6 @@ md-content.md-default-theme.bc-xmas {
 .bc-grey { background-color: map-get($color-grey, '300'); }
 .bc-purple { background-color: map-get($color-deep-purple, '200'); }
 .bc-xmas { background-color: map-get($color-green, '900'); color: white;}
+
+//Flex
+.flex-50 { flex: 0 1 50%; }

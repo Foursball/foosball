@@ -2,62 +2,74 @@
   {{#paper-card}}
     {{#paper-card-content}}
       <h4>Team 1</h4>
-      {{#paper-menu as |menu|}}
-        {{#paper-button target=menu action="toggleMenu" icon-button=true}}
-            {{paper-icon class="md-menu-origin" icon="accessibility"}}
-        {{/paper-button}}
-      {{else}}
-        {{#each players as |player|}}
-          {{#paper-menu-item action="team1Player1" param=player}}
-            {{paper-icon icon="add-box" class="md-menu-align-target"}}
-            <span>{{player.name}}</span>
-          {{/paper-menu-item}}
-        {{/each}}
-      {{/paper-menu}}
-      {{team1Player1.name}}
+      <div class="d-f">
+        <div class="flex-50">
+          {{#paper-menu as |menu|}}
+            {{#paper-button target=menu action="toggleMenu" icon-button=true}}
+              {{paper-icon class="md-menu-origin" icon="accessibility"}}
+            {{/paper-button}}
+          {{else}}
+            {{#each players as |player|}}
+              {{#paper-menu-item action="team1Player1" param=player}}
+                {{paper-icon icon="add-box" class="md-menu-align-target"}}
+                <span>{{player.name}}</span>
+              {{/paper-menu-item}}
+            {{/each}}
+          {{/paper-menu}}
+          {{team1Player1.name}}
+        </div>
 
-      {{#paper-menu as |menu|}}
-        {{#paper-button target=menu action="toggleMenu" icon-button=true}}
-            {{paper-icon class="md-menu-origin" icon="accessibility"}}
-        {{/paper-button}}
-      {{else}}
-        {{#each players as |player|}}
-          {{#paper-menu-item action="team1Player2" param=player}}
-            {{paper-icon icon="add-box" class="md-menu-align-target"}}
-            <span>{{player.name}}</span>
-          {{/paper-menu-item}}
-        {{/each}}
-      {{/paper-menu}}
-      {{team1Player2.name}}
+        <div class="flex-50">
+          {{#paper-menu as |menu|}}
+            {{#paper-button target=menu action="toggleMenu" icon-button=true}}
+                {{paper-icon class="md-menu-origin" icon="accessibility"}}
+            {{/paper-button}}
+          {{else}}
+            {{#each players as |player|}}
+              {{#paper-menu-item action="team1Player2" param=player}}
+                {{paper-icon icon="add-box" class="md-menu-align-target"}}
+                <span>{{player.name}}</span>
+              {{/paper-menu-item}}
+            {{/each}}
+          {{/paper-menu}}
+          {{team1Player2.name}}
+        </div>
+      </div>
 
       <h4>Team 2</h4>
-      {{#paper-menu as |menu|}}
-        {{#paper-button target=menu action="toggleMenu" icon-button=true}}
-            {{paper-icon class="md-menu-origin" icon="accessibility"}}
-        {{/paper-button}}
-      {{else}}
-        {{#each players as |player|}}
-          {{#paper-menu-item action="team2Player1" param=player}}
-            {{paper-icon icon="add-box" class="md-menu-align-target"}}
-            <span>{{player.name}}</span>
-          {{/paper-menu-item}}
-        {{/each}}
-      {{/paper-menu}}
-      {{team2Player1.name}}
+      <div class="d-f">
+        <div class="flex-50">
+          {{#paper-menu as |menu|}}
+            {{#paper-button target=menu action="toggleMenu" icon-button=true}}
+                {{paper-icon class="md-menu-origin" icon="accessibility"}}
+            {{/paper-button}}
+          {{else}}
+            {{#each players as |player|}}
+              {{#paper-menu-item action="team2Player1" param=player}}
+                {{paper-icon icon="add-box" class="md-menu-align-target"}}
+                <span>{{player.name}}</span>
+              {{/paper-menu-item}}
+            {{/each}}
+          {{/paper-menu}}
 
-      {{#paper-menu as |menu|}}
-        {{#paper-button target=menu action="toggleMenu" icon-button=true}}
-            {{paper-icon class="md-menu-origin" icon="accessibility"}}
-        {{/paper-button}}
-      {{else}}
-        {{#each players as |player|}}
-          {{#paper-menu-item action="team2Player2" param=player}}
-            {{paper-icon icon="add-box" class="md-menu-align-target"}}
-            <span>{{player.name}}</span>
-          {{/paper-menu-item}}
-        {{/each}}
-      {{/paper-menu}}
-      {{team2Player2.name}}
+          {{team2Player1.name}}
+        </div>
+        <div class="flex-50">
+          {{#paper-menu as |menu|}}
+            {{#paper-button target=menu action="toggleMenu" icon-button=true}}
+                {{paper-icon class="md-menu-origin" icon="accessibility"}}
+            {{/paper-button}}
+          {{else}}
+            {{#each players as |player|}}
+              {{#paper-menu-item action="team2Player2" param=player}}
+                {{paper-icon icon="add-box" class="md-menu-align-target"}}
+                <span>{{player.name}}</span>
+              {{/paper-menu-item}}
+            {{/each}}
+          {{/paper-menu}}
+          {{team2Player2.name}}
+        </div>
+      </div>
 
       <div class="md-actions" layout="row" layout-align="end center">
         {{#paper-button action="cancelGame" param=model}}Cancel{{/paper-button}}

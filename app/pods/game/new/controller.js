@@ -10,7 +10,7 @@ export default Controller.extend({
   foosballers() {
     const { store } = this;
 
-    return store.findAll('foosballer');
+    return store.peekAll('foosballer');
   },
 
   /* jshint ignore:start */
