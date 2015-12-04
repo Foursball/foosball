@@ -37,6 +37,16 @@ md-toolbar {
   }
 }
 
+md-list.md-default-theme {
+  md-list-item.md-3-line {
+    .md-list-item-text {
+      h3 {
+        color: white;
+      }
+    }
+  }
+}
+
 md-content.md-default-theme.bc-purple {
   background-color: map-get($primary, '200');
 }
@@ -113,37 +123,3 @@ md-content.md-default-theme.bc-xmas {
 .bc-grey { background-color: map-get($color-grey, '300'); }
 .bc-purple { background-color: map-get($color-deep-purple, '200'); }
 .bc-xmas { background-color: map-get($color-green, '900'); color: white;}
-
-
-//NF-GRAPH
-.nf-graph-content-background {
-  fill: map-get($primary, '200');
-}
-
-.nf-graph-background {
-  fill: map-get($primary, '200');
-}
-
-.black-series {
-  .nf-line-line {
-    stroke: black;
-  }
-  .nf-area-area {
-    fill: black;
-  }
-  .nf-area-line {
-    stroke: black;
-  }
-}
-
-.yellow-series {
-  .nf-line-line {
-    stroke: map-get($accent, '500');
-  }
-  .nf-area-area {
-    fill: map-get($accent, '500');
-  }
-  .nf-area-line {
-    stroke: map-get($accent, '500');
-  }
-}
