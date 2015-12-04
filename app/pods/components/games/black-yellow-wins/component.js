@@ -1,8 +1,9 @@
 import Ember from 'ember';
 import moment from 'moment';
 import DarkUnicaTheme from 'foosball/highchart-themes/dark-unica';
+import computed from 'ember-computed-decorators';
 
-const { Component, computed, set, get } = Ember;
+const { Component, set, get } = Ember;
 
 export default Component.extend({
   games: [],
@@ -26,9 +27,10 @@ export default Component.extend({
     }
   },
 
-  graphData: computed('games.[]', function() {
-    let games = get(this, 'games');
-
+  /* jshint ignore:start */
+  @computed('games.[]')
+  /* jshint ignore:end */
+  graphData(games) {
     let gamesDayObj = games.reduce((prev, game) => {
       let day = moment(new Date(get(game, 'time'))).startOf('day').valueOf().toString();
       let blackWins = get(game, 'blackWins');
@@ -87,7 +89,7 @@ export default Component.extend({
         data: this.accumulate(seriesObj.yellow)
       }
     ];
-  }),
+  },
 
   accumulate(series) {
     let accumulatedSeries = [];

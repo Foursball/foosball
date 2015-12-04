@@ -1,21 +1,25 @@
 import Ember from 'ember';
+import computed from 'ember-computed-decorators';
 
-const { Component, computed, get } = Ember;
+const { Component } = Ember;
 
 export default Component.extend({
   index: null,
 
   numItems: null,
 
-  plusOne: computed('index', function() {
-    return get(this, 'index') + 1;
-  }),
+  /* jshint ignore:start */
+  @computed('index')
+  /* jshint ignore:end */
+  plusOne(index) {
+    return index + 1;
+  },
 
   // assumes the sort of the items is reversed, otherwise use plusOne
-  count: computed('index', 'numItems', function() {
-    let index = get(this, 'index');
-    let numItems = get(this, 'numItems');
-
+  /* jshint ignore:start */
+  @computed('index', 'numItems')
+  /* jshint ignore:end */
+  count(index, numItems) {
     return numItems - index;
-  })
+  }
 });

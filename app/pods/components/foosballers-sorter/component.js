@@ -1,19 +1,26 @@
 import Ember from 'ember';
+import computed from 'ember-computed-decorators';
 
-const { Component, inject, get, computed } = Ember;
+const { Component, inject, get } = Ember;
 
 export default Component.extend({
   store: inject.service(),
   teamDecorator: inject.service(),
   foosballerDecorator: inject.service(),
 
-  games: computed(function() {
+  /* jshint ignore:start */
+  @computed
+  /* jshint ignore:end */
+  games() {
     return get(this, 'store').findAll('game');
-  }),
+  },
 
-  teams: computed(function() {
+  /* jshint ignore:start */
+  @computed
+  /* jshint ignore:end */
+  teams() {
     return get(this, 'store').findAll('team');
-  }),
+  },
 
   foosballers: [],
 
@@ -21,28 +28,31 @@ export default Component.extend({
 
   sortBy: 'winPercentage',
 
-  decoratedTeams: computed('teams.[]', 'games.[]', function() {
-    let games = get(this, 'games');
-    let teams = get(this, 'teams');
+  /* jshint ignore:start */
+  @computed('teams.[]', 'games.[]')
+  /* jshint ignore:end */
+  decoratedTeams(teams, games) {
     let teamDecorator = get(this, 'teamDecorator');
 
     return teamDecorator.decorate(teams, games);
-  }),
+  },
 
-  decoratedFoosballers: computed('decoratedTeams.[]', function() {
+  /* jshint ignore:start */
+  @computed('decoratedTeams.[]')
+  /* jshint ignore:end */
+  decoratedFoosballers(decoratedTeams) {
     let foosballers = get(this, 'foosballers');
-    let decoratedTeams = get(this, 'decoratedTeams');
     let foosballerDecorator = get(this, 'foosballerDecorator');
 
     return foosballerDecorator.decorate(foosballers, decoratedTeams);
-  }),
+  },
 
-  sortedFoosballers: computed('sortAscending', 'sortBy', 'decoratedFoosballers.[]', function() {
-    let sortAscending = get(this, 'sortAscending');
-    let sortBy = get(this, 'sortBy');
-    let decoratedFoosballers = get(this, 'decoratedFoosballers');
+  /* jshint ignore:start */
+  @computed('sortAscending', 'sortBy', 'decoratedFoosballers.[]')
+  /* jshint ignore:end */
+  sortedFoosballers(sortAscending, sortBy, decoratedFoosballers) {
     let sortedFoosballers = decoratedFoosballers.sortBy(sortBy);
 
     return sortAscending ? sortedFoosballers : sortedFoosballers.reverse();
-  })
+  }
 });

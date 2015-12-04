@@ -1,6 +1,7 @@
 import Ember from 'ember';
+import computed, { equal } from 'ember-computed-decorators';
 
-const { Controller, computed, get, set } = Ember;
+const { Controller, set } = Ember;
 
 export default Controller.extend({
   queryParams: ['sortAscending', 'sortBy', 'expandedId'],
@@ -9,13 +10,12 @@ export default Controller.extend({
 
   sortBy: 'winLossRatio',
 
-  isAsc: computed.equal('sortAscending', true),
-  isDesc: computed.equal('sortAscending', false),
-  isSortWinPercentage: computed.equal('sortBy', 'winPercentage'),
-  isSortWinLossRatio: computed.equal('sortBy', 'winLossRatio'),
-  sortedFoosballers: computed('model.[]', function() {
-    return get(this, 'model').sortBy('name');
-  }),
+  /* jshint ignore:start */
+  @equal('sortAscending', true) isAsc,
+  @equal('sortAscending', false) isDesc,
+  @equal('sortBy', 'winPercentage') isSortWinPercentage,
+  @equal('sortBy', 'winLossRatio') isSortWinLossRatio,
+  /* jshint ignore:end */
 
   actions: {
     sortUp() {

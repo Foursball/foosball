@@ -1,7 +1,8 @@
 import Ember from 'ember';
 import PaperItemExpandMixin from 'foosball/mixins/paper-item-expand';
+import { alias } from 'ember-computed-decorators';
 
-const { Component, computed } = Ember;
+const { Component } = Ember;
 
 export default Component.extend(PaperItemExpandMixin, {
   tagName: '',
@@ -9,5 +10,7 @@ export default Component.extend(PaperItemExpandMixin, {
   // Decorated team produced from the team-decorator service
   decoratedTeam: null,
 
-  itemId: computed.alias('decoratedTeam.team.id')
+  /* jshint ignore:start */
+  @alias('decoratedTeam.team.id') itemId
+  /* jshint ignore:end */
 });
