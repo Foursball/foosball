@@ -1,17 +1,22 @@
 import Ember from 'ember';
+import computed from 'ember-computed-decorators';
 
-const { Controller, computed, get, set } = Ember;
+const { Controller, get, set } = Ember;
 
 export default Controller.extend({
   queryParams: ['expandedId'],
 
-  legitGames: computed('model.[]', function() {
-    return get(this, 'model').filter((g) => get(g, 'time'));
-  }),
+  /* jshint ignore:start */
+  @computed('model.[]')
+  /* jshint ignore:end */
+  legitGames(games) {
+    return games.filter((g) => get(g, 'time'));
+  },
 
-  sortedGames: computed('legitGames', function() {
-    let legitGames = get(this, 'legitGames');
-
+  /* jshint ignore:start */
+  @computed('legitGames')
+  /* jshint ignore:end */
+  sortedGames(legitGames) {
     return legitGames.toArray().sort((a, b) => {
       a = new Date(get(a, 'time')).getTime();
       b = new Date(get(b, 'time')).getTime();
