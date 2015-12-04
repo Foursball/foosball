@@ -25,11 +25,7 @@ $warn: (
  .ember-application {
    max-width: 100%;
    max-height: 100%;
-<<<<<<< Updated upstream
    background-color: color($color-green, '900');
-=======
-   background-color: color($primary, '200');
->>>>>>> Stashed changes
  }
 
 md-toolbar {
@@ -116,10 +112,7 @@ md-content.md-default-theme.bc-xmas {
 .bc-yellow { background-color: map-get($accent, '500'); color: black; }
 .bc-grey { background-color: map-get($color-grey, '300'); }
 .bc-purple { background-color: map-get($color-deep-purple, '200'); }
-<<<<<<< Updated upstream
 .bc-xmas { background-color: map-get($color-green, '900'); color: white;}
-=======
-
 
 
 //NF-GRAPH
@@ -154,4 +147,3 @@ md-content.md-default-theme.bc-xmas {
     stroke: map-get($accent, '500');
   }
 }
->>>>>>> Stashed changes
