@@ -1,5 +1,6 @@
 @import 'color-palette';
 
+$color-red: map-merge($color-red, ('500': #b71c1c));
 $primary: $color-red;
 $accent: $color-yellow;
 $warn: (
@@ -55,9 +56,7 @@ md-content.md-default-theme.bc-xmas {
   color: white;
 }
 
-.md-button.md-default-theme.md-primary.md-raised {
-  background-color: map-get($color-red, '900');
-}
+
 .md-button.md-default-theme {
   &.md-primary.md-raised {
     color: white;
@@ -115,8 +114,6 @@ md-content.md-default-theme.bc-xmas {
 .p-r { position: relative; }
 
 .t-4 { top: 4px; }
-
-.mc-xmas {  background-color: map-get($color-red, '900');  color: white; }
 
 .bc-black { background-color: black; color: white; }
 .bc-yellow { background-color: map-get($accent, '500'); color: black; }
