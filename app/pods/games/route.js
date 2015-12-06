@@ -6,6 +6,6 @@ export default Route.extend({
   model() {
     const { store } = this;
 
-    return store.query('game', {});
+    return store.findAll('game');
   }
 });
