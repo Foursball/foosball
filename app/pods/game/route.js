@@ -4,6 +4,20 @@ const { Route, get } = Ember;
 
 export default Route.extend({
   actions: {
+    error(error, transition) {
+      const { store } = this;
+
+      if (get(transition, 'targetName') === 'game.new') {
+        // tried to refresh on a new game page but that game didn't exist in firebase yet
+        let game = store.createRecord('game');
+
+        this.transitionTo('game.new', game);
+      } else {
+        // tried to go to a different part of the game and that game doesn't exist
+        // let the application route handle it
+        return true;
+      }
+    },
     cancelGame(game) {
       if (get(game, 'isNotFullyCreated')) {
         game

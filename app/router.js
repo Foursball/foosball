@@ -15,6 +15,7 @@ Router.map(function() {
   });
   this.route('summary');
   this.route('loading');
+  this.route('something-happened');
 });
 
 export default Router;

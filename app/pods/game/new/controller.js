@@ -35,21 +35,8 @@ export default Controller.extend({
   @not('canStart') cannotStart,
   /* jshint ignore:end */
 
-  actions: {
-    team1Player1(player) {
-      set(this, 'team1Player1', player);
-    },
-
-    team1Player2(player) {
-      set(this, 'team1Player2', player);
-    },
-
-    team2Player1(player) {
-      set(this, 'team2Player1', player);
-    },
-
-    team2Player2(player) {
-      set(this, 'team2Player2', player);
-    }
+  /*@public Function used by ember-select to get the display value */
+  retrievePlayerName(player) {
+    return get(player, 'name');
   }
 });
