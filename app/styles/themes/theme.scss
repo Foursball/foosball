@@ -1,0 +1,41 @@
+@import 'xmas';
+
+md-toolbar {
+  &.md-default-theme {
+    color: map-get($theme, 'text');
+    md-icon {
+      color: map-get($theme, 'text');
+    }
+  }
+}
+
+md-list.md-default-theme {
+  md-list-item.md-3-line {
+    .md-list-item-text {
+      h3 {
+        color: map-get($theme, 'text');
+      }
+    }
+  }
+}
+
+.ember-application {
+  background-color: map-get($theme, 'background');
+}
+
+md-content.md-default-theme.theme {
+  background-color: map-get($theme, 'background');
+  color: map-get($theme, 'text');
+}
+
+.md-button.md-default-theme {
+  &.md-primary.md-raised {
+    color: map-get($theme, 'text');
+  }
+}
+
+.metrics-container {
+  span {
+    color: map-get($theme, 'text');
+  }
+}

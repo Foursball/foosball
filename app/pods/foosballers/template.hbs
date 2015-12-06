@@ -6,14 +6,14 @@
     <span class="md-breadcrumb-page">Foosballers</span>
   </div>
 {{/paper-toolbar}}
-{{#paper-content class="bc-xmas"}}
+{{#paper-content class="theme"}}
   {{#paper-button icon-button=true action="sortBy" param="winLossRatio" class=isSortWinLossRatio}}W/L{{/paper-button}}
   {{#paper-button icon-button=true action="sortBy" param="winPercentage" class=isSortWinPercentage}}%{{/paper-button}}
   {{#paper-button icon-button=true action="sortDown" class=isDesc}}{{paper-icon icon="arrow-drop-down"}}{{/paper-button}}
   {{#paper-button icon-button=true action="sortUp" class=isAsc}}{{paper-icon icon="arrow-drop-up"}}{{/paper-button}}
 {{/paper-content}}
-{{#paper-content class="md-padding bc-xmas"}}
-  {{#paper-content class="md-whiteframe-z1 list-demo bc-xmas"}}
+{{#paper-content class="md-padding theme"}}
+  {{#paper-content class="md-whiteframe-z1 list-demo theme"}}
     {{#paper-list}}
 
     {{#foosballers-sorter
