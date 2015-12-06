@@ -23,9 +23,7 @@ export default Route.extend({
     newGame() {
       let game = this.store.createRecord('game');
 
-      game
-        .save()
-        .then((game) => this.transitionTo('game.new', game));
+      this.transitionTo('game.new', game);
     }
   }
 });

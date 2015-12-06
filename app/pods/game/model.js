@@ -7,10 +7,10 @@ const { get } = Ember;
 export default DS.Model.extend({
   team1: DS.belongsTo('team', { async: true }),
   team2: DS.belongsTo('team', { async: true }),
-  team1WinsBlack: DS.attr('number', { defaultValue: 0 }),
-  team1WinsYellow: DS.attr('number', { defaultValue: 0 }),
-  team2WinsBlack: DS.attr('number', { defaultValue: 0 }),
-  team2WinsYellow: DS.attr('number', { defaultValue: 0 }),
+  team1WinsBlack: DS.attr('number'),
+  team1WinsYellow: DS.attr('number'),
+  team2WinsBlack: DS.attr('number'),
+  team2WinsYellow: DS.attr('number'),
   time: DS.attr('string'),
 
   /* jshint ignore:start */

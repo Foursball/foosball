@@ -10,7 +10,15 @@ export default Component.extend({
 
   theme: DarkUnicaTheme,
 
+  calculateWidth: function() {
+    // this seems like it could be unreliable :/
+    let $width = this.$().parent().width();
+
+    set(this, 'chartOptions.chart.width', $width);
+  }.on('didInsertElement'),
+
   chartOptions: {
+    chart: {},
     title: {
       text: 'Black and Yellow Wins'
     },
@@ -77,16 +85,20 @@ export default Component.extend({
     return [
       {
         name: 'black',
-        data: seriesObj.black
+        data: seriesObj.black,
+        color: '#009688'
       }, {
         name: 'yellow',
-        data: seriesObj.yellow
+        data: seriesObj.yellow,
+        color: '#FFEB3B'
       }, {
         name: 'black - accumulated',
-        data: this.accumulate(seriesObj.black)
+        data: this.accumulate(seriesObj.black),
+        color: '#00BFA5'
       }, {
         name: 'yellow - accumulated',
-        data: this.accumulate(seriesObj.yellow)
+        data: this.accumulate(seriesObj.yellow),
+        color: '#FFD600'
       }
     ];
   },
