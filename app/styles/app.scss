@@ -1,7 +1,7 @@
 @import 'color-palette';
+@import 'themes/xmas';
 
-$color-red: map-merge($color-red, ('500': #b71c1c));
-$primary: $color-red;
+$primary: map-get($theme, 'primary');
 $accent: $color-yellow;
 $warn: (
   '50': #000,
@@ -21,46 +21,15 @@ $warn: (
   'contrast': $light-contrast-color
 );
 
- @import 'ember-paper';
+@import 'ember-paper';
+@import 'themes/theme';
 
- .ember-application {
-   max-width: 100%;
-   max-height: 100%;
-   background-color: color($color-green, '900');
- }
-
-md-toolbar {
-  &.md-default-theme {
-    color: white;
-    md-icon {
-      color: white;
-    }
-  }
+.ember-application {
+  max-width: 100%;
+  max-height: 100%;
 }
-
-md-list.md-default-theme {
-  md-list-item.md-3-line {
-    .md-list-item-text {
-      h3 {
-        color: white;
-      }
-    }
-  }
-}
-
-md-content.md-default-theme.bc-purple {
-  background-color: map-get($primary, '200');
-}
-md-content.md-default-theme.bc-xmas {
-  background-color: map-get($color-green, '900');
-  color: white;
-}
-
 
 .md-button.md-default-theme {
-  &.md-primary.md-raised {
-    color: white;
-  }
   span[disabled="false"] {
     flex: 1;
   }
@@ -79,7 +48,6 @@ md-content.md-default-theme.bc-xmas {
   span {
     display: inline-block;
     margin-right: 16px;
-    color: white;
   }
 }
 
@@ -119,8 +87,6 @@ md-content.md-default-theme.bc-xmas {
 .bc-black { background-color: black; color: white; }
 .bc-yellow { background-color: map-get($accent, '500'); color: black; }
 .bc-grey { background-color: map-get($color-grey, '300'); }
-.bc-purple { background-color: map-get($color-deep-purple, '200'); }
-.bc-xmas { background-color: map-get($color-green, '900'); color: white;}
 
 .full-vh { height: 100vh; }
 

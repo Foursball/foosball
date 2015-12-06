@@ -1,0 +1,7 @@
+@import '../color-palette';
+
+$theme: (
+  'primary': map-merge($color-red, ('500': #b71c1c)),
+  'background': color($color-green, '900'),
+  'text': white
+);
