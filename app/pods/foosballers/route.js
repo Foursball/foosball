@@ -1,6 +1,6 @@
 import Ember from 'ember';
 
-const { Route, get } = Ember;
+const { Route, get, RSVP } = Ember;
 
 export default Route.extend({
   model() {
@@ -8,6 +8,11 @@ export default Route.extend({
   },
 
   afterModel() {
-    return get(this, 'store').findAll('game');
+    const { store } = this;
+
+    let gamesPromise = store.findAll('game');
+    let teamsPromise = store.findAll('team');
+
+    return RSVP.all([gamesPromise, teamsPromise]);
   }
 });

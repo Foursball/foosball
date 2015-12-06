@@ -12,14 +12,14 @@ export default Component.extend({
   @computed
   /* jshint ignore:end */
   games() {
-    return get(this, 'store').findAll('game');
+    return get(this, 'store').peekAll('game');
   },
 
   /* jshint ignore:start */
   @computed
   /* jshint ignore:end */
   teams() {
-    return get(this, 'store').findAll('team');
+    return get(this, 'store').peekAll('team');
   },
 
   foosballers: [],
