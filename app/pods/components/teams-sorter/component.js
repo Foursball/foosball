@@ -11,7 +11,7 @@ export default Component.extend({
   @computed
   /* jshint ignore:end */
   games() {
-    return get(this, 'store').findAll('game');
+    return get(this, 'store').peekAll('game');
   },
 
   teams: [],

@@ -14,6 +14,7 @@ Router.map(function() {
     this.route('edit', { path: 'e' });
   });
   this.route('summary');
+  this.route('loading');
 });
 
 export default Router;

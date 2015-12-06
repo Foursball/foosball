@@ -122,5 +122,9 @@ md-content.md-default-theme.bc-xmas {
 .bc-purple { background-color: map-get($color-deep-purple, '200'); }
 .bc-xmas { background-color: map-get($color-green, '900'); color: white;}
 
+.full-vh { height: 100vh; }
+
 //Flex
 .flex-50 { flex: 0 1 50%; }
+.column { flex-direction: column; }
+.jc-center { justify-content: center; }
