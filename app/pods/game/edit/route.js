@@ -1,9 +1,15 @@
 import Ember from 'ember';
 import moment from 'moment';
 
-const { Route, set, get } = Ember;
+const { Route, set, get, RSVP } = Ember;
 
 export default Route.extend({
+  afterModel() {
+    const { store } = this;
+
+    return store.findAll('game');
+  },
+
   actions: {
     saveGame(game) {
       let t1bw = get(game, 'team1WinsBlack');
