@@ -13,7 +13,7 @@ md-list.md-default-theme {
   md-list-item.md-3-line {
     .md-list-item-text {
       h3 {
-        color: map-get($theme, 'text');
+        color: map-get($theme, 'card-text-color');
       }
     }
   }
@@ -25,7 +25,26 @@ md-list.md-default-theme {
 
 md-content.md-default-theme.theme {
   background-color: map-get($theme, 'background');
-  color: map-get($theme, 'text');
+  color: map-get($theme, 'card-text-color');
+  md-card {
+    background-color: map-get($theme, 'card-color');
+  }
+  md-list {
+    background-color: map-get($theme, 'card-color');
+  }
+  button {
+    color: map-get($theme, 'icon-color-text');
+    .md-avatar {
+      color: map-get($theme, 'card-text-color');
+    }
+    .md-list-item-text {
+      color: map-get($theme, 'card-text-color');
+    }
+  }
+}
+
+md-icon.md-default-theme {
+  color: map-get($theme, 'icon-color-text');
 }
 
 .md-button.md-default-theme {
@@ -36,6 +55,6 @@ md-content.md-default-theme.theme {
 
 .metrics-container {
   span {
-    color: map-get($theme, 'text');
+    color: map-get($theme, 'card-text-color');
   }
 }

@@ -9,6 +9,17 @@ export default Route.extend({
     return this.store.findAll('foosballer');
   },
 
+  setupController(controller, model) {
+    this._super(...arguments);
+
+    setProperties(controller, {
+      team1Player1: null,
+      team1Player2: null,
+      team2Player1: null,
+      team2Player2: null
+    });
+  },
+
   actions: {
     startGame(game) {
       function getTeam(teams, players) {
