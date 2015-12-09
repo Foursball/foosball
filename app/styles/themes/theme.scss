@@ -2,6 +2,10 @@
 
 $primary: map-get($theme, 'primary');
 
+.ember-application {
+  background-color: map-get($theme, 'background');
+}
+
 md-toolbar {
   &.md-default-theme {
     color: map-get($theme, 'text');
@@ -11,27 +15,10 @@ md-toolbar {
   }
 }
 
-md-list.md-default-theme {
-  md-list-item {
-    &.md-3-line{
-      .md-list-item-text {
-        h3.accent-text {
-          color: map-get($theme, 'accent-text');
-          font-weight: bold;
-        }
-      }
-    }
-    .md-list-item-text {
-      h3.accent-text {
-        color: map-get($theme, 'accent-text');
-        font-weight: bold;
-      }
-    }
+.md-button.md-default-theme {
+  &.md-primary.md-raised {
+    color: map-get($theme, 'text');
   }
-}
-
-.ember-application {
-  background-color: map-get($theme, 'background');
 }
 
 md-content.md-default-theme.theme {
@@ -58,20 +45,31 @@ md-icon.md-default-theme {
   color: map-get($theme, 'icon-color-text');
 }
 
-md-divider.md-default-theme {
-  &.theme{
-    border-top-color: map-get($theme, 'card-divider-color');
-  }
-}
-
-.md-button.md-default-theme {
-  &.md-primary.md-raised {
-    color: map-get($theme, 'text');
-  }
-}
-
 .metrics-container {
   span {
     color: map-get($theme, 'card-text-color');
   }
+}
+
+md-list.md-default-theme {
+  md-list-item {
+    &.md-3-line{
+      .md-list-item-text {
+        h3.accent-text {
+          color: map-get($theme, 'accent-text-color');
+          font-weight: bold;
+        }
+      }
+    }
+    .md-list-item-text {
+      h3.accent-text {
+        color: map-get($theme, 'accent-text-color');
+        font-weight: bold;
+      }
+    }
+  }
+}
+
+md-divider.md-default-theme.theme{
+  border-top-color: map-get($theme, 'card-divider-color');
 }
