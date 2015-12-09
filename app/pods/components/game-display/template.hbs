@@ -1,6 +1,6 @@
 <span class="md-avatar">{{count}}</span>
 <div class="md-list-item-text">
-  <h3>
+  <h3 class="accent-text">
     {{game.winningTeam.player1.displayName}}
     {{game.winningTeam.player2.displayName}}
   </h3>
@@ -8,10 +8,10 @@
     <p>Black - {{game.winningTeamBlackWins}} Yellow - {{game.winningTeamYellowWins}}</p>
   {{/if}}
   <p class="ta-c">{{game.winningTeamWins}} - {{game.losingTeamWins}}</p>
-  <p>
+  <h3>
     {{game.losingTeam.player1.displayName}}
     {{game.losingTeam.player2.displayName}}
-  </p>
+  </h3>
   {{#if shouldExpand}}
     <p>Black - {{game.losingTeamBlackWins}} Yellow - {{game.losingTeamYellowWins}}</p>
 

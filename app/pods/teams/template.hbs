@@ -24,11 +24,11 @@
 
         {{#each sortedDecoratedTeams as |decoratedTeam index|}}
           {{#index-plus-one index=index as |rank|}}
-            {{#paper-item param=decoratedTeam.team action="expandTeam"}}
+            {{#paper-item param=decoratedTeam.team action="expandTeam" class="md-3-line"}}
               {{team-display decoratedTeam=decoratedTeam expandedId=expandedId rank=rank}}
             {{/paper-item}}
           {{/index-plus-one}}
-          {{paper-divider}}
+          {{paper-divider class="theme"}}
         {{/each}}
 
       {{/teams-sorter}}

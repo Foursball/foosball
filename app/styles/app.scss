@@ -1,7 +1,6 @@
-@import 'color-palette';
-@import 'themes/xmas';
 
-$primary: map-get($theme, 'primary');
+@import 'color-palette';
+@import 'themes/theme';
 $accent: $color-yellow;
 $warn: (
   '50': #000,
@@ -22,7 +21,7 @@ $warn: (
 );
 
 @import 'ember-paper';
-@import 'themes/theme';
+
 
 .ember-application {
   max-width: 100%;

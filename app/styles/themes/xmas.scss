@@ -6,5 +6,7 @@ $theme: (
   'text': white,
   'card-color': white,
   'card-text-color': black,
-  'icon-color-text': white
-);
+  'icon-color-text': white,
+  'accent-text-color': color($color-red, '900'),
+  'card-divider-color': rgba(183,28,28,.33)
+  );
