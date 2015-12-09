@@ -38,10 +38,13 @@ md-content.md-default-theme.theme {
     .md-list-item-text {
       color: map-get($theme, 'card-text-color');
     }
+    md-icon.md-default-theme {
+      color: map-get($theme, 'icon-color-text');
+    }
   }
 }
 
-md-icon.md-default-theme {
+md-icon.md-default-theme.theme {
   color: map-get($theme, 'icon-color-text');
 }
 
