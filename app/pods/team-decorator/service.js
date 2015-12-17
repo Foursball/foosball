@@ -50,7 +50,7 @@ export default Service.extend({
 
       if (scoreKeeper.losses) {
         let ratio = scoreKeeper.wins / scoreKeeper.losses;
-        set(scoreKeeper, 'winLossRatio', parseFloat(ratio.toFixed(2)));
+        set(scoreKeeper, 'winLossRatio', parseFloat(ratio.toFixed(3)));
       } else {
         set(scoreKeeper, 'winLossRatio', scoreKeeper.wins);
       }
