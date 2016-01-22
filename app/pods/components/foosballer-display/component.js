@@ -52,14 +52,26 @@ export default Component.extend(PaperItemExpandMixin, {
     let gamesPlayedIn = gamesService.gamesPlayedIn(foosballer, games);
     let gamesByWeek = gamesService.gamesByWeek(gamesPlayedIn);
     let winLossRatioByTimePeriod = foosballerDecorator.winLossRatioByTimePeriod(foosballer, gamesByWeek);
+    let cummulativeWinLoss = foosballerDecorator.cummulativeWinLossByTimePeriod(foosballer, gamesByWeek);
 
-    return [
-      {
-        name: 'win/loss',
-        data: Object.keys(winLossRatioByTimePeriod).map((time) => {
+    let cummulativeWinLossRatioSeries = {
+      name: 'cummulative win/loss',
+      data: Object.keys(cummulativeWinLoss)
+        .map((time) => {
+          let { wins, losses } = get(cummulativeWinLoss, time);
+
+          return { x: parseInt(time, 10), y: wins / (losses || 1) };
+        })
+    };
+
+    let winsLossRatioSeries = {
+      name: 'win/loss',
+      data: Object.keys(winLossRatioByTimePeriod)
+        .map((time) => {
           return { x: parseInt(time, 10), y: get(winLossRatioByTimePeriod, time) };
         })
-      }
-    ];
+    };
+
+    return [winsLossRatioSeries, cummulativeWinLossRatioSeries];
   }
 });

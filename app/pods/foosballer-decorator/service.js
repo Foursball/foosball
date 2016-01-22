@@ -6,15 +6,9 @@ export default Service.extend({
   winLossByTimePeriod(foosballer, groupedGames) {
     return Object.keys(groupedGames).reduce((prev, time) => {
       let games = get(groupedGames, time);
-      let totalWins = 0;
-      let totalLosses = 0;
-      games.forEach((game) => {
-        let [wins, losses] = this.winLossInGame(foosballer, game);
-        totalWins += wins;
-        totalLosses += losses;
-      });
+      let [wins, losses] = this.winsLossesInGames(foosballer, games);
 
-      set(prev, time, { wins: totalWins, losses: totalLosses });
+      set(prev, time, { wins, losses });
 
       return prev;
     }, {});
@@ -25,11 +19,46 @@ export default Service.extend({
 
     return Object.keys(winLossByTimePeriod).reduce((prev, time) => {
       let obj = get(winLossByTimePeriod, time);
-      let ratio = get(obj, 'wins') / (get(obj, 'losses') ? get(obj, 'losses') : 1);
+      let losses = get(obj, 'losses');
+      let wins = get(obj, 'wins');
+      let ratio = wins / (losses || 1);
       set(prev, time, ratio);
 
       return prev;
     }, {});
+  },
+
+  winsLossesInGames(foosballer, games) {
+    let wins = 0;
+    let losses = 0;
+    games.forEach((game) => {
+      let [w, l] = this.winLossInGame(foosballer, game);
+      wins += w;
+      losses += l;
+    });
+
+    return [wins, losses];
+  },
+
+  cummulativeWinLossByTimePeriod(foosballer, groupedGames) {
+    let obj = {};
+    let keys = Object.keys(groupedGames);
+
+    for (let i = 0; i < keys.length; i++) {
+      let time = keys[i];
+      let games = groupedGames[time];
+      let [wins, losses] = this.winsLossesInGames(foosballer, games);
+
+      if (!i) {
+        set(obj, time, { wins, losses });
+      } else {
+        let prevWins = get(obj, keys[i - 1]).wins;
+        let prevLosses = get(obj, keys[i - 1]).losses;
+        set(obj, time, { wins: wins + prevWins, losses: losses + prevLosses });
+      }
+    }
+
+    return obj;
   },
 
   winLossInGame(foosballer, game) {
