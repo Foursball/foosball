@@ -4,6 +4,15 @@ import moment from 'moment';
 const { Service, get, set } = Ember;
 
 export default Service.extend({
+  gamesTeamPlayedIn(team, games) {
+    let tId = get(team, 'id');
+
+    return games.filter((g) => {
+      return get(g, 'team1.id') === tId ||
+        get(g, 'team2.id') === tId;
+    });
+  },
+
   gamesPlayedIn(foosballer, games) {
     let fId = get(foosballer, 'id');
 
