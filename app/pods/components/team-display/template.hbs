@@ -10,5 +10,7 @@
   {{#if shouldExpand}}
     <p><strong>Wins</strong> Black - {{decoratedTeam.winsBlack}} Yellow - {{decoratedTeam.winsYellow}}</p>
     <p><strong>Losses</strong> Black - {{decoratedTeam.lossesBlack}} Yellow - {{decoratedTeam.lossesYellow}}</p>
+
+    {{high-charts content=graphData chartOptions=chartOptions theme=theme}}
   {{/if}}
 </div>
