@@ -56,6 +56,7 @@ export default Route.extend({
       game
         .save()
         .then(() => {
+          // jscs:disable
           return new RSVP.Promise((resolve, reject) => {
             $.ajax({
               type: 'POST',
@@ -71,6 +72,7 @@ export default Route.extend({
               success: resolve
             });
           });
+          // jscs:enable
         })
         .then(() => this.transitionTo('games'));
     }
