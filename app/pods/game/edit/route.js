@@ -1,7 +1,7 @@
 import Ember from 'ember';
 import moment from 'moment';
 
-const { Route, set, get, RSVP } = Ember;
+const { Route, set, get, RSVP, $ } = Ember;
 
 export default Route.extend({
   afterModel() {
@@ -35,8 +35,43 @@ export default Route.extend({
 
       set(game, 'time', moment());
 
+      let winningTeam = get(game, 'winningTeam');
+      let losingTeam = get(game, 'losingTeam');
+      let wp1 = get(winningTeam, 'player1.hipchat');
+      let wp2 = get(winningTeam, 'player2.hipchat');
+      let lp1 = get(losingTeam, 'player1.hipchat');
+      let lp2 = get(losingTeam, 'player2.hipchat');
+      let winningTeamWins = get(game, 'winningTeamWins');
+      let losingTeamWins = get(game, 'losingTeamWins');
+      let landslideWin = losingTeamWins ? false : true;
+
+      let hipchatMessage = `${wp1} ${wp2} beat ${lp1} ${lp2} ${winningTeamWins} - ${losingTeamWins}`;
+
+      if (landslideWin) {
+        hipchatMessage += ' (burn)';
+      }
+
+      let color = landslideWin ? 'red' : 'yellow';
+
       game
         .save()
+        .then(() => {
+          return new RSVP.Promise((resolve, reject) => {
+            $.ajax({
+              type: 'POST',
+              processData: false,
+              contentType: 'application/json',
+              url: 'https://7xtn2nu154.execute-api.us-west-2.amazonaws.com/prod/hipchat',
+              data: JSON.stringify({
+                "message": hipchatMessage,
+                "message_format": "text",
+                "color": color,
+                "notify": 1
+              }),
+              success: resolve
+            });
+          });
+        })
         .then(() => this.transitionTo('games'));
     }
   }

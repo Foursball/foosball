@@ -4,6 +4,10 @@ import { attr } from 'ember-computed-decorators/ember-data';
 
 export default DS.Model.extend({
   /* jshint ignore:start */
+  @attr('string') hipchat,
+  /* jshint ignore:end */
+
+  /* jshint ignore:start */
   @attr('string') name,
   /* jshint ignore:end */
 
