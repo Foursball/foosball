@@ -63,10 +63,10 @@ export default Route.extend({
               contentType: 'application/json',
               url: 'https://7xtn2nu154.execute-api.us-west-2.amazonaws.com/prod/hipchat',
               data: JSON.stringify({
-                "message": hipchatMessage,
-                "message_format": "text",
-                "color": color,
-                "notify": 1
+                message: hipchatMessage,
+                message_format: 'text',
+                color,
+                notify: 1
               }),
               success: resolve
             });
