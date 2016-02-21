@@ -62,7 +62,7 @@ export default Route.extend({
               type: 'POST',
               processData: false,
               contentType: 'application/json',
-              url: 'https://7xtn2nu154.execute-api.us-west-2.amazonaws.com/prod/hipchat',
+              url: 'https://035946labg.execute-api.us-east-1.amazonaws.com/prod/hipchat',
               data: JSON.stringify({
                 message: hipchatMessage,
                 message_format: 'text',
