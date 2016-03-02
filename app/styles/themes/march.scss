@@ -1,0 +1,12 @@
+@import '../color-palette';
+
+$theme: (
+  'primary': map-merge($color-orange, ('500': color($color-orange, '500'))),
+  'background': color($color-orange, '200'),
+  'text': black,
+  'card-color': white,
+  'card-text-color': black,
+  'icon-color-text': black,
+  'accent-text-color': color($color-orange, 'A700'),
+  'card-divider-color': rgba(color($color-orange, '500'),.33)
+  );

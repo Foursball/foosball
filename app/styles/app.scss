@@ -73,7 +73,7 @@ $warn: (
 
 .black { color: #000; }
 .white { color: #fff; }
-.yellow { color: map-get($accent, '500'); }
+.yellow { color: map-get($accent, 'A200'); }
 
 .ts-grey { text-shadow: -2px 2px 2px map-get($color-grey, '300'); }
 
