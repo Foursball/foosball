@@ -1,9 +1,12 @@
 import Ember from 'ember';
 import moment from 'moment';
+import ENV from 'foosball/config/environment';
 
-const { Route, set, get, RSVP, $ } = Ember;
+const { Route, set, get, RSVP, $, inject: { service } } = Ember;
 
 export default Route.extend({
+  notify: service(),
+
   afterModel() {
     const { store } = this;
 
@@ -16,6 +19,7 @@ export default Route.extend({
       let t1yw = get(game, 'team1WinsYellow');
       let t2bw = get(game, 'team2WinsBlack');
       let t2yw = get(game, 'team2WinsYellow');
+      const notify = get(this, 'notify');
 
       if (!t1bw) {
         set(game, 'team1WinsBlack', 0);
@@ -52,27 +56,35 @@ export default Route.extend({
       }
 
       let color = landslideWin ? 'red' : 'yellow';
-
+      notify.success('Saving Game...');
       game
         .save()
         .then(() => {
-          // jscs:disable
-          return new RSVP.Promise((resolve, reject) => {
-            $.ajax({
-              type: 'POST',
-              processData: false,
-              contentType: 'application/json',
-              url: 'https://035946labg.execute-api.us-east-1.amazonaws.com/prod/hipchat',
-              data: JSON.stringify({
-                message: hipchatMessage,
-                message_format: 'text',
-                color,
-                notify: 1
-              }),
-              success: resolve
+          notify.success('Game saved. Posting to Hipchat...');
+          if (ENV.environment === 'development') {
+            return RSVP.resolve();
+          } else {
+            // jscs:disable
+            return new RSVP.Promise((resolve, reject) => {
+              $.ajax({
+                type: 'POST',
+                processData: false,
+                contentType: 'application/json',
+                url: 'https://035946labg.execute-api.us-east-1.amazonaws.com/prod/hipchat',
+                data: JSON.stringify({
+                  message: hipchatMessage,
+                  message_format: 'text',
+                  color,
+                  notify: 1
+                }),
+                success: resolve
+              });
             });
-          });
-          // jscs:enable
+            // jscs:enable
+          }
+        })
+        .then(() => {
+          notify.success('Posted to Hipchat! Going back to the games page...');
         })
         .then(() => this.transitionTo('games'));
     }
