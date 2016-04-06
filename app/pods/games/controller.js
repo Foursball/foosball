@@ -1,10 +1,35 @@
 import Ember from 'ember';
 import computed from 'ember-computed-decorators';
 
-const { Controller, get, set } = Ember;
+const {
+  Controller,
+  get,
+  set,
+  PromiseProxyMixin,
+  ObjectProxy,
+  RSVP: {
+    Promise
+  }
+} = Ember;
+
+const ObjectPromiseProxy = ObjectProxy.extend(PromiseProxyMixin);
 
 export default Controller.extend({
   queryParams: ['expandedId'],
+
+  @computed('model.[]')
+  calculation(games) {
+    let worker = new Worker('workers/team-vs-team.js');
+    worker.postMessage(JSON.stringify(games.toArray()));
+
+    return ObjectPromiseProxy.create({
+      promise: new Promise((resolve, reject) => {
+        worker.onmessage = function(event) {
+          resolve(event.data);
+        };
+      })
+    });
+  },
 
   /* jshint ignore:start */
   @computed('model.[]')

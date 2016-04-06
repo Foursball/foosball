@@ -9,6 +9,17 @@
 {{#paper-content class="md-padding theme"}}
   {{#paper-button primary=true raised=true action="newGame"}}New Game{{/paper-button}}
 
+  {{#if calculation.isPending}}
+    {{paper-progress-circular}}
+  {{else}}
+    {{#if calculation.isRejected}}
+      <p>shit</p>
+    {{else}}
+      {{log calculation}}
+      {{calculation.content}}
+    {{/if}}
+  {{/if}}
+
   {{#paper-content class="md-whiteframe-z1 list-demo theme"}}
     {{#paper-list}}
 
