@@ -46,10 +46,33 @@
         </div>
       </div>
 
+    {{/paper-card-content}}
+  {{/paper-card}}
+
+  {{#paper-card}}
+    {{#paper-card-content}}
+      <h4>Previous Records</h4>
+      {{#if gamesAgainst.isPending}}
+        {{paper-progress-circular}}
+      {{else}}
+        <div class="md-text-items">
+          {{#if gamesAgainst.content.length}}
+            {{log gamesAgainst.content.length}}
+            <p>{{mostRecent.winningTeam.player1.displayName}} & {{mostRecent.winningTeam.player2.displayName}} won {{mostRecent.winningTeamWins}} - {{mostRecent.losingTeamWins}}</p>
+            <small class="pr-16 d-b mb-8 ta-r"><i>{{moment-format mostRecent.time "MMM. Do, YYYY @ h:mm a"}}</i></small>
+          {{else}}
+            {{#if (and team1Player1 team1Player2 team2Player1 team2Player2)}}
+              <p>New matchup!</p>
+            {{/if}}
+          {{/if}}
+        </div>
+      {{/if}}
+
       <div class="md-actions" layout="row" layout-align="end center">
         {{#paper-button action="cancelGame" param=model}}Cancel{{/paper-button}}
-        {{#paper-button raised=true primary=true param=model action="startGame" disabled=cannotStart}}Start{{/paper-button}}
+        {{#paper-button raised=true primary=true param=model disabled=cannotStart action="startGame"}}Start{{/paper-button}}
       </div>
     {{/paper-card-content}}
   {{/paper-card}}
+
 {{/paper-content}}

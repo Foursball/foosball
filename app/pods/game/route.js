@@ -3,6 +3,17 @@ import Ember from 'ember';
 const { Route, get } = Ember;
 
 export default Route.extend({
+  model(params) {
+    const { store } = this;
+
+    return store.findRecord('game', params.game_id)
+      .catch((e) => {
+        return store.createRecord('game', {
+          id: params.game_id
+        });
+      });
+  },
+
   actions: {
     error(error, transition) {
       const { store } = this;

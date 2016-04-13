@@ -14,29 +14,6 @@ export default Controller.extend({
   },
 
   /* jshint ignore:start */
-  @computed('games.[]', 'model.team1', 'model.team2')
-  /* jshint ignore:end */
-  gamesAgainst(games, team1, team2) {
-    return get(this, 'gamesService').gamesPlayedAgainst(games, team1, team2);
-  },
-
-  /* jshint ignore:start */
-  @computed('gamesAgainst')
-  /* jshint ignore:end */
-  havePlayedBefore(gamesAgainst) {
-    return get(gamesAgainst, 'length');
-  },
-
-  /* jshint ignore:start */
-  @computed('gamesAgainst')
-  /* jshint ignore:end */
-  mostRecent(gamesAgainst) {
-    let recentGame = get(this, 'gamesService').mostRecentGame(gamesAgainst);
-
-    return getProperties(recentGame, 'time', 'winningTeam', 'winningTeamWins', 'losingTeamWins');
-  },
-
-  /* jshint ignore:start */
   @computed('model.team1', 'gamesAgainst')
   /* jshint ignore:end */
   team1Wins(team1, gamesAgainst) {

@@ -74,6 +74,16 @@ export default Service.extend({
     return get(game, 'team1.id') === tId ? 'team1' : 'team2';
   },
 
+  getTeam(teams, p1Id, p2Id) {
+    return teams.find((t) => {
+      let player1Id = get(t, 'player1.id');
+      let player2Id = get(t, 'player2.id');
+
+      return (player1Id === p1Id || player2Id === p1Id) &&
+        (player1Id === p2Id || player2Id === p2Id);
+    });
+  },
+
   decorate(teams, games) {
     return teams.map((team) => {
       let teamId = get(team, 'id');

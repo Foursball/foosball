@@ -5,8 +5,13 @@ const { Route, get, setProperties, RSVP } = Ember;
 export default Route.extend({
   afterModel() {
     const { store } = this;
+    let promises = [
+      this.store.findAll('foosballer'),
+      this.store.findAll('team'),
+      this.store.findAll('game')
+    ];
 
-    return this.store.findAll('foosballer');
+    return RSVP.all(promises);
   },
 
   setupController(controller, model) {
