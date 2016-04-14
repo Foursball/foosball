@@ -5,12 +5,11 @@ const { Route, get } = Ember;
 export default Route.extend({
   model(params) {
     const { store } = this;
+    let id = params.game_id; // jscs:ignore requireCamelCaseOrUpperCaseIdentifiers
 
-    return store.findRecord('game', params.game_id)
+    return store.findRecord('game', id)
       .catch((e) => {
-        return store.createRecord('game', {
-          id: params.game_id
-        });
+        return store.createRecord('game', { id });
       });
   },
 
