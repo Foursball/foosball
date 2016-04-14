@@ -57,7 +57,6 @@
       {{else}}
         <div class="md-text-items">
           {{#if gamesAgainst.content.length}}
-            {{log gamesAgainst.content.length}}
             <p>{{mostRecent.winningTeam.player1.displayName}} & {{mostRecent.winningTeam.player2.displayName}} won {{mostRecent.winningTeamWins}} - {{mostRecent.losingTeamWins}}</p>
             <small class="pr-16 d-b mb-8 ta-r"><i>{{moment-format mostRecent.time "MMM. Do, YYYY @ h:mm a"}}</i></small>
           {{else}}

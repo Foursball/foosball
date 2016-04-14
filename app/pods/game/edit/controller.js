@@ -1,32 +1,9 @@
 import Ember from 'ember';
 import computed, { not } from 'ember-computed-decorators';
 
-const { Controller, get, inject, getProperties } = Ember;
+const { Controller, get, getProperties } = Ember;
 
 export default Controller.extend({
-  gamesService: inject.service('games'),
-
-  /* jshint ignore:start */
-  @computed()
-  /* jshint ignore:end */
-  games() {
-    return get(this, 'store').peekAll('game');
-  },
-
-  /* jshint ignore:start */
-  @computed('model.team1', 'gamesAgainst')
-  /* jshint ignore:end */
-  team1Wins(team1, gamesAgainst) {
-    return get(this, 'gamesService').winsForTeam(team1, gamesAgainst);
-  },
-
-  /* jshint ignore:start */
-  @computed('model.team2', 'gamesAgainst')
-  /* jshint ignore:end */
-  team2Wins(team2, gamesAgainst) {
-    return get(this, 'gamesService').winsForTeam(team2, gamesAgainst);
-  },
-
   /* jshint ignore:start */
   @computed('model.isNotFullyCreated')
   /* jshint ignore:end */
