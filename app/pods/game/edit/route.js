@@ -56,11 +56,17 @@ export default Route.extend({
       }
 
       let color = landslideWin ? 'red' : 'yellow';
-      notify.success('Saving Game...');
+      let savingGameMessage = notify.success('Saving Game...', {
+        closeAfter: null
+      });
+
       game
         .save()
         .then(() => {
-          notify.success('Game saved. Posting to Hipchat...');
+          savingGameMessage.set('visible', false);
+          let postingToHipChatMessage = notify.success('Game saved. Posting to Hipchat...', {
+            closeAfter: null
+          });
           if (ENV.environment === 'development') {
             return RSVP.resolve();
           } else {
@@ -77,7 +83,10 @@ export default Route.extend({
                   color,
                   notify: 1
                 }),
-                success: resolve
+                success: function() {
+                  postingToHipChatMessage.set('visible', false);
+                  resolve();
+                }
               });
             });
             // jscs:enable

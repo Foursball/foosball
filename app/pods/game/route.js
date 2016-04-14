@@ -34,7 +34,7 @@ export default Route.extend({
           .destroyRecord()
           .then(() => this.transitionTo('application'));
       } else {
-        game.rollback();
+        game.rollbackAttributes();
         this.transitionTo('application');
       }
     },
