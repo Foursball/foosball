@@ -7,6 +7,7 @@ const {
   set,
   PromiseProxyMixin,
   ObjectProxy,
+  RSVP,
   RSVP: {
     Promise
   }
@@ -51,16 +52,21 @@ export default Service.extend({
   },
 
   gamesPlayedAgainst(games, team1, team2) {
-    return this.legitGames(games)
+    let team1Id = get(team1, 'id');
+    let team2Id = get(team2, 'id');
+
+    let matchedGames = this.legitGames(games)
       .filter((g) => {
         let t1 = get(g, 'team1.id');
         let t2 = get(g, 'team2.id');
-        let team1Id = get(team1, 'id');
-        let team2Id = get(team2, 'id');
 
         return (t1 === team1Id || t1 === team2Id) &&
           (t2 === team1Id || t2 === team2Id);
       });
+
+    return ObjectPromiseProxy.create({
+      promise: RSVP.resolve(matchedGames)
+    });
   },
 
   gamesPlayedAgainstAsync(games, team1, team2) {

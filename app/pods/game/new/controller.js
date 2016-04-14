@@ -68,6 +68,7 @@ export default Controller.extend({
   /* jshint ignore:end */
   gamesAgainst(games, teams, t1p1, t1p2, t2p1, t2p2) {
     let teamService = get(this, 'teamService');
+    let gamesService = get(this, 'gamesService');
 
     if (!t1p1 || !t1p2 || !t2p1 || !t2p2) {
       return RSVP.resolve();
@@ -75,21 +76,25 @@ export default Controller.extend({
       let team1 = teamService.getTeam(teams, t1p1, t1p2);
       let team2 = teamService.getTeam(teams, t2p1, t2p2);
 
-      return get(this, 'gamesService').gamesPlayedAgainstAsync(games, team1, team2);
+      if (window.Worker) {
+        return gamesService.gamesPlayedAgainstAsync(games, team1, team2);
+      } else {
+        return gamesService.gamesPlayedAgainst(games, team1, team2);
+      }
     }
   },
 
-  mostRecent: Ember.computed('gamesAgainst.isFulfilled', 'games.[]', function() {
+  mostRecent: Ember.computed('gamesAgainst.isFulfilled', function() {
     let gamesAgainst = get(this, 'gamesAgainst');
+    let gamesService = get(this, 'gamesService');
 
     if (get(gamesAgainst, 'isFulfilled')) {
       let games = get(this, 'games');
-      let recentGame = get(this, 'gamesService').mostRecentGame(get(gamesAgainst, 'content'));
+      let recentGame = gamesService.mostRecentGame(get(gamesAgainst, 'content'));
       let recentStoreGame = games.findBy('id', recentGame.id);
 
       return getProperties(recentStoreGame, 'time', 'winningTeam', 'winningTeamWins', 'losingTeamWins');
     } else {
-      console.log('not fulfilled');
       return {};
     }
   }),
