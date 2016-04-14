@@ -99,7 +99,6 @@ export default Controller.extend({
     }
   }),
 
-
   /*@public Function used by ember-select to get the display value */
   retrievePlayerName(player) {
     return get(player, 'name');

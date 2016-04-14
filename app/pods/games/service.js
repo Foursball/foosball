@@ -13,7 +13,7 @@ const {
   }
  } = Ember;
 
- const ObjectPromiseProxy = ObjectProxy.extend(PromiseProxyMixin);
+const ObjectPromiseProxy = ObjectProxy.extend(PromiseProxyMixin);
 
 export default Service.extend({
   gamesTeamPlayedIn(team, games) {
