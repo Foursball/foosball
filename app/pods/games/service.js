@@ -1,7 +1,19 @@
 import Ember from 'ember';
 import moment from 'moment';
 
-const { Service, get, set } = Ember;
+const {
+  Service,
+  get,
+  set,
+  PromiseProxyMixin,
+  ObjectProxy,
+  RSVP,
+  RSVP: {
+    Promise
+  }
+ } = Ember;
+
+const ObjectPromiseProxy = ObjectProxy.extend(PromiseProxyMixin);
 
 export default Service.extend({
   gamesTeamPlayedIn(team, games) {
@@ -40,16 +52,47 @@ export default Service.extend({
   },
 
   gamesPlayedAgainst(games, team1, team2) {
-    return this.legitGames(games)
+    let team1Id = get(team1, 'id');
+    let team2Id = get(team2, 'id');
+
+    let matchedGames = this.legitGames(games)
       .filter((g) => {
         let t1 = get(g, 'team1.id');
         let t2 = get(g, 'team2.id');
-        let team1Id = get(team1, 'id');
-        let team2Id = get(team2, 'id');
 
         return (t1 === team1Id || t1 === team2Id) &&
           (t2 === team1Id || t2 === team2Id);
       });
+
+    return ObjectPromiseProxy.create({
+      promise: RSVP.resolve(matchedGames)
+    });
+  },
+
+  gamesPlayedAgainstAsync(games, team1, team2) {
+    let worker = new Worker('workers/team-vs-team.js');
+    let legitGames = this.legitGames(games)
+      .map((g) => {
+        let game = g.serialize();
+        game.id = g.id;
+
+        return game;
+      });
+    let message = {
+      games: legitGames,
+      team1Id: get(team1, 'id'),
+      team2Id: get(team2, 'id')
+    };
+
+    worker.postMessage(JSON.stringify(message));
+
+    return ObjectPromiseProxy.create({
+      promise: new Promise((resolve, reject) => {
+        worker.onmessage = function(event) {
+          resolve(JSON.parse(event.data));
+        };
+      })
+    });
   },
 
   legitGames(games) {

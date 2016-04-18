@@ -3,6 +3,16 @@ import Ember from 'ember';
 const { Route, get } = Ember;
 
 export default Route.extend({
+  model(params) {
+    const { store } = this;
+    let id = params.game_id; // jscs:ignore requireCamelCaseOrUpperCaseIdentifiers
+
+    return store.findRecord('game', id)
+      .catch((e) => {
+        return store.createRecord('game', { id });
+      });
+  },
+
   actions: {
     error(error, transition) {
       const { store } = this;
@@ -24,7 +34,7 @@ export default Route.extend({
           .destroyRecord()
           .then(() => this.transitionTo('application'));
       } else {
-        game.rollback();
+        game.rollbackAttributes();
         this.transitionTo('application');
       }
     },

@@ -1,7 +1,14 @@
 import Ember from 'ember';
 import computed from 'ember-computed-decorators';
 
-const { Controller, get, set } = Ember;
+const {
+  Controller,
+  get,
+  set,
+  RSVP: {
+    Promise
+  }
+} = Ember;
 
 export default Controller.extend({
   queryParams: ['expandedId'],

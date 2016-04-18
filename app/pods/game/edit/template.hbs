@@ -1,22 +1,10 @@
 {{#paper-content class="md-padding theme"}}
-  {{#if havePlayedBefore}}
-    {{#paper-card}}
-      {{#paper-card-content}}
-        <h4>Last Game Played ({{gamesAgainst.length}} total)</h4>
-          <div class="md-text-items">
-            <p>{{mostRecent.winningTeam.player1.displayName}} & {{mostRecent.winningTeam.player2.displayName}} won {{mostRecent.winningTeamWins}} - {{mostRecent.losingTeamWins}}</p>
-            <small class="pr-16 d-b mb-8 ta-r"><i>{{moment-format mostRecent.time "MMM. Do, YYYY @ h:mm a"}}</i></small>
-          </div>
-      {{/paper-card-content}}
-    {{/paper-card}}
-  {{/if}}
-
   {{#paper-card}}
     {{#paper-card-content}}
-      <h4>{{model.team1.player1.displayName}} & {{model.team1.player2.displayName}} Wins ({{team1Wins}} H2H)</h4>
+      <h4>{{model.team1.player1.displayName}} & {{model.team1.player2.displayName}}</h4>
       {{paper-slider flex=true discrete=true value=model.team1WinsBlack step='1' min='0' max='2' warn=true}}
       {{paper-slider flex=true discrete=true value=model.team1WinsYellow step='1' min='0' max='2' accent=true}}
-      <h4>{{model.team2.player1.displayName}} & {{model.team2.player2.displayName}} Wins ({{team2Wins}} H2H)</h4>
+      <h4>{{model.team2.player1.displayName}} & {{model.team2.player2.displayName}}</h4>
       {{paper-slider flex=true discrete=true value=model.team2WinsBlack step='1' min='0' max='2' warn=true}}
       {{paper-slider flex=true discrete=true value=model.team2WinsYellow step='1' min='0' max='2' accent=true}}
 
