@@ -21,7 +21,8 @@ $warn: (
 );
 
 @import 'ember-paper';
-
+@import 'main-nav';
+@import 'flex';
 
 .ember-application {
   max-width: 100%;
@@ -59,6 +60,7 @@ $warn: (
 .pr-16 { padding-right: 16px; }
 .pt-16 { padding-top: 16px; }
 .pb-16 { padding-bottom: 16px; }
+.p-16 { padding: 16px; }
 
 .mb-8 { margin-bottom: 8px; }
 .ml-8 { margin-left: 8px; }

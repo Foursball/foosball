@@ -1,8 +1,20 @@
 import Ember from 'ember';
 
-const { Route } = Ember;
+const { Route, get } = Ember;
 
 export default Route.extend({
+  beforeModel() {
+    let session = get(this, 'session');
+
+    return session
+      .fetch()
+      .catch(() => this.transitionTo('login'));
+  },
+
+  // redirect() {
+  //   this.transitionTo('home');
+  // },
+
   actions: {
     transitionTo(route) {
       this.transitionTo(route);
@@ -26,8 +38,12 @@ export default Route.extend({
       this.transitionTo('game.new', game);
     },
 
-    error(error, transition) {
-      this.transitionTo('something-happened');
+    // error(error, transition) {
+    //   this.transitionTo('something-happened');
+    // },
+
+    logout() {
+      get(this, 'session').close();
     }
   }
 });
