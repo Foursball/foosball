@@ -52,17 +52,20 @@ export default Service.extend({
   },
 
   gamesPlayedAgainst(games, team1, team2) {
-    let team1Id = get(team1, 'id');
-    let team2Id = get(team2, 'id');
+    let matchedGames = [];
+    if (team1 && team2) {
+      let team1Id = get(team1, 'id');
+      let team2Id = get(team2, 'id');
 
-    let matchedGames = this.legitGames(games)
-      .filter((g) => {
-        let t1 = get(g, 'team1.id');
-        let t2 = get(g, 'team2.id');
+      matchedGames = this.legitGames(games)
+        .filter((g) => {
+          let t1 = get(g, 'team1.id');
+          let t2 = get(g, 'team2.id');
 
-        return (t1 === team1Id || t1 === team2Id) &&
-          (t2 === team1Id || t2 === team2Id);
-      });
+          return (t1 === team1Id || t1 === team2Id) &&
+            (t2 === team1Id || t2 === team2Id);
+        });
+    }
 
     return ObjectPromiseProxy.create({
       promise: RSVP.resolve(matchedGames)
@@ -70,6 +73,12 @@ export default Service.extend({
   },
 
   gamesPlayedAgainstAsync(games, team1, team2) {
+    if (!team1 || !team2) {
+      return ObjectPromiseProxy.create({
+        promise: RSVP.resolve([])
+      });
+    }
+
     let worker = new Worker('workers/team-vs-team.js');
     let legitGames = this.legitGames(games)
       .map((g) => {
