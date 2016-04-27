@@ -1,1 +1,9 @@
-<button {{action 'login' 'twitter'}}>Login</button>
+{{#paper-card class="login-route bc-white"}}
+  {{#paper-card-content class="fg-1"}}
+    <h1>Log in to Foursball</h1>
+    <button {{action 'login' 'twitter'}}>Login with Twitter</button>
+  {{/paper-card-content}}
+  {{#paper-card-content class="bc-grey"}}
+    <a>Some link</a>
+  {{/paper-card-content}}
+{{/paper-card}}

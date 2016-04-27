@@ -2,7 +2,7 @@
   flex-basis: 918px;
   max-width: 918px;
   width: 918px;
-  padding: 0 16px;
+  padding: 16px;
 }
 
 .main-nav {
@@ -14,6 +14,7 @@
     a, div {
       flex-grow: 1;
     }
+    padding: 0 16px;
 
     .right-nav {
       display: flex;
@@ -49,5 +50,6 @@
   &:hover {
     color: map-get($theme, 'accent-text-color');
     border-bottom: 4px solid map-get($theme, 'accent-text-color');
+    text-decoration: none;
   }
 }

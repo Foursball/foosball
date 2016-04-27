@@ -6,14 +6,10 @@ export default Route.extend({
   beforeModel() {
     let session = get(this, 'session');
 
-    return session
-      .fetch()
-      .catch(() => this.transitionTo('login'));
+    if (!get(session, 'isAuthenticated')) {
+      this.transitionTo('login');
+    }
   },
-
-  // redirect() {
-  //   this.transitionTo('home');
-  // },
 
   actions: {
     transitionTo(route) {

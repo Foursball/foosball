@@ -28,23 +28,29 @@
   <hbox justify="center" class="main-nav">
     <hbox class="center-content" fill nowrap>
       <div class="left-nav">
-        {{#link-to 'home' class="tab"}}<span>Home</span>{{/link-to}}
-        {{#link-to 'teams' class="tab"}}Teams{{/link-to}}
-        {{#link-to 'foosballers' class="tab"}}Foosers{{/link-to}}
+        {{#if session.isAuthenticated}}
+          {{#link-to 'home' class="tab"}}Home{{/link-to}}
+          {{#link-to 'teams' class="tab"}}Teams{{/link-to}}
+          {{#link-to 'foosballers' class="tab"}}Foosers{{/link-to}}
+        {{else}}
+          {{#link-to 'login' class="tab"}}Login{{/link-to}}
+        {{/if}}
       </div>
       <div class="middle-nav">
         <div class="icon">Icon</div>
       </div>
       <hbox justify="end" class="right-nav">
-        <div>{{log session}}
-          <img src={{session.currentUser.profileImageURL}}>
-        </div>
-        {{#paper-button primary=true raised=true}}Game{{/paper-button}}
+        {{#if session.isAuthenticated}}
+          <div>
+            <img src={{session.currentUser.profileImageURL}}>
+          </div>
+          {{#paper-button primary=true raised=true}}Game{{/paper-button}}
+        {{/if}}
       </hbox>
     </hbox>
   </hbox>
   <hbox justify="center">
-    <hbox class="center-content fh-nav" fill>
+    <hbox justify="center" class="center-content fh-nav" fill>
       {{outlet}}
     </hbox>
   </hbox>

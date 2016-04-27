@@ -23,6 +23,7 @@ $warn: (
 @import 'ember-paper';
 @import 'main-nav';
 @import 'flex';
+@import 'routes/index';
 
 .ember-application {
   max-width: 100%;
@@ -90,6 +91,7 @@ $warn: (
 .bc-black { background-color: black; color: white; }
 .bc-yellow { background-color: map-get($accent, '500'); color: black; }
 .bc-grey { background-color: map-get($color-grey, '300'); }
+.bc-white { background-color: white; }
 
 .full-vh { height: 100vh; }
 

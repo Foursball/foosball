@@ -3,11 +3,11 @@ import Ember from 'ember';
 const { Route, get } = Ember;
 
 export default Route.extend({
-  beforeModel() {
-    if (get(this, 'session.isAuthenticated')) {
-      this.transitionTo('home');
-    }
-  },
+  // beforeModel() {
+  //   if (get(this, 'session.isAuthenticated')) {
+  //     this.transitionTo('home');
+  //   }
+  // },
 
   actions: {
     login(provider) {
