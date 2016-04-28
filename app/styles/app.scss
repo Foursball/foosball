@@ -24,6 +24,7 @@ $warn: (
 @import 'main-nav';
 @import 'flex';
 @import 'routes/index';
+@import 'components/index';
 
 .ember-application {
   max-width: 100%;

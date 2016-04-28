@@ -1,7 +1,12 @@
 <vbox md="3" class="p-16">
-  <div>
-    image
-  </div>
+  {{#paper-card class="bc-white profile-card"}}
+    <img src="http://miguelcobain.github.io/ember-paper/washedout-70b84b894d88b367d49d56a8cd808cca.png">
+    {{#paper-card-content}}
+      <div class="avatar-container d-ib p-r">
+        <img src={{session.currentUser.profileImageURL}} class="avatar">
+      </div>
+    {{/paper-card-content}}
+  {{/paper-card}}
   <div>
     trends
   </div>

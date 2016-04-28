@@ -11,7 +11,7 @@
   height: 48px;
   max-height: 48px;
   .center-content {
-    a, div {
+    .left-nav, .middle-nav, .right-nav {
       flex-grow: 1;
     }
     padding: 0 16px;
@@ -24,6 +24,18 @@
       }
       button {
         display: inline-block;
+      }
+      .img-container {
+        height: 36px;
+        width: 36px;
+        margin-right: 8px;
+        img {
+          height: 36px;
+          width: 36px;
+          position: relative;
+          top: 6px;
+          border-radius: 4px;
+        }
       }
     }
   }

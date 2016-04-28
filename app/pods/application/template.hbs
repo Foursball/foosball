@@ -41,7 +41,7 @@
       </div>
       <hbox justify="end" class="right-nav">
         {{#if session.isAuthenticated}}
-          <div>
+          <div class="img-container">
             <img src={{session.currentUser.profileImageURL}}>
           </div>
           {{#paper-button primary=true raised=true}}Game{{/paper-button}}
