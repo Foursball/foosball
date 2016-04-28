@@ -6,18 +6,18 @@ const Router = Ember.Router.extend({
 });
 
 Router.map(function() {
-  this.route('foosballers', { path: 'f' });
-  this.route('teams', { path: 't' });
-  this.route('games', { path: 'g' });
-  this.route('game', { path: 'g/:game_id' }, function() {
+  this.authenticatedRoute('foosballers', { path: 'f' });
+  this.authenticatedRoute('teams', { path: 't' });
+  this.authenticatedRoute('games', { path: 'g' });
+  this.authenticatedRoute('game', { path: 'g/:game_id' }, function() {
     this.route('new', { path: 'n' });
     this.route('edit', { path: 'e' });
   });
-  this.route('summary');
+  this.authenticatedRoute('summary');
   this.route('loading');
   this.route('something-happened');
   this.route('login');
-  this.route('home');
+  this.authenticatedRoute('home');
 });
 
 export default Router;

@@ -3,15 +3,11 @@ import Ember from 'ember';
 const { Route, get } = Ember;
 
 export default Route.extend({
-  beforeModel() {
-    let session = get(this, 'session');
-
-    if (!get(session, 'isAuthenticated')) {
-      this.transitionTo('login');
-    }
-  },
-
   actions: {
+    accessDenied() {
+      this.transitionTo('login');
+    },
+
     transitionTo(route) {
       this.transitionTo(route);
     },

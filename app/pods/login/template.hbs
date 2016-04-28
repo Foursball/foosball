@@ -1,7 +1,12 @@
 {{#paper-card class="login-route bc-white"}}
   {{#paper-card-content class="fg-1"}}
-    <h1>Log in to Foursball</h1>
-    <button {{action 'login' 'twitter'}}>Login with Twitter</button>
+    {{#if session.isAuthenticated}}
+      <h1>You're already logged in!</h1>
+      <button {{action 'logout'}}>Logout</button>
+    {{else}}
+      <h1>Log in to Foursball</h1>
+      <button {{action 'login' 'twitter'}}>Login with Twitter</button>
+    {{/if}}
   {{/paper-card-content}}
   {{#paper-card-content class="bc-grey"}}
     <a>Some link</a>
