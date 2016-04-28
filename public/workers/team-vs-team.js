@@ -5,8 +5,8 @@ onmessage = function(event) {
   var team2Id = message.team2Id;
 
   var matchedGames = games.filter(function(g) {
-    let t1 = g.team1;
-    let t2 = g.team2;
+    var t1 = g.team1;
+    var t2 = g.team2;
 
     return (t1 === team1Id || t1 === team2Id) &&
       (t2 === team1Id || t2 === team2Id);
