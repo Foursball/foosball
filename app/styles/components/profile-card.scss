@@ -12,4 +12,19 @@
       border: 2px solid white;
     }
   }
+  .display-name {
+    top: -13px;
+    left: 86px;
+  }
+
+  md-card-content {
+    height: 108px;
+  }
+
+  .stats {
+    top: -55px;
+    h3 {
+      color: map-get($theme, 'accent-text-color');
+    }
+  }
 }

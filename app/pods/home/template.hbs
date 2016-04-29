@@ -1,10 +1,25 @@
-<vbox md="3" class="p-16">
+<vbox md="4" class="p-8">
   {{#paper-card class="bc-white profile-card"}}
     <img src="http://miguelcobain.github.io/ember-paper/washedout-70b84b894d88b367d49d56a8cd808cca.png">
-    {{#paper-card-content}}
+    {{#paper-card-content class="p-r"}}
       <div class="avatar-container d-ib p-r">
         <img src={{session.currentUser.profileImageURL}} class="avatar">
       </div>
+      <h3 class="p-a display-name">{{session.currentUser.displayName}}</h3>
+      <hbox class="stats" fill>
+        <div class="fg-1 ta-c ho-accent pointer grey">
+          <h5 class="mb-4">GAMES</h5>
+          <h3 class="mt-0">400</h3>
+        </div>
+        <div class="fg-1 ta-c ho-accent pointer grey">
+          <h5 class="mb-4">WINS</h5>
+          <h3 class="mt-0">284</h3>
+        </div>
+        <div class="fg-1 ta-c ho-accent pointer grey">
+          <h5 class="mb-4">TEAMS</h5>
+          <h3 class="mt-0">34</h3>
+        </div>
+      </hbox>
     {{/paper-card-content}}
   {{/paper-card}}
   <div>
@@ -14,7 +29,7 @@
     footer links
   </div>
 </vbox>
-<box md="9" class="p-16">
+<box md="8" class="p-8">
   <p>
     focused content
   </p>
