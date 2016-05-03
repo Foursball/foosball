@@ -36,6 +36,7 @@ export default Route.extend({
 
     logout() {
       get(this, 'session').close();
+      this.transitionTo('login');
     }
   }
 });

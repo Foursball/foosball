@@ -18,6 +18,8 @@ Router.map(function() {
   this.route('something-happened');
   this.route('login');
   this.authenticatedRoute('home');
+  this.route('about');
+  this.route('league-rules');
 });
 
 export default Router;

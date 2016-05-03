@@ -22,12 +22,16 @@
       </hbox>
     {{/paper-card-content}}
   {{/paper-card}}
-  <div>
-    trends
-  </div>
-  <div>
-    footer links
-  </div>
+
+  {{#paper-card class="bc-white"}}
+    {{#paper-card-content}}
+      <div class="footer-links">
+        <a {{action 'logout'}}>Logout</a>
+        <a href={{href-to 'about'}}>About</a>
+        <a href={{href-to 'league-rules'}}>League Rules</a>
+      </div>
+    {{/paper-card-content}}
+  {{/paper-card}}
 </vbox>
 <box md="8" class="p-8">
   <p>

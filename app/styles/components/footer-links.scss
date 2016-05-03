@@ -1,0 +1,10 @@
+.footer-links {
+  @extend .pointer;
+  @extend .pr-8;
+  a {
+    @extend .grey;
+    &:hover {
+      @extend .grey;
+    }
+  }
+}

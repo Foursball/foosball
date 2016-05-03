@@ -1,43 +1,55 @@
+/** PADDING **/
 .pl-16 { padding-left: 16px; }
 .pr-16 { padding-right: 16px; }
 .pt-16 { padding-top: 16px; }
 .pb-16 { padding-bottom: 16px; }
 .p-16 { padding: 16px; }
 .p-8 { padding: 8px; }
+.pr-8 { padding-right: 8px; }
 
+/** MARGIN **/
 .mb-4 { margin-bottom: 4px; }
 .mb-8 { margin-bottom: 8px; }
 .ml-8 { margin-left: 8px; }
 .mt-0 { margin-top: 0; }
 .m-8 { margin: 8px; }
 
+/** DISPLAY **/
 .d-b { display: block; }
 .d-ib { display: inline-block; }
 .d-f { display: flex; }
 
+/** TEXT-ALIGN **/
 .ta-c { text-align: center; }
 .ta-r { text-align: right; }
 
+/** COLOR **/
 .black { color: #000; }
 .white { color: #fff; }
 .yellow { color: map-get($accent, 'A200'); }
 .grey { color: map-get($color-grey, '500'); }
 
-.ts-grey { text-shadow: -2px 2px 2px map-get($color-grey, '300'); }
-
-.bold { font-weight: bold; }
-
-.fs-24 { font-size: 24px; }
-
-.p-r { position: relative; }
-.p-a { position: absolute; }
-
-.t-4 { top: 4px; }
-
 .bc-black { background-color: black; color: white; }
 .bc-yellow { background-color: map-get($accent, '500'); color: black; }
 .bc-grey { background-color: map-get($color-grey, '300'); }
 .bc-white { background-color: white; }
+
+/** TEXT-SHADOW **/
+.ts-grey { text-shadow: -2px 2px 2px map-get($color-grey, '300'); }
+
+/** FONT **/
+.bold { font-weight: bold; }
+.fs-24 { font-size: 24px; }
+.fs-s { font-size: 14px; }
+.fs-m { font-size: 16px; }
+.fs-l { font-size: 18px; }
+
+/** POSITION **/
+.p-r { position: relative; }
+.p-a { position: absolute; }
+
+/** TOP **/
+.t-4 { top: 4px; }
 
 .full-vh { height: 100vh; }
 
@@ -48,4 +60,5 @@
   }
 }
 
+/** CURSOR **/
 .pointer { cursor: pointer; }
