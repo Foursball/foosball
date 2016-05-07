@@ -34,6 +34,9 @@
 .bc-grey { background-color: map-get($color-grey, '300'); }
 .bc-white { background-color: white; }
 
+.c-primary { color: map-get($primary, '500'); }
+.c-accent { color: map-get($accent, '500'); }
+
 /** TEXT-SHADOW **/
 .ts-grey { text-shadow: -2px 2px 2px map-get($color-grey, '300'); }
 
@@ -62,3 +65,10 @@
 
 /** CURSOR **/
 .pointer { cursor: pointer; }
+
+/** OVERFLOW **/
+.o-a { overflow: auto; }
+
+/** FLOAT **/
+.f-r { float: right; }
+.f-l { float: left; }
