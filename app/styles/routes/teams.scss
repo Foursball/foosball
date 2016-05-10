@@ -1,0 +1,22 @@
+.teams-team {
+  flex-basis: 56px;
+  .rank {
+    width: 44px;
+  }
+  .name {
+    flex-basis: calc(100% - 308px);
+  }
+  .w-l {
+    width: 104px;
+  }
+  .ratio {
+    width: 112px;
+  }
+  .percentage {
+    width: 48px;
+  }
+}
+
+.teams-top-10 {
+  min-height: 120px;
+}

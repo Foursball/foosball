@@ -1,4 +1,4 @@
-{{#paper-toolbar}}
+{{!--{{#paper-toolbar}}
   <div class="md-toolbar-tools">
     {{#paper-sidenav-toggle as |toggle|}}
       {{#paper-button target=toggle action="toggleMenu" icon-button=true}}{{paper-icon icon="menu"}}{{/paper-button}}
@@ -36,3 +36,98 @@
     {{/paper-list}}
   {{/paper-content}}
 {{/paper-content}}
+--}}
+<vbox md="4" class="p-8">
+  {{#paper-card class="bc-white profile-card"}}
+    <img src="http://miguelcobain.github.io/ember-paper/washedout-70b84b894d88b367d49d56a8cd808cca.png">
+    {{#paper-card-content class="p-r"}}
+      <div class="avatar-container d-ib p-r">
+        <img src={{session.currentUser.profileImageURL}} class="avatar">
+      </div>
+      <h3 class="p-a display-name">{{session.currentUser.displayName}}</h3>
+      <hbox class="stats" fill>
+        <div class="fg-1 ta-c ho-accent pointer grey">
+          <h5 class="mb-4">GAMES</h5>
+          <h3 class="mt-0">400</h3>
+        </div>
+        <div class="fg-1 ta-c ho-accent pointer grey">
+          <h5 class="mb-4">WINS</h5>
+          <h3 class="mt-0">284</h3>
+        </div>
+        <div class="fg-1 ta-c ho-accent pointer grey">
+          <h5 class="mb-4">TEAMS</h5>
+          <h3 class="mt-0">34</h3>
+        </div>
+      </hbox>
+    {{/paper-card-content}}
+  {{/paper-card}}
+
+  {{#paper-card class="bc-white"}}
+    {{#paper-card-content}}
+      <h3>Trends</h3>
+      <p>
+        Coming soon!
+      </p>
+    {{/paper-card-content}}
+  {{/paper-card}}
+
+  {{#paper-card class="bc-white"}}
+    {{#paper-card-content}}
+      <div class="footer-links">
+        <a {{action 'logout'}}>Logout</a>
+        <a href={{href-to 'about'}}>About</a>
+        <a href={{href-to 'league-rules'}}>League Rules</a>
+      </div>
+    {{/paper-card-content}}
+  {{/paper-card}}
+</vbox>
+
+<vbox md="8" class="p-8">
+  {{#paper-card class="bc-white teams-top-10"}}
+    {{#paper-card-content}}
+      <h3>Top 10 performing teams</h3>
+      <p>
+        Coming soon!
+      </p>
+    {{/paper-card-content}}
+  {{/paper-card}}
+
+  <box class="bc-white p-16 ml-8 mr-8 teams-team">
+    <hbox justify="between">
+      <div class="pr-8 rank">Rank</div>
+      <div class="name">Foosers</div>
+      <div class="w-l pr-16">Wins : Losses</div>
+      <div class="ratio pr-16">Win/Loss Ratio</div>
+      <div class="percentage">Win %</div>
+    </hbox>
+  </box>
+  {{#teams-sorter
+    tagName=""
+    teams=model
+    sortAscending=sortAscending
+    sortBy=sortBy
+    as |sortedDecoratedTeams|}}
+<div class="o-a">
+    {{#each sortedDecoratedTeams as |decoratedTeam index|}}
+      <box class="bc-white p-16 ml-8 mr-8 teams-team">
+        <hbox justify="between">
+          <div class="pr-8 rank">{{plus-one index}}</div>
+          <div class="name ellipsis pr-8">
+            {{decoratedTeam.team.player1.name}} - {{decoratedTeam.team.player2.name}}
+          </div>
+          <div class="w-l pr-16">{{decoratedTeam.wins}} : {{decoratedTeam.losses}}</div>
+          <div class="ratio pr-16">{{decoratedTeam.winLossRatio}}</div>
+          <div class="percentage">{{decoratedTeam.winPercentage}}%</div>
+          {{!--
+        {{#index-plus-one index=index as |rank|}}
+          {{#paper-item param=decoratedTeam.team action="expandTeam" class="md-3-line"}}
+            {{team-display decoratedTeam=decoratedTeam expandedId=expandedId rank=rank}}
+          {{/paper-item}}
+        {{/index-plus-one}}
+        --}}
+        </hbox>
+      </box>
+    {{/each}}
+</div>
+  {{/teams-sorter}}
+</vbox>
