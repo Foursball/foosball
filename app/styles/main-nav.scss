@@ -64,4 +64,8 @@
     border-bottom: 4px solid map-get($theme, 'accent-text-color');
     text-decoration: none;
   }
+  &:focus {
+    color: black;
+    text-decoration: none;
+  }
 }
