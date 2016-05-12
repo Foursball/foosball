@@ -93,8 +93,8 @@
   {{/paper-card}}
 
   <div class="bc-white pl-16 ml-8 mr-8 teams-team">
-    {{#link-to 'teams' class="tab"}}All Teams{{/link-to}}
-    <a class="tab">My Teams</a>
+    {{#link-to 'teams' (query-params allTeams=true) class="tab"}}All Teams{{/link-to}}
+    {{#link-to 'teams' (query-params allTeams=false) class="tab"}}My Teams{{/link-to}}
   </div>
 
   <box class="bc-white p-16 ml-8 mr-8 teams-team">
@@ -108,7 +108,7 @@
   </box>
   {{#teams-sorter
     tagName=""
-    teams=model
+    teams=filteredTeams
     sortAscending=sortAscending
     sortBy=sortBy
     as |sortedDecoratedTeams|}}
