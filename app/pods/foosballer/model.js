@@ -12,6 +12,10 @@ export default DS.Model.extend({
   /* jshint ignore:end */
 
   /* jshint ignore:start */
+  @attr('string') uid,
+  /* jshint ignore:end */
+
+  /* jshint ignore:start */
   @computed('name')
   /* jshint ignore:end */
   firstName(name) {

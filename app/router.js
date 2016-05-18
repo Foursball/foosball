@@ -20,6 +20,7 @@ Router.map(function() {
   this.authenticatedRoute('home');
   this.route('about');
   this.route('league-rules');
+  this.authenticatedRoute('choose-fooser');
 });
 
 export default Router;
