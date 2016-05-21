@@ -9,5 +9,8 @@
     "type": "git",
     "url": "git://github.com/"
   },
-  "dependencies": {}
+  "dependencies": {
+    "q": "^1.4.1",
+    "request": "^2.72.0"
+  }
 }
