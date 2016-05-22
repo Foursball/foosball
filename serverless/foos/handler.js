@@ -17,7 +17,7 @@ module.exports.handler = function(event, context, cb) {
   var filteredTextArray, count;
   switch(command.toLowerCase()) {
     case 'top':
-      lib.topFoosers(parseInt(textArray[0]) || 5, params.user_name).then(function(response) {
+      lib.topFoosers(parseInt(textArray[0]) || 5, params.user_id).then(function(response) {
         cb(null, response);
       });
       break;
@@ -35,8 +35,10 @@ module.exports.handler = function(event, context, cb) {
         return filteredOutWords.indexOf(word.toLowerCase()) === -1;
       });
       count = filteredTextArray.pop();
-      lib.inTopFoosers(params.user_name, count).then(function(response) {
-        cb(null, response);
+      lib.getRealName(params.user_id).then(function(realName) {
+        lib.inTopFoosers(realName, count).then(function(response) {
+          cb(null, response);
+        });
       });
       break;
     default:
