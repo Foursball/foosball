@@ -1,10 +1,10 @@
 'use strict';
 
-var Q = require('q');
+var Promise = require('bluebird');
 var lib = require('../lib');
 
 module.exports.handler = function(event, context, cb) {
-  return Q.all([lib.getFoosers(), lib.getTeams(), lib.getGames()]).then(function(data) {
+  return Promise.all([lib.getFoosers(), lib.getTeams(), lib.getGames()]).then(function(data) {
     var fooserMap = data[0];
     var teamMap = data[1];
     var games = lib.mapToArray(data[2]);

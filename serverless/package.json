@@ -10,7 +10,7 @@
     "url": "git://github.com/"
   },
   "dependencies": {
-    "q": "^1.4.1",
+    "bluebird": "^3.4.0",
     "request": "^2.72.0"
   }
 }
