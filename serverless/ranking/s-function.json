@@ -4,7 +4,7 @@
   "description": "Foos ranking Slack slash command endpoint",
   "customName": false,
   "customRole": false,
-  "handler": "handler.handler",
+  "handler": "ranking/handler.handler",
   "timeout": 6,
   "memorySize": 1024,
   "authorizer": {},
