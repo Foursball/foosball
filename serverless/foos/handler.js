@@ -2,7 +2,7 @@
 
 var lib = require('../lib');
 
-var filteredOutWords = ['i', 'in', 'the', 'top', 'any', 'more', 'anymore', 'foosers'];
+var filteredOutWords = ['i', 'a', 'in', 'the', 'top', 'any', 'more', 'anymore', 'foosers', 'fooser'];
 
 module.exports.handler = function(event, context, cb) {
   var params = lib.parseFormData(event.queryParams);
