@@ -48,14 +48,22 @@ module.exports.injectTeamsToGames = function(teamMap, games) {
 };
 
 module.exports.scoreFoosers = function(fooserMap, injectedGames) {
+  Object.keys(fooserMap).forEach(function(fooser) {
+    fooserMap[fooser].wins = 0;
+    fooserMap[fooser].losses = 0;
+    fooserMap[fooser].total = 0;
+    fooserMap[fooser].teamWins = 0;
+    fooserMap[fooser].teamLosses = 0;
+    fooserMap[fooser].teamTotal = 0;
+  });
   injectedGames.forEach(function(game) {
-    var winningTeam = game.team1WinsBlack + game.team1WinsYellow === 2 ? 'team1' : 'team2';
-    var losingTeam = winningTeam === 'team1' ? 'team2' : 'team1';
-    game[winningTeam].forEach(function(name) {
-      fooserMap[name] = addGameToFooser(fooserMap[name], "wins");
+    var team1Wins = game.team1WinsBlack + game.team1WinsYellow;
+    var team2Wins = game.team2WinsBlack + game.team2WinsYellow;
+    game.team1.forEach(function(name) {
+      fooserMap[name] = addGameToFooser(fooserMap[name], team1Wins, team2Wins);
     });
-    game[losingTeam].forEach(function(name) {
-      fooserMap[name] = addGameToFooser(fooserMap[name], "loses");
+    game.team2.forEach(function(name) {
+      fooserMap[name] = addGameToFooser(fooserMap[name], team2Wins, team1Wins);
     });
   });
   return fooserMap;
@@ -67,18 +75,16 @@ module.exports.sortFoosers = function(scoredFoosers) {
   }).filter(function(fooser) {
     return fooser.total !== 0;
   }).sort(function(fooser1, fooser2) {
-    return fooser1.wins / fooser1.total < fooser2.wins / fooser2.total;
+    return fooser2.wins / fooser2.total - fooser1.wins / fooser1.total;
   });
 };
 
-function addGameToFooser(fooser, field) {
-  if (fooser[field] === undefined) {
-    fooser[field] = 0;
-  }
-  if (fooser.total === undefined) {
-    fooser.total = 0;
-  }
-  fooser[field]++;
-  fooser.total++;
+function addGameToFooser(fooser, wins, losses) {
+  fooser.wins += wins;
+  fooser.losses += losses;
+  fooser.total += wins + losses;
+  fooser.teamWins += wins > losses ? 1 : 0;
+  fooser.teamLosses += wins < losses ? 1 : 0;
+  fooser.teamTotal++;
   return fooser;
 }
