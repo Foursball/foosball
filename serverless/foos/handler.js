@@ -12,7 +12,15 @@ module.exports.handler = function(event, context, cb) {
   }
 
   var command = textArray.shift();
-  lib.topFoosers(parseInt(textArray[0]) || 5).then(function(response) {
-    cb(null, response);
-  });
+  switch(command) {
+    case 'top':
+      lib.topFoosers(parseInt(textArray[0]) || 5).then(function(response) {
+        cb(null, response);
+      });
+      break;
+    default:
+      cb(null, {
+        text: lib.help()
+      });
+  }
 };

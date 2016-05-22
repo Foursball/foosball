@@ -1,6 +1,14 @@
 var request = require('request');
 var Promise = require('bluebird');
 
+module.exports.help = function() {
+  return [
+    "Foos - The Foursball Slack integration",
+    "Usage: help - This help text",
+    "       top [number of foosers] - The top ranked foosers (default: 5)"
+  ].join('\n');
+};
+
 module.exports.parseFormData = function(data) {
   return data.split(', ').reduce(function(object, line) {
     var variables = line.split('=');
