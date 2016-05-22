@@ -20,10 +20,11 @@ module.exports.handler = function(event, context, cb) {
     var topFoosers = sortedFoosers.slice(0, Math.min(count, sortedFoosers.length));
 
     return cb(null, {
+      response_type: "in_channel",
       text: "The top " + topFoosers.length + " foosers are:",
       attachments: [{
         "text": topFoosers.map(function(fooser, i) {
-          return (i + 1) + '. ' + fooser.name + ' - Wins: ' + (fooser.wins || 0) + ', Losses: ' + (fooser.losses || 0) + ', Win Percentage: ' + Math.round(100 * fooser.wins / fooser.total) + '%';
+          return (i + 1) + '. ' + fooser.name + ' - W: ' + (fooser.wins || 0) + ', L: ' + (fooser.losses || 0) + ', Win %: ' + Math.round(100 * fooser.wins / fooser.total) + '%';
         }).join('\n')
       }]
     });
