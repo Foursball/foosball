@@ -17,7 +17,7 @@ module.exports.parseFormData = function(data) {
   }, {});
 };
 
-module.exports.topFoosers = function(numberOfFoosers) {
+module.exports.topFoosers = function(numberOfFoosers, currentUser) {
   return Promise.all([getFoosers(), getTeams(), getGames()]).then(function(data) {
       var fooserMap = data[0];
       var teamMap = data[1];
@@ -25,17 +25,25 @@ module.exports.topFoosers = function(numberOfFoosers) {
 
       var injectedGames = injectTeamsToGames(teamMap, games);
       var scoredFoosers = scoreFoosers(fooserMap, injectedGames);
+      var currentFooser = mapToArray(scoredFoosers).filter(function(fooser) {
+        return fooser.name.toLowerCase() === currentUser;
+      });
       var sortedFoosers = sortFoosers(scoredFoosers);
 
       var topFoosers = sortedFoosers.slice(0, Math.min(numberOfFoosers, sortedFoosers.length));
+
+      var textArray = topFoosers.map(function(fooser, i) {
+        return (i + 1) + '. ' + fooser.name + ' - W: ' + (fooser.wins || 0) + ', L: ' + (fooser.losses || 0) + ', Win %: ' + Math.round(100 * fooser.wins / fooser.total) + '%';
+      });
+      if (currentFooser.length === 1) {
+        textArray.push("and you are ranked number " + (sortedFoosers.indexOf(currentFooser[0]) + 1));
+      }
 
       return {
         response_type: "in_channel",
         text: "The top " + topFoosers.length + " foosers are:",
         attachments: [{
-          "text": topFoosers.map(function(fooser, i) {
-            return (i + 1) + '. ' + fooser.name + ' - W: ' + (fooser.wins || 0) + ', L: ' + (fooser.losses || 0) + ', Win %: ' + Math.round(100 * fooser.wins / fooser.total) + '%';
-          }).join('\n')
+          "text": textArray.join('\n')
         }]
       };
   });
