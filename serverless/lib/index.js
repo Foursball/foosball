@@ -88,7 +88,8 @@ module.exports.inTopFoosers = function(fooserName, numberOfFoosers) {
         };
       }
       var sortedFoosers = sortFoosers(scoredFoosers);
-      var response = sortedFoosers.indexOf(currentFooser[0]) === -1 ? notTopFooserResponse() : topFooserResponse();
+      var topFoosers = sortedFoosers.slice(0, Math.min(numberOfFoosers, sortedFoosers.length));
+      var response = topFoosers.indexOf(currentFooser[0]) === -1 ? notTopFooserResponse() : topFooserResponse();
       return {
         response_type: "in_channel",
         text: response
