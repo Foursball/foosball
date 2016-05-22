@@ -11,7 +11,7 @@ module.exports.parseFormData = function(data) {
 
 module.exports.getFoosers = function() {
   return new Promise(function(resolve) {
-    request("https://dev-foosball.firebaseio.com/foosballers.json", function(error, response, body) {
+    request("https://netuitivefoosball.firebaseio.com/foosballers.json", function(error, response, body) {
       resolve(JSON.parse(body));
     });
   });
@@ -19,7 +19,7 @@ module.exports.getFoosers = function() {
 
 module.exports.getGames = function() {
   return new Promise(function(resolve) {
-    request("https://dev-foosball.firebaseio.com/games.json", function(error, response, body) {
+    request("https://netuitivefoosball.firebaseio.com/games.json", function(error, response, body) {
       resolve(JSON.parse(body));
     });
   });
@@ -27,7 +27,7 @@ module.exports.getGames = function() {
 
 module.exports.getTeams = function() {
   return new Promise(function(resolve) {
-    request("https://dev-foosball.firebaseio.com/teams.json", function(error, response, body) {
+    request("https://netuitivefoosball.firebaseio.com/teams.json", function(error, response, body) {
       resolve(JSON.parse(body));
     });
   });
