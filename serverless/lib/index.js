@@ -1,6 +1,14 @@
 var request = require('request');
 var Promise = require('bluebird');
 
+module.exports.parseFormData = function(data) {
+  return data.split(', ').reduce(function(object, line) {
+    var variables = line.split('=');
+    object[variables[0]] = variables[1];
+    return object;
+  }, {});
+};
+
 module.exports.getFoosers = function() {
   return new Promise(function(resolve) {
     request("https://dev-foosball.firebaseio.com/foosballers.json", function(error, response, body) {

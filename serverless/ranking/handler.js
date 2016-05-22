@@ -5,6 +5,8 @@ var lib = require('../lib');
 
 module.exports.handler = function(event, context, cb) {
   return Promise.all([lib.getFoosers(), lib.getTeams(), lib.getGames()]).then(function(data) {
+    var params = lib.parseFormData(event.queryParams);
+
     var fooserMap = data[0];
     var teamMap = data[1];
     var games = lib.mapToArray(data[2]);
@@ -13,9 +15,9 @@ module.exports.handler = function(event, context, cb) {
     var scoredFoosers = lib.scoreFoosers(fooserMap, injectedGames);
     var sortedFoosers = lib.sortFoosers(scoredFoosers);
 
-    var count = parseInt(event.text.split(' ')[0]) || 5;
+    var count = parseInt(params.text.split(' ')[0]) || 5;
 
-    var topFoosers = sortedFoosers.slice(0, Math.min(count, sortedFoosers.length) - 1);
+    var topFoosers = sortedFoosers.slice(0, Math.min(count, sortedFoosers.length));
 
     return cb(null, {
       text: "The top " + topFoosers.length + " foosers are:",

@@ -14,14 +14,16 @@
   "endpoints": [
     {
       "path": "ranking",
-      "method": "POST",
+      "method": "GET",
       "type": "AWS",
       "authorizationType": "none",
       "authorizerFunction": false,
       "apiKeyRequired": false,
       "requestParameters": {},
       "requestTemplates": {
-        "application/json": ""
+        "application/json": {
+          "queryParams" : "$input.params().querystring"
+        }
       },
       "responses": {
         "400": {
