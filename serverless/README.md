@@ -1,7 +1,7 @@
 # Foosball Lambda Functions
 This folder contains a [Serverless](https://github.com/serverless/serverless) framework application.
 
-To install serverless run `npm i -g serverless`.
+To install serverless run `npm i -g serverless`. Afterwards run `serverless project init` and follow the steps to create your own AWS environment.
 
 ## Local Testing
 A function can be locally tested by running `serverless function run [function-name]` from this directory. This will ingest the `event.json` payload and output the result of the function. This emulates a request through the AWS API Gateway and a REST response.
