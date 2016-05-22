@@ -9,45 +9,69 @@ module.exports.parseFormData = function(data) {
   }, {});
 };
 
-module.exports.getFoosers = function() {
+module.exports.topFoosers = function(numberOfFoosers) {
+  return Promise.all([getFoosers(), getTeams(), getGames()]).then(function(data) {
+      var fooserMap = data[0];
+      var teamMap = data[1];
+      var games = mapToArray(data[2]);
+
+      var injectedGames = injectTeamsToGames(teamMap, games);
+      var scoredFoosers = scoreFoosers(fooserMap, injectedGames);
+      var sortedFoosers = sortFoosers(scoredFoosers);
+
+      var topFoosers = sortedFoosers.slice(0, Math.min(numberOfFoosers, sortedFoosers.length));
+
+      return {
+        response_type: "in_channel",
+        text: "The top " + topFoosers.length + " foosers are:",
+        attachments: [{
+          "text": topFoosers.map(function(fooser, i) {
+            return (i + 1) + '. ' + fooser.name + ' - W: ' + (fooser.wins || 0) + ', L: ' + (fooser.losses || 0) + ', Win %: ' + Math.round(100 * fooser.wins / fooser.total) + '%';
+          }).join('\n')
+        }]
+      };
+  });
+};
+
+function getFoosers() {
   return new Promise(function(resolve) {
     request("https://netuitivefoosball.firebaseio.com/foosballers.json", function(error, response, body) {
       resolve(JSON.parse(body));
     });
   });
-};
+}
 
-module.exports.getGames = function() {
+function getGames() {
   return new Promise(function(resolve) {
     request("https://netuitivefoosball.firebaseio.com/games.json", function(error, response, body) {
       resolve(JSON.parse(body));
     });
   });
-};
+}
 
-module.exports.getTeams = function() {
+function getTeams() {
   return new Promise(function(resolve) {
     request("https://netuitivefoosball.firebaseio.com/teams.json", function(error, response, body) {
       resolve(JSON.parse(body));
     });
   });
-};
+}
 
-module.exports.mapToArray = function(map) {
+function mapToArray(map) {
   return Object.keys(map).map(function(key) {
     return map[key];
   });
-};
+}
 
-module.exports.injectTeamsToGames = function(teamMap, games) {
+function injectTeamsToGames(teamMap, games) {
   return games.map(function(game) {
     game.team1 = [teamMap[game.team1].player1, teamMap[game.team1].player2];
     game.team2 = [teamMap[game.team2].player1, teamMap[game.team2].player2];
     return game;
   });
-};
+}
 
-module.exports.scoreFoosers = function(fooserMap, injectedGames) {
+function scoreFoosers(fooserMap, injectedGames) {
   Object.keys(fooserMap).forEach(function(fooser) {
     fooserMap[fooser].wins = 0;
     fooserMap[fooser].losses = 0;
@@ -67,9 +91,9 @@ module.exports.scoreFoosers = function(fooserMap, injectedGames) {
     });
   });
   return fooserMap;
-};
+}
 
-module.exports.sortFoosers = function(scoredFoosers) {
+function sortFoosers(scoredFoosers) {
   return Object.keys(scoredFoosers).map(function(fooser) {
     return scoredFoosers[fooser];
   }).filter(function(fooser) {
@@ -77,7 +101,7 @@ module.exports.sortFoosers = function(scoredFoosers) {
   }).sort(function(fooser1, fooser2) {
     return fooser2.wins / fooser2.total - fooser1.wins / fooser1.total;
   });
-};
+}
 
 function addGameToFooser(fooser, wins, losses) {
   fooser.wins += wins;
