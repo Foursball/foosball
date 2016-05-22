@@ -56,7 +56,7 @@ module.exports.topFoosers = function(numberOfFoosers, currentUserId) {
         var textArray = topFoosers.map(function(fooser, i) {
           return (i + 1) + '. ' + fooser.name + ' - W: ' + (fooser.wins || 0) + ', L: ' + (fooser.losses || 0) + ', Win %: ' + Math.round(100 * fooser.wins / fooser.total) + '%';
         });
-        if (currentFooser.length === 1) {
+        if (currentFooser.length === 1 && topFoosers.indexOf(currentFooser[0]) === -1) {
           textArray.push("and you are ranked number " + (sortedFoosers.indexOf(currentFooser[0]) + 1));
         }
 
