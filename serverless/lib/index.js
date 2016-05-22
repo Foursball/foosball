@@ -1,11 +1,30 @@
 var request = require('request');
 var Promise = require('bluebird');
 
+var topFooserResponses = [
+  'Most definitely',
+  'Sure looks like it',
+  'You betcha',
+  'For sure',
+  'Of course',
+  'Obviously'
+];
+
+var notTopFooserResponses = [
+  'Not even close',
+  'Nope',
+  'Really?',
+  'Definitely not',
+  'Not this time'
+];
+
 module.exports.help = function() {
   return [
-    "Foos - The Foursball Slack integration",
-    "Usage: help - This help text",
-    "       top [number of foosers] - The top ranked foosers (default: 5)"
+    'Foos - The Foursball Slack integration',
+    '       help - This help text',
+    '       top [number] - List the top ranked foosers (default: 5)',
+    '       am I in the top [number] foosers?',
+    '       is [fooser] in the top [number]?'
   ].join('\n');
 };
 
@@ -26,7 +45,7 @@ module.exports.topFoosers = function(numberOfFoosers, currentUser) {
       var injectedGames = injectTeamsToGames(teamMap, games);
       var scoredFoosers = scoreFoosers(fooserMap, injectedGames);
       var currentFooser = mapToArray(scoredFoosers).filter(function(fooser) {
-        return fooser.name.toLowerCase() === currentUser;
+        return fooser.name.toLowerCase() === currentUser.toLowerCase();
       });
       var sortedFoosers = sortFoosers(scoredFoosers);
 
@@ -45,6 +64,31 @@ module.exports.topFoosers = function(numberOfFoosers, currentUser) {
         attachments: [{
           "text": textArray.join('\n')
         }]
+      };
+  });
+};
+
+module.exports.inTopFoosers = function(fooserName, numberOfFoosers) {
+  return Promise.all([getFoosers(), getTeams(), getGames()]).then(function(data) {
+      var fooserMap = data[0];
+      var teamMap = data[1];
+      var games = mapToArray(data[2]);
+
+      var injectedGames = injectTeamsToGames(teamMap, games);
+      var scoredFoosers = scoreFoosers(fooserMap, injectedGames);
+      var currentFooser = mapToArray(scoredFoosers).filter(function(fooser) {
+        return fooser.name.toLowerCase() === fooserName.toLowerCase();
+      });
+      if (currentFooser.length === 0) {
+        return {
+          text: "The fooser " + fooserName + " does not appear to be a valid fooser"
+        };
+      }
+      var sortedFoosers = sortFoosers(scoredFoosers);
+      var response = sortedFoosers.indexOf(currentFooser[0]) === -1 ? notTopFooserResponse() : topFooserResponse();
+      return {
+        response_type: "in_channel",
+        text: response
       };
   });
 };
@@ -127,4 +171,12 @@ function addGameToFooser(fooser, wins, losses) {
   fooser.teamLosses += wins < losses ? 1 : 0;
   fooser.teamTotal++;
   return fooser;
+}
+
+function notTopFooserResponse() {
+  return notTopFooserResponses[Math.floor(Math.random() * notTopFooserResponses.length)];
+}
+
+function topFooserResponse() {
+  return topFooserResponses[Math.floor(Math.random() * topFooserResponses.length)];
 }

@@ -2,9 +2,11 @@
 
 var lib = require('../lib');
 
+var filteredOutWords = ['i', 'in', 'the', 'top', 'any', 'more', 'anymore', 'foosers'];
+
 module.exports.handler = function(event, context, cb) {
   var params = lib.parseFormData(event.queryParams);
-  var textArray = params.text.toLowerCase().split(' ');
+  var textArray = params.text.split('?').join('').split(' ');
   if (textArray.length === 0) {
     cb(null, {
       text: lib.help()
@@ -12,9 +14,28 @@ module.exports.handler = function(event, context, cb) {
   }
 
   var command = textArray.shift();
-  switch(command) {
+  var filteredTextArray, count;
+  switch(command.toLowerCase()) {
     case 'top':
       lib.topFoosers(parseInt(textArray[0]) || 5, params.user_name).then(function(response) {
+        cb(null, response);
+      });
+      break;
+    case 'is':
+      filteredTextArray = textArray.filter(function(word) {
+        return filteredOutWords.indexOf(word.toLowerCase()) === -1;
+      });
+      count = filteredTextArray.pop();
+      lib.inTopFoosers(filteredTextArray.join(' '), count).then(function(response) {
+        cb(null, response);
+      });
+      break;
+    case 'am':
+      filteredTextArray = textArray.filter(function(word) {
+        return filteredOutWords.indexOf(word.toLowerCase()) === -1;
+      });
+      count = filteredTextArray.pop();
+      lib.inTopFoosers(params.user_name, count).then(function(response) {
         cb(null, response);
       });
       break;
