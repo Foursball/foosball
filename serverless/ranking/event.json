@@ -6,7 +6,7 @@
   "channel_name": "test",
   "user_id": "U2147483697",
   "user_name": "Steve",
-  "command": "foos",
-  "text": "ranking",
+  "command": "ranking",
+  "text": "5",
   "response_url": "https://hooks.slack.com/commands/1234/5678"
 }
