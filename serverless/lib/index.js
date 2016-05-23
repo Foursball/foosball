@@ -4,11 +4,16 @@ var config = require('../config');
 
 var topFooserResponses = [
   'Most definitely',
-  'Sure looks like it',
   'You betcha',
   'For sure',
   'Of course',
-  'Obviously'
+  'Obviously',
+  'yas queen',
+  'YEEEEEEAAAAAAAAH',
+  'Yeyah',
+  'Fo sho',
+  'Yas. Werk.',
+  'Da.'
 ];
 
 var notTopFooserResponses = [
@@ -16,7 +21,11 @@ var notTopFooserResponses = [
   'Nope',
   'Really?',
   'Definitely not',
-  'Not this time'
+  'Not this time',
+  'Sucks to suck, playa.',
+  'Nah, brah.',
+  'No. Awkwaaaaard...',
+  'Oh honey.'
 ];
 
 module.exports.help = function() {
