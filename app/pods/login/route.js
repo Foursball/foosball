@@ -1,8 +1,9 @@
 import Ember from 'ember';
+import { BusPublisherMixin } from 'ember-message-bus';
 
 const { Route, get } = Ember;
 
-export default Route.extend({
+export default Route.extend(BusPublisherMixin, {
   actions: {
     login(provider) {
       const { store } = this;
@@ -11,11 +12,13 @@ export default Route.extend({
       session
         .open('firebase', { provider })
         .then((data) => {
-          let foosers = store.findAll('foosballer')
+          return store
+            .findAll('foosballer')
             .then((foosballers) => {
-              let authedFoosballer = foosballers.findBy('id', data.uid);
+              let authedFoosballer = foosballers.findBy('uid', data.uid);
 
               if (authedFoosballer) {
+                this.publish('foosballersFound', foosballers);
                 this.transitionTo('home');
               } else {
                 this.transitionTo('choose-fooser');
