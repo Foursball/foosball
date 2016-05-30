@@ -4,18 +4,19 @@ var Promise = require('bluebird');
 var firebase = require('../../lib/data/firebase');
 var responses = require('./responses');
 var common = require('../../lib');
+var util = require('../../lib/util');
 var slack = require('../../lib/data/slack');
 
 module.exports.topFoosers = function(numberOfFoosers, currentUserId) {
   return Promise.all([firebase.getFoosers(), firebase.getTeams(), firebase.getGames()]).then(function(data) {
       var fooserMap = data[0];
       var teamMap = data[1];
-      var games = common.mapToArray(data[2]);
+      var games = util.mapToArray(data[2]);
 
       var injectedGames = common.injectTeamsToGames(teamMap, games);
       var scoredFoosers = common.scoreFoosers(fooserMap, injectedGames);
       return slack.getRealName(currentUserId).then(function(realName) {
-        var currentFooser = common.mapToArray(scoredFoosers).filter(function(fooser) {
+        var currentFooser = util.mapToArray(scoredFoosers).filter(function(fooser) {
           return fooser.name.toLowerCase() === realName.toLowerCase();
         });
         var sortedFoosers = common.sortFoosers(scoredFoosers);
@@ -44,11 +45,11 @@ module.exports.inTopFoosers = function(fooserName, numberOfFoosers) {
   return Promise.all([firebase.getFoosers(), firebase.getTeams(), firebase.getGames()]).then(function(data) {
       var fooserMap = data[0];
       var teamMap = data[1];
-      var games = common.mapToArray(data[2]);
+      var games = util.mapToArray(data[2]);
 
       var injectedGames = common.injectTeamsToGames(teamMap, games);
       var scoredFoosers = common.scoreFoosers(fooserMap, injectedGames);
-      var currentFooser = common.mapToArray(scoredFoosers).filter(function(fooser) {
+      var currentFooser = util.mapToArray(scoredFoosers).filter(function(fooser) {
         return fooser.name.toLowerCase() === fooserName.toLowerCase();
       });
       if (currentFooser.length === 0) {

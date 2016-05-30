@@ -2,13 +2,14 @@
 
 var foos = require('./lib');
 var lib = require('../lib');
+var util = require('../lib/util');
 var slack = require('../lib/data/slack');
 var responses = require('./lib/responses');
 
 var filteredOutWords = ['i', 'a', 'in', 'the', 'top', 'any', 'more', 'anymore', 'foosers', 'fooser'];
 
 module.exports.handler = function(event, context, cb) {
-  var params = lib.parseFormData(event.queryParams);
+  var params = util.parseFormData(event.queryParams);
   var textArray = params.text.split('?').join('').split(' ');
   if (textArray.length === 0) {
     cb(null, {
