@@ -1,6 +1,7 @@
 var request = require('request');
 var Promise = require('bluebird');
 var config = require('../config');
+var firebase = require('./data/firebase');
 
 var topFooserResponses = [
   'Most definitely',
@@ -47,7 +48,7 @@ module.exports.parseFormData = function(data) {
 };
 
 module.exports.topFoosers = function(numberOfFoosers, currentUserId) {
-  return Promise.all([getFoosers(), getTeams(), getGames()]).then(function(data) {
+  return Promise.all([firebase.getFoosers(), firebase.getTeams(), firebase.getGames()]).then(function(data) {
       var fooserMap = data[0];
       var teamMap = data[1];
       var games = mapToArray(data[2]);
@@ -81,7 +82,7 @@ module.exports.topFoosers = function(numberOfFoosers, currentUserId) {
 };
 
 module.exports.inTopFoosers = function(fooserName, numberOfFoosers) {
-  return Promise.all([getFoosers(), getTeams(), getGames()]).then(function(data) {
+  return Promise.all([firebase.getFoosers(), firebase.getTeams(), firebase.getGames()]).then(function(data) {
       var fooserMap = data[0];
       var teamMap = data[1];
       var games = mapToArray(data[2]);
@@ -113,30 +114,6 @@ module.exports.getRealName = function(userId) {
     });
   });
 };
-
-function getFoosers() {
-  return new Promise(function(resolve) {
-    request("https://netuitivefoosball.firebaseio.com/foosballers.json", function(error, response, body) {
-      resolve(JSON.parse(body));
-    });
-  });
-}
-
-function getGames() {
-  return new Promise(function(resolve) {
-    request("https://netuitivefoosball.firebaseio.com/games.json", function(error, response, body) {
-      resolve(JSON.parse(body));
-    });
-  });
-}
-
-function getTeams() {
-  return new Promise(function(resolve) {
-    request("https://netuitivefoosball.firebaseio.com/teams.json", function(error, response, body) {
-      resolve(JSON.parse(body));
-    });
-  });
-}
 
 function mapToArray(map) {
   return Object.keys(map).map(function(key) {
