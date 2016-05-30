@@ -2,6 +2,7 @@
 
 var foos = require('./lib');
 var lib = require('../lib');
+var slack = require('../lib/data/slack');
 var responses = require('./lib/responses');
 
 var filteredOutWords = ['i', 'a', 'in', 'the', 'top', 'any', 'more', 'anymore', 'foosers', 'fooser'];
@@ -37,7 +38,7 @@ module.exports.handler = function(event, context, cb) {
         return filteredOutWords.indexOf(word.toLowerCase()) === -1;
       });
       count = filteredTextArray.pop();
-      lib.getRealName(params.user_id).then(function(realName) {
+      slack.getRealName(params.user_id).then(function(realName) {
         foos.inTopFoosers(realName, count).then(function(response) {
           cb(null, response);
         });
