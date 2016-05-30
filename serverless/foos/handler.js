@@ -1,6 +1,8 @@
 'use strict';
 
+var foos = require('./lib');
 var lib = require('../lib');
+var responses = require('./lib/responses');
 
 var filteredOutWords = ['i', 'a', 'in', 'the', 'top', 'any', 'more', 'anymore', 'foosers', 'fooser'];
 
@@ -9,7 +11,7 @@ module.exports.handler = function(event, context, cb) {
   var textArray = params.text.split('?').join('').split(' ');
   if (textArray.length === 0) {
     cb(null, {
-      text: lib.help()
+      text: responses.help()
     });
   }
 
@@ -17,7 +19,7 @@ module.exports.handler = function(event, context, cb) {
   var filteredTextArray, count;
   switch(command.toLowerCase()) {
     case 'top':
-      lib.topFoosers(parseInt(textArray[0]) || 5, params.user_id).then(function(response) {
+      foos.topFoosers(parseInt(textArray[0]) || 5, params.user_id).then(function(response) {
         cb(null, response);
       });
       break;
@@ -26,7 +28,7 @@ module.exports.handler = function(event, context, cb) {
         return filteredOutWords.indexOf(word.toLowerCase()) === -1;
       });
       count = filteredTextArray.pop();
-      lib.inTopFoosers(filteredTextArray.join(' '), count).then(function(response) {
+      foos.inTopFoosers(filteredTextArray.join(' '), count).then(function(response) {
         cb(null, response);
       });
       break;
@@ -36,14 +38,14 @@ module.exports.handler = function(event, context, cb) {
       });
       count = filteredTextArray.pop();
       lib.getRealName(params.user_id).then(function(realName) {
-        lib.inTopFoosers(realName, count).then(function(response) {
+        foos.inTopFoosers(realName, count).then(function(response) {
           cb(null, response);
         });
       });
       break;
     default:
       cb(null, {
-        text: lib.help()
+        text: responses.help()
       });
   }
 };
