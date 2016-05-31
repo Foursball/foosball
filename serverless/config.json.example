@@ -1,3 +1,4 @@
 {
-  "slack_token": "xxxx-slack-token-xxxx"
+  "slack_token": "xxxx-slack-token-xxxx",
+  "firebase": "https://[firebase-project].firebaseio.com"
 }
