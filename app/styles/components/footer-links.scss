@@ -3,6 +3,8 @@
   @extend .pr-8;
   a {
     @extend .grey;
+    @extend .mr-8;
+    @extend .d-ib;
     &:hover {
       @extend .grey;
     }
