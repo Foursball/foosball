@@ -1,13 +1,16 @@
 import Ember from 'ember';
 import { BusPublisherMixin } from 'ember-message-bus';
 
-const { Route, get } = Ember;
+const { Route, get, inject: { service } } = Ember;
 
 export default Route.extend(BusPublisherMixin, {
+  transitionService: service('transition'),
+
   actions: {
     login(provider) {
       const { store } = this;
       let session = get(this, 'session');
+      let transitionService = get(this, 'transitionService');
 
       session
         .open('firebase', { provider })
@@ -19,7 +22,13 @@ export default Route.extend(BusPublisherMixin, {
 
               if (authedFoosballer) {
                 this.publish('foosballersFound', foosballers);
-                this.transitionTo('home');
+                let transition = get(transitionService, 'transition');
+
+                if (transition) {
+                  transition.retry();
+                } else {
+                  this.transitionTo('home');
+                }
               } else {
                 this.transitionTo('choose-fooser');
               }

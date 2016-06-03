@@ -1,9 +1,17 @@
 import Ember from 'ember';
 import { BusPublisherMixin } from 'ember-message-bus';
 
-const { Route, get } = Ember;
+const { Route, get, set, inject: { service } } = Ember;
 
 export default Route.extend(BusPublisherMixin, {
+  transitionService: service('transition'),
+
+  beforeModel(transition) {
+    let transitionService = get(this, 'transitionService');
+
+    set(transitionService, 'transition', transition);
+  },
+
   afterModel(model, transition) {
     if (transition.targetName !== 'login') {
       return this.store
