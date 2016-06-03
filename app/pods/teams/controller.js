@@ -14,6 +14,15 @@ export default Controller.extend({
   allTeams: true,
 
   /* jshint ignore:start */
+  @computed()
+  /* jshint ignore:end*/
+  foosballers() {
+    const { store } = this;
+
+    return store.peekAll('foosballer');
+  },
+
+  /* jshint ignore:start */
   @computed('model.[]', 'allTeams')
   /* jshint ignore:end */
   filteredTeams(teams, allTeams) {

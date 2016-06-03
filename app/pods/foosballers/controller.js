@@ -1,5 +1,5 @@
 import Ember from 'ember';
-import computed, { equal } from 'ember-computed-decorators';
+import computed, { equal, alias } from 'ember-computed-decorators';
 
 const { Controller, set } = Ember;
 
@@ -15,6 +15,7 @@ export default Controller.extend({
   @equal('sortAscending', false) isDesc,
   @equal('sortBy', 'winPercentage') isSortWinPercentage,
   @equal('sortBy', 'winLossRatio') isSortWinLossRatio,
+  @alias('model') foosballers,
   /* jshint ignore:end */
 
   actions: {

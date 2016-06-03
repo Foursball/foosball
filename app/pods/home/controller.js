@@ -12,6 +12,15 @@ const {
 
 export default Controller.extend({
   /* jshint ignore:start */
+  @computed()
+  /* jshint ignore:end*/
+  foosballers() {
+    const { store } = this;
+
+    return store.peekAll('foosballer');
+  },
+
+  /* jshint ignore:start */
   @computed('model.[]')
   /* jshint ignore:end */
   legitGames(games) {

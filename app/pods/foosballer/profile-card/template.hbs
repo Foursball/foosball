@@ -1,9 +1,11 @@
 {{#paper-card class="bc-white profile-card"}}
   <img src="http://miguelcobain.github.io/ember-paper/washedout-70b84b894d88b367d49d56a8cd808cca.png">
   {{#paper-card-content class="p-r"}}
-    <div class="avatar-container d-ib p-r">
-      <img src={{session.currentUser.profileImageURL}} class="avatar">
-    </div>
+    {{#current-user foosballers=foosballers as |currentPlayer|}}
+      {{#link-to 'foosballer' currentPlayer class="avatar-container d-ib p-r"}}
+        <img src={{session.currentUser.profileImageURL}} class="avatar">
+      {{/link-to}}
+    {{/current-user}}
     <h3 class="p-a display-name">{{session.currentUser.displayName}}</h3>
     <hbox class="stats" fill>
       <div class="fg-1 ta-c ho-accent pointer grey">
