@@ -32,6 +32,20 @@ $warn: (
   max-height: 100%;
 }
 
+a.player-name {
+  @extend .black;
+  &.c-primary {
+    @extend .c-primary;
+    &:hover {
+      @extend .white;
+      @extend .bc-primary;
+      @extend .td-none;
+      @extend .p-4;
+      @extend .mr-4;
+    }
+  }
+}
+
 .md-button.md-default-theme {
   span[disabled="false"] {
     flex: 1;

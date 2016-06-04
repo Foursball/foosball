@@ -5,24 +5,39 @@
 
   {{partial 'footer-links'}}
 </vbox>
-<box md="8" class="p-8 o-a">
-  {{#each sortedGames as |game index|}}
-    <box class="bc-white p-8 home-game">
-      <hbox justify="between" class="home-game-hbox">
-        <div class="fs-s pr-8 index">{{plus-one index}}</div>
-        <div class="c-primary d-ib fs-m winners">
-          {{game.winningTeam.player1.displayName}}
-          {{game.winningTeam.player2.displayName}}
-        </div>
-        <div class="ta-c d-ib dash">{{game.winningTeamWins}} - {{game.losingTeamWins}}</div>
-        <div class="d-ib fs-m losers">
-          {{game.losingTeam.player1.displayName}}
-          {{game.losingTeam.player2.displayName}}
-        </div>
-        <small class="d-ib time ta-r"><i>{{moment-format game.time "MMM. Do @ h:mm a"}}</i></small>
-      </hbox>
-    </box>
-  {{/each}}
+<box md="8" class="p-8">
+  <box class="bc-white p-8 home-game">
+    <h3>Games</h3>
+  </box>
+  <div class="o-a">
+    {{#each sortedGames as |game index|}}
+    {{#current-user foosballers=foosballers as |currentPlayer|}}
+      <box class="bc-white p-8 home-game">
+        <hbox justify="between" class="home-game-hbox">
+          <div class="fs-s pr-8 index">{{plus-one index}}</div>
+          <div class="d-ib fs-m winners">
+            <a class="player-name {{if (eq currentPlayer.id game.winningTeam.player1.id) 'c-primary'}}" href={{href-to 'foosballer' game.winningTeam.player1}}>
+              {{game.winningTeam.player1.displayName}}
+            </a>-
+            <a class="player-name" href={{href-to 'foosballer' game.winningTeam.player2}}>
+              {{game.winningTeam.player2.displayName}}
+            </a>
+          </div>
+          <div class="ta-c d-ib dash">{{game.winningTeamWins}} - {{game.losingTeamWins}}</div>
+          <div class="d-ib fs-m losers">
+            <a class="player-name" href={{href-to 'foosballer' game.losingTeam.player1}}>
+              {{game.losingTeam.player1.displayName}}
+            </a>-
+            <a class="player-name" href={{href-to 'foosballer' game.losingTeam.player2}}>
+              {{game.losingTeam.player2.displayName}}
+            </a>
+          </div>
+          <small class="d-ib time ta-r"><i>{{moment-format game.time "MMM. Do @ h:mm a"}}</i></small>
+        </hbox>
+      </box>
+    {{/current-user}}
+    {{/each}}
+  </div>
 
   {{!--
     {{#index-plus-one index=index numItems=sortedGames.length as |rank count|}}
