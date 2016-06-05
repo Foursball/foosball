@@ -1,3 +1,0 @@
-{
-  "queryParams": "token=xxxxxx-token-xxxxxx, team_id=T0001, team_domain=example, channel_id=C2147483705, channel_name=test, user_id=U16QX73T9, user_name=Brian Conn, command=/foos, text=am in the top 5 anymore?, response_url=https://hooks.slack.com/commands/1234/5678"
-}
