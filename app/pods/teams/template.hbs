@@ -71,39 +71,22 @@
   </box>
   {{#teams-sorter
     tagName=""
-    teams=filteredTeams
+    teams=model
     sortAscending=sortAscending
     sortBy=sortBy
     as |sortedDecoratedTeams|}}
-<div class="o-a">
-    {{#current-user foosballers=foosballers as |currentPlayer|}}
-    {{#each sortedDecoratedTeams as |decoratedTeam index|}}
-      <box class="bc-white p-16 ml-8 mr-8 teams-team">
-        <hbox justify="between">
-          <div class="pr-8 rank">{{inc index}}</div>
-          <div class="name ellipsis pr-8">
-            <a class="player-name {{if (eq currentPlayer.id decoratedTeam.team.player1.id) 'c-primary'}}" href={{href-to 'foosballer' decoratedTeam.team.player1}}>
-              {{decoratedTeam.team.player1.displayName}}
-            </a>
-            <span class="p-4">-</span>
-            <a class="player-name {{if (eq currentPlayer.id decoratedTeam.team.player2.id) 'c-primary'}}" href={{href-to 'foosballer' decoratedTeam.team.player2}}>
-              {{decoratedTeam.team.player2.displayName}}
-            </a>
-          </div>
-          <div class="w-l pr-16">{{decoratedTeam.wins}} : {{decoratedTeam.losses}}</div>
-          <div class="ratio pr-16">{{decoratedTeam.winLossRatio}}</div>
-          <div class="percentage">{{decoratedTeam.winPercentage}}%</div>
-          {{!--
-        {{#index-plus-one index=index as |rank|}}
-          {{#paper-item param=decoratedTeam.team action="expandTeam" class="md-3-line"}}
-            {{team-display decoratedTeam=decoratedTeam expandedId=expandedId rank=rank}}
-          {{/paper-item}}
-        {{/index-plus-one}}
-        --}}
-        </hbox>
-      </box>
-    {{/each}}
-    {{/current-user}}
-</div>
+    <div class="o-a">
+      {{#current-user foosballers=foosballers as |currentPlayer|}}
+        {{#each sortedDecoratedTeams as |decoratedTeam index|}}
+          {{#if allTeams}}
+            {{partial 'team'}}
+          {{else}}
+            {{#if (or (eq currentPlayer.id decoratedTeam.team.player1.id) (eq currentPlayer.id decoratedTeam.team.player2.id))}}
+              {{partial 'team'}}
+            {{/if}}
+          {{/if}}
+        {{/each}}
+      {{/current-user}}
+    </div>
   {{/teams-sorter}}
 </vbox>

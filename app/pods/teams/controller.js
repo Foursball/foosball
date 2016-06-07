@@ -23,21 +23,6 @@ export default Controller.extend({
   },
 
   /* jshint ignore:start */
-  @computed('model.[]', 'allTeams')
-  /* jshint ignore:end */
-  filteredTeams(teams, allTeams) {
-    if (allTeams) {
-      return teams;
-    }
-
-    let currentUser = get(this, 'session.currentUser');
-
-    return teams.filter((t) => {
-      return get(t, 'team1.player1.id') === currentUser;
-    });
-  },
-
-  /* jshint ignore:start */
   @equal('sortAscending', true) isAsc,
   @equal('sortAscending', false) isDesc,
   @equal('sortBy', 'winPercentage') isSortWinPercentage,
