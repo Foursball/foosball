@@ -18,7 +18,7 @@ Router.map(function() {
   this.route('loading');
   this.route('something-happened');
   this.route('login');
-  this.authenticatedRoute('home');
+  this.authenticatedRoute('home', { path: 'h' });
   this.route('about');
   this.route('league-rules');
   this.authenticatedRoute('choose-fooser');

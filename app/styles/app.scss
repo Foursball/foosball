@@ -34,14 +34,13 @@ $warn: (
 
 a.player-name {
   @extend .black;
+  @extend .p-4;
   &.c-primary {
     @extend .c-primary;
     &:hover {
       @extend .white;
       @extend .bc-primary;
       @extend .td-none;
-      @extend .p-4;
-      @extend .mr-4;
     }
   }
 }

@@ -4,6 +4,6 @@ const { Route } = Ember;
 
 export default Route.extend({
   redirect() {
-    this.transitionTo('summary');
+    this.transitionTo('home');
   }
 });
