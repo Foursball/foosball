@@ -18,7 +18,8 @@
           <div class="d-ib fs-m winners">
             <a class="player-name {{if (eq currentPlayer.id game.winningTeam.player1.id) 'c-primary'}}" href={{href-to 'foosballer' game.winningTeam.player1}}>
               {{game.winningTeam.player1.displayName}}
-            </a>-
+            </a>
+            <span class="p-4">-</span>
             <a class="player-name {{if (eq currentPlayer.id game.winningTeam.player2.id) 'c-primary'}}" href={{href-to 'foosballer' game.winningTeam.player2}}>
               {{game.winningTeam.player2.displayName}}
             </a>
@@ -27,7 +28,8 @@
           <div class="d-ib fs-m losers">
             <a class="player-name {{if (eq currentPlayer.id game.losingTeam.player1.id) 'c-primary'}}" href={{href-to 'foosballer' game.losingTeam.player1}}>
               {{game.losingTeam.player1.displayName}}
-            </a>-
+            </a>
+            <span class="p-4">-</span>
             <a class="player-name {{if (eq currentPlayer.id game.losingTeam.player2.id) 'c-primary'}}" href={{href-to 'foosballer' game.losingTeam.player2}}>
               {{game.losingTeam.player2.displayName}}
             </a>
