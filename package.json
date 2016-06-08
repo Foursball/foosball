@@ -45,7 +45,7 @@
     "ember-notify": "^5.0.2",
     "ember-paper": "0.2.11",
     "ember-resolver": "^2.0.3",
-    "ember-suave": "1.2.3",
+    "ember-suave": "2.0.1",
     "ember-truth-helpers": "1.2.0",
     "emberfire": "1.6.6",
     "flexi": "1.1.5",

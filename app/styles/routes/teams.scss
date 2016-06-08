@@ -4,16 +4,49 @@
     width: 44px;
   }
   .name {
-    flex-basis: calc(100% - 308px);
+    flex-basis: calc(100% - 327px);
   }
   .w-l {
-    width: 104px;
-  }
-  .ratio {
     width: 112px;
   }
+  .ratio {
+    width: 120px;
+  }
   .percentage {
-    width: 48px;
+    width: 51px;
+  }
+
+  // sorting
+  .sorted {
+    transition: border-bottom 0.15s ease-in-out;
+    border-bottom: 4px solid map-get($theme, 'accent-text-color');
+    &:after {
+      @extend .p-r;
+      padding-left: 2px;
+      top: -2px;
+    }
+  }
+
+  .sortable {
+    transition: border-bottom 0.15s ease-in-out;
+    &:hover {
+      color: map-get($theme, 'accent-text-color');
+      border-bottom: 4px solid map-get($theme, 'accent-text-color');
+    }
+  }
+  .sort-desc {
+    .sorted {
+      &:after {
+        content: '\2193';
+      }
+    }
+  }
+  .sort-asc {
+    .sorted {
+      &:after {
+        content: '\2191';
+      }
+    }
   }
 }
 
