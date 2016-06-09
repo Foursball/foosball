@@ -4,7 +4,7 @@ import computed, { equal, alias } from 'ember-computed-decorators';
 const { Controller, set, get, setProperties } = Ember;
 
 export default Controller.extend({
-  queryParams: ['sortAscending', 'sortBy', 'expandedId'],
+  queryParams: ['sortAscending', 'sortBy'],
 
   sortAscending: true,
 
@@ -33,10 +33,6 @@ export default Controller.extend({
           sortAscending: false
         });
       }
-    },
-
-    expandFoosballer(foosballer) {
-      set(this, 'expandedId', foosballer.id);
     }
   }
 

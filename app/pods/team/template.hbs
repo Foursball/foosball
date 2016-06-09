@@ -1,6 +1,6 @@
 <box class="bc-white p-16 ml-8 mr-8 teams-team">
   <hbox justify="between">
-    <div class="pr-8 rank">{{inc index}}</div>
+    <div class="pr-8 rank">{{decoratedTeam.rank}}</div>
     <div class="name ellipsis pr-8">
       <a class="player-name {{if (eq currentPlayer.id decoratedTeam.team.player1.id) 'c-primary'}}" href={{href-to 'foosballer' decoratedTeam.team.player1}}>
         {{decoratedTeam.team.player1.displayName}}
