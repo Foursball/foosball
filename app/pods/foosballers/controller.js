@@ -6,9 +6,9 @@ const { Controller, set, get, setProperties } = Ember;
 export default Controller.extend({
   queryParams: ['sortAscending', 'sortBy', 'expandedId'],
 
-  sortAscending: false,
+  sortAscending: true,
 
-  sortBy: 'winLossRatio',
+  sortBy: 'rank',
 
   /* jshint ignore:start */
   @equal('sortAscending', true) isAsc,
@@ -17,6 +17,7 @@ export default Controller.extend({
   @equal('sortBy', 'winLossRatio') isSortWinLossRatio,
   @equal('sortBy', 'foosballer.name') isSortName,
   @equal('sortBy', 'wins') isSortWins,
+  @equal('sortBy', 'rank') isSortRank,
   @alias('model') foosballers,
   /* jshint ignore:end */
 

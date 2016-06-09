@@ -59,7 +59,7 @@
 
   <box class="bc-white pl-16 pr-16 ml-8 mr-8 teams-team">
     <hbox justify="between" class="pt-16 {{if isAsc 'sort-asc' 'sort-desc'}}">
-      <div class="pr-8 rank">Rank</div>
+      <div onclick={{action 'sortBy' 'rank'}} class="pr-8 rank pointer sortable {{if isSortRank 'sorted'}}">Rank</div>
       <div onclick={{action 'sortBy' 'foosballer.name'}} class="name pointer sortable {{if isSortName 'sorted'}}">Name</div>
       <div onclick={{action 'sortBy' 'wins'}} class="w-l pr-16 pointer sortable {{if isSortWins 'sorted'}}">Wins : Losses</div>
       <div onclick={{action 'sortBy' 'winLossRatio'}} class="ratio pr-16 pointer sortable {{if isSortWinLossRatio 'sorted'}}">Win/Loss Ratio</div>
@@ -78,7 +78,7 @@
         {{#each sortedDecoratedFoosballers as |decoratedFoosballer index|}}
           <box class="bc-white p-16 ml-8 mr-8 teams-team">
             <hbox justify="between">
-              <div class="pr-8 rank">{{inc index}}</div>
+              <div class="pr-8 rank">{{decoratedFoosballer.rank}}</div>
               <div class="name ellipsis pr-8">
                 <a class="player-name {{if (eq currentPlayer.id decoratedFoosballer.foosballer.id) 'c-primary'}}" href={{href-to 'foosballer' decoratedFoosballer.foosballer}}>
                   {{decoratedFoosballer.foosballer.name}}
