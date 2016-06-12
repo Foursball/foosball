@@ -49,10 +49,10 @@ export default Route.extend({
       let losingTeamWins = get(game, 'losingTeamWins');
       let landslideWin = losingTeamWins ? false : true;
 
-      let hipchatMessage = `${wp1} ${wp2} beat ${lp1} ${lp2} ${winningTeamWins} - ${losingTeamWins}`;
+      let slackMessage = `${wp1} ${wp2} beat ${lp1} ${lp2} ${winningTeamWins} - ${losingTeamWins}`;
 
       if (landslideWin) {
-        hipchatMessage += ' (burn)';
+        slackMessage += ' (burn)';
       }
 
       let color = landslideWin ? 'red' : 'yellow';
@@ -64,7 +64,7 @@ export default Route.extend({
         .save()
         .then(() => {
           savingGameMessage.set('visible', false);
-          let postingToHipChatMessage = notify.success('Game saved. Posting to Hipchat...', {
+          let postingToSlackMessage = notify.success('Game saved. Posting to Slack...', {
             closeAfter: null
           });
           if (ENV.environment === 'development') {
@@ -76,15 +76,12 @@ export default Route.extend({
                 type: 'POST',
                 processData: false,
                 contentType: 'application/json',
-                url: 'https://035946labg.execute-api.us-east-1.amazonaws.com/prod/hipchat',
+                url: 'https://ewpeg1xccj.execute-api.us-east-1.amazonaws.com/prod/slack-relay',
                 data: JSON.stringify({
-                  message: hipchatMessage,
-                  message_format: 'text',
-                  color,
-                  notify: 1
+                  message: slackMessage
                 }),
                 success: function() {
-                  postingToHipChatMessage.set('visible', false);
+                  postingToSlackMessage.set('visible', false);
                   resolve();
                 }
               });
@@ -93,7 +90,7 @@ export default Route.extend({
           }
         })
         .then(() => {
-          notify.success('Posted to Hipchat! Going back to the games page...');
+          notify.success('Posted to Slack! Going back to the games page...');
         })
         .then(() => this.transitionTo('games'));
     }
