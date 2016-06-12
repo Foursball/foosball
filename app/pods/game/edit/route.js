@@ -41,10 +41,10 @@ export default Route.extend({
 
       let winningTeam = get(game, 'winningTeam');
       let losingTeam = get(game, 'losingTeam');
-      let wp1 = get(winningTeam, 'player1.hipchat');
-      let wp2 = get(winningTeam, 'player2.hipchat');
-      let lp1 = get(losingTeam, 'player1.hipchat');
-      let lp2 = get(losingTeam, 'player2.hipchat');
+      let wp1 = get(winningTeam, 'player1.slack');
+      let wp2 = get(winningTeam, 'player2.slack');
+      let lp1 = get(losingTeam, 'player1.slack');
+      let lp2 = get(losingTeam, 'player2.slack');
       let winningTeamWins = get(game, 'winningTeamWins');
       let losingTeamWins = get(game, 'losingTeamWins');
       let landslideWin = losingTeamWins ? false : true;
