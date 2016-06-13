@@ -7,6 +7,7 @@ module.exports = function(environment) {
     contentSecurityPolicy: { 'connect-src': "'self' https://auth.firebase.com wss://*.firebaseio.com" },
     podModulePrefix: 'foosball/pods',
     firebase: 'https://netuitivefoosball.firebaseio.com/',
+    slackRelay: 'https://ewpeg1xccj.execute-api.us-east-1.amazonaws.com/prod/slack-relay',
     baseURL: '/',
     locationType: 'auto',
     EmberENV: {
@@ -37,6 +38,7 @@ module.exports = function(environment) {
      'script-src': "*"
    };
     ENV.firebase = 'https://dev-foosball.firebaseio.com/';
+    ENV.slackRelay = 'https://ewpeg1xccj.execute-api.us-east-1.amazonaws.com/dev/slack-relay';
   }
 
   if (environment === 'test') {
