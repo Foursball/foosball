@@ -52,7 +52,7 @@ export default Route.extend({
       let slackMessage = `${wp1} ${wp2} beat ${lp1} ${lp2} ${winningTeamWins} - ${losingTeamWins}`;
 
       if (landslideWin) {
-        slackMessage += ' (burn)';
+        slackMessage += ' :burn:';
       }
 
       let color = landslideWin ? 'red' : 'yellow';
