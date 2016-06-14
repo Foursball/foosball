@@ -76,7 +76,7 @@ export default Route.extend({
                 type: 'POST',
                 processData: false,
                 contentType: 'application/json',
-                url: 'https://ewpeg1xccj.execute-api.us-east-1.amazonaws.com/prod/slack-relay',
+                url: ENV.slackRelay,
                 data: JSON.stringify({
                   message: slackMessage
                 }),
