@@ -33,7 +33,7 @@ module.exports = function(environment) {
      'img-src': "*",
      'font-src': "https://fonts.gstatic.com http://localhost:4200 http://www.fontsaddict.com",
      'style-src': "'self' 'unsafe-inline'",
-     'connect-src': "'self' http://localhost:3000 https://*.firebaseio.com wss://*.firebaseio.com",
+     'connect-src': "'self' http://localhost:3000 https://*.firebaseio.com wss://*.firebaseio.com https://*.amazonaws.com",
      'report-uri': "'none'",
      'script-src': "*"
    };
