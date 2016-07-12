@@ -4,12 +4,13 @@ module.exports = function(environment) {
   var ENV = {
     modulePrefix: 'foosball',
     environment: environment,
-    contentSecurityPolicy: { 'connect-src': "'self' https://auth.firebase.com wss://*.firebaseio.com" },
+    contentSecurityPolicy: { 'connect-src': "'self' https://auth.firebase.com wss://*.firebaseio.com https://*.amazonaws.com" },
     podModulePrefix: 'foosball/pods',
     firebase: 'https://netuitivefoosball.firebaseio.com/',
     torii: {
       sessionServiceName: 'session'
     },
+    slackRelay: 'https://ewpeg1xccj.execute-api.us-east-1.amazonaws.com/prod/slack-relay',
     baseURL: '/',
     locationType: 'auto',
     EmberENV: {
@@ -35,11 +36,12 @@ module.exports = function(environment) {
      'img-src': "*",
      'font-src': "https://fonts.gstatic.com http://localhost:4200 http://www.fontsaddict.com",
      'style-src': "'self' 'unsafe-inline'",
-     'connect-src': "'self' http://localhost:3000 https://*.firebaseio.com wss://*.firebaseio.com",
+     'connect-src': "'self' http://localhost:3000 https://*.firebaseio.com wss://*.firebaseio.com https://*.amazonaws.com",
      'report-uri': "'none'",
      'script-src': "*"
    };
     ENV.firebase = 'https://dev-foosball.firebaseio.com/';
+    ENV.slackRelay = 'https://ewpeg1xccj.execute-api.us-east-1.amazonaws.com/dev/slack-relay';
   }
 
   if (environment === 'test') {
