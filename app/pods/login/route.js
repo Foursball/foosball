@@ -24,7 +24,7 @@ export default Route.extend(BusPublisherMixin, {
                 this.publish('foosballersFound', foosballers);
                 let transition = get(transitionService, 'transition');
 
-                if (transition) {
+                if (transition && transition.targetName !== 'login') {
                   transition.retry();
                 } else {
                   this.transitionTo('home');

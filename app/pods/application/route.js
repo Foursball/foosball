@@ -16,9 +16,9 @@ export default Route.extend(BusPublisherMixin, {
     if (transition.targetName !== 'login') {
       return this.store
         .findAll('foosballer')
-        .then((foosballers) => {
-          this.publish('foosballersFound', foosballers);
-        });
+        .then((foosballers) => this.publish('foosballersFound', foosballers))
+        .then(() => this.store.findAll('game'))
+        .then(() => this.store.findAll('team'));
     }
   },
 
