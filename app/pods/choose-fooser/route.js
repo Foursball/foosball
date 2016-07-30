@@ -4,9 +4,7 @@ const { Route, get } = Ember;
 
 export default Route.extend({
   model() {
-    const { store } = this;
-
-    return store.findAll('foosballer');
+    return this.store.findAll('foosballer');
   },
 
   afterModel(foosballers) {

@@ -8,14 +8,13 @@ export default Route.extend(BusPublisherMixin, {
 
   actions: {
     login(provider) {
-      const { store } = this;
       let session = get(this, 'session');
       let transitionService = get(this, 'transitionService');
 
       session
         .open('firebase', { provider })
         .then((data) => {
-          return store
+          return this.store
             .findAll('foosballer')
             .then((foosballers) => {
               let authedFoosballer = foosballers.findBy('uid', data.uid);

@@ -4,22 +4,19 @@ const { Route, get } = Ember;
 
 export default Route.extend({
   model(params) {
-    const { store } = this;
     let id = params.game_id; // jscs:ignore requireCamelCaseOrUpperCaseIdentifiers
 
-    return store.findRecord('game', id)
+    return this.store.findRecord('game', id)
       .catch((e) => {
-        return store.createRecord('game', { id });
+        return this.store.createRecord('game', { id });
       });
   },
 
   actions: {
     error(error, transition) {
-      const { store } = this;
-
       if (get(transition, 'targetName') === 'game.new') {
         // tried to refresh on a new game page but that game didn't exist in firebase yet
-        let game = store.createRecord('game');
+        let game = this.store.createRecord('game');
 
         this.transitionTo('game.new', game);
       } else {

@@ -10,33 +10,29 @@ export default FoosballersController.extend({
 
   tab: 'games',
 
+  /* jshint ignore:start */
   @alias('model') currentPlayer,
+  /* jshint ignore:end */
 
   /* jshint ignore:start */
   @computed()
   /* jshint ignore:end*/
   foosballers() {
-    const { store } = this;
-
-    return store.peekAll('foosballer');
+    return this.store.peekAll('foosballer');
   },
 
   /* jshint ignore:start */
   @computed()
   /* jshint ignore:end*/
   teams() {
-    const { store } = this;
-
-    return store.peekAll('team');
+    return this.store.peekAll('team');
   },
 
   /* jshint ignore:start */
   @computed()
   /* jshint ignore:end */
   legitGames() {
-    const { store } = this;
-
-    return store.peekAll('game');
+    return this.store.peekAll('game');
   },
 
   /* jshint ignore:start */
@@ -85,5 +81,5 @@ export default FoosballersController.extend({
 
       return a > b ? -1 : a === b ? 0 : 1;
     });
-  },
+  }
 });

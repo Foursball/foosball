@@ -15,9 +15,7 @@ export default Controller.extend({
   @computed()
   /* jshint ignore:end*/
   foosballers() {
-    const { store } = this;
-
-    return store.peekAll('foosballer');
+    return this.store.peekAll('foosballer');
   },
 
   /* jshint ignore:start */
