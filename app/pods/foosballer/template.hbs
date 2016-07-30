@@ -16,7 +16,7 @@
   </div>
 
   {{#if (eq tab 'teams')}}
-    <box class="bc-white pl-16 pr-16 ml-8 mr-8 teams-team">
+    <box class="bc-white pl-16 pr-16 ml-8 mr-8 fg-0 teams-team">
       <hbox justify="between" class="pt-16 {{if isAsc 'sort-asc' 'sort-desc'}}">
         <div onclick={{action 'sortBy' 'rank'}} class="pr-8 rank pointer sortable {{if isSortRank 'sorted'}}">Rank</div>
         <div class="name">Name</div>

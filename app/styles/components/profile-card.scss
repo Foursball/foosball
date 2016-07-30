@@ -26,5 +26,15 @@
     h3 {
       color: map-get($theme, 'accent-text-color');
     }
+
+    a {
+      &:hover {
+        text-decoration: none;
+      }
+      &:focus {
+        @extend .grey;
+        text-decoration: none;
+      }
+    }
   }
 }

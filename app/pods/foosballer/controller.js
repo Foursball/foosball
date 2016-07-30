@@ -31,17 +31,15 @@ export default FoosballersController.extend({
   /* jshint ignore:start */
   @computed()
   /* jshint ignore:end */
-  legitGames() {
+  games() {
     return this.store.peekAll('game');
   },
 
   /* jshint ignore:start */
-  @computed('legitGames')
+  @computed('games.[]', 'currentPlayer')
   /* jshint ignore:end */
-  playerGames(legitGames) {
-    let currentPlayer = get(this, 'currentPlayer');
-
-    return legitGames
+  playerGames(games, currentPlayer) {
+    return games
       .filter((g) => {
         let wP1 = get(g, 'winningTeam.player1.id');
         let wP2 = get(g, 'winningTeam.player2.id');
@@ -72,10 +70,10 @@ export default FoosballersController.extend({
   },
 
   /* jshint ignore:start */
-  @computed('legitGames')
+  @computed('games.[]')
   /* jshint ignore:end */
-  sortedGames(legitGames) {
-    return legitGames.toArray().sort((a, b) => {
+  sortedGames(games) {
+    return games.toArray().sort((a, b) => {
       a = new Date(get(a, 'time')).getTime();
       b = new Date(get(b, 'time')).getTime();
 
