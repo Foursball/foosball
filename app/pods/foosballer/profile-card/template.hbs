@@ -1,0 +1,30 @@
+{{#paper-card class="bc-white profile-card"}}
+  <img src="http://miguelcobain.github.io/ember-paper/washedout-70b84b894d88b367d49d56a8cd808cca.png">
+  {{#paper-card-content class="p-r"}}
+    {{#current-user
+      foosballers=foosballers
+      controllerCurrentPlayer=currentPlayer
+      as |user|}}
+      {{#link-to 'foosballer' user.currentPlayer class="avatar-container d-ib p-r"}}
+        <img src={{user.currentPlayer.profileImageURL}} class="avatar">
+      {{/link-to}}
+      {{log stats}}
+
+      <h3 class="p-a display-name">{{user.currentPlayer.displayName}}</h3>
+      <hbox class="stats" fill>
+        {{#link-to 'foosballer' user.currentPlayer (query-params tab='games') class="fg-1 ta-c ho-accent pointer grey"}}
+          <h5 class="mb-4">GAMES</h5>
+          <h3 class="mt-0">{{user.stats.playerGames.length}}</h3>
+        {{/link-to}}
+        {{#link-to 'foosballer' user.currentPlayer (query-params tab='wins') class="fg-1 ta-c ho-accent pointer grey"}}
+          <h5 class="mb-4">WINS</h5>
+          <h3 class="mt-0">{{user.stats.gamesWon.length}}</h3>
+        {{/link-to}}
+        {{#link-to 'foosballer' user.currentPlayer (query-params tab='teams') class="fg-1 ta-c ho-accent pointer grey"}}
+          <h5 class="mb-4">TEAMS</h5>
+          <h3 class="mt-0">{{user.stats.playerTeams.length}}</h3>
+        {{/link-to}}
+      </hbox>
+    {{/current-user}}
+  {{/paper-card-content}}
+{{/paper-card}}

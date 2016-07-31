@@ -6,7 +6,6 @@ export default Route.extend({
   teamService: service('team-decorator'),
 
   afterModel() {
-    const { store } = this;
     let promises = [
       this.store.findAll('foosballer'),
       this.store.findAll('team'),
@@ -30,8 +29,7 @@ export default Route.extend({
   actions: {
     startGame(game) {
       let teamService = get(this, 'teamService');
-      const { store } = this;
-      let teams = store.peekAll('team');
+      let teams = this.store.peekAll('team');
       let c = get(this, 'controller');
       let t1p1 = get(c, 'team1Player1');
       let t1p2 = get(c, 'team1Player2');
@@ -49,7 +47,7 @@ export default Route.extend({
         if (foundTeam) {
           return RSVP.resolve(foundTeam);
         } else {
-          return store.createRecord('team', {
+          return this.store.createRecord('team', {
             player1: p1,
             player2: p2
           }).save();

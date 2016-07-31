@@ -8,9 +8,7 @@ export default Route.extend({
   notify: service(),
 
   afterModel() {
-    const { store } = this;
-
-    return store.findAll('game');
+    return this.store.findAll('game');
   },
 
   actions: {
@@ -19,7 +17,7 @@ export default Route.extend({
       let t1yw = get(game, 'team1WinsYellow');
       let t2bw = get(game, 'team2WinsBlack');
       let t2yw = get(game, 'team2WinsYellow');
-      const notify = get(this, 'notify');
+      let notify = get(this, 'notify');
 
       if (!t1bw) {
         set(game, 'team1WinsBlack', 0);

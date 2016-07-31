@@ -1,0 +1,98 @@
+/** PADDING **/
+.pl-16 { padding-left: 16px; }
+.pr-16 { padding-right: 16px; }
+.pt-16 { padding-top: 16px; }
+.pb-16 { padding-bottom: 16px; }
+.p-16 { padding: 16px; }
+.pl-8 { padding-left: 8px; }
+.pr-8 { padding-right: 8px; }
+.pt-8 { padding-top: 8px; }
+.pb-8 { padding-bottom: 8px; }
+.p-8 { padding: 8px; }
+.pl-4 { padding-left: 4px; }
+.pr-4 { padding-right: 4px; }
+.pt-4 { padding-top: 4px; }
+.pb-4 { padding-bottom: 4px; }
+.p-4 { padding: 4px; }
+
+/** MARGIN **/
+.mb-4 { margin-bottom: 4px; }
+.mr-4 { margin-right: 4px; }
+.ml-4 { margin-left: 4px; }
+.mt-4 { margin-top: 4px; }
+.m-4 { margin: 4px; }
+.mb-8 { margin-bottom: 8px; }
+.ml-8 { margin-left: 8px; }
+.mr-8 { margin-right: 8px; }
+.mt-0 { margin-top: 0; }
+.m-8 { margin: 8px; }
+
+/** DISPLAY **/
+.d-b { display: block; }
+.d-ib { display: inline-block; }
+.d-f { display: flex; }
+
+/** TEXT-ALIGN **/
+.ta-c { text-align: center; }
+.ta-r { text-align: right; }
+
+/** COLOR **/
+.black { color: #000; }
+.white { color: #fff; }
+.yellow { color: map-get($accent, 'A200'); }
+.grey { color: map-get($color-grey, '500'); }
+
+.bc-black { background-color: black; color: white; }
+.bc-yellow { background-color: map-get($accent, '500'); color: black; }
+.bc-grey { background-color: map-get($color-grey, '300'); }
+.bc-white { background-color: white; }
+.bc-primary { background-color: map-get($primary, '500'); }
+
+.c-primary { color: map-get($primary, '500'); }
+.c-accent { color: map-get($accent, '500'); }
+
+/** TEXT-SHADOW **/
+.ts-grey { text-shadow: -2px 2px 2px map-get($color-grey, '300'); }
+
+/** TEXT-DECORATION **/
+.td-none { text-decoration: none; }
+
+/** FONT **/
+.bold { font-weight: bold; }
+.fs-24 { font-size: 24px; }
+.fs-s { font-size: 14px; }
+.fs-m { font-size: 16px; }
+.fs-l { font-size: 18px; }
+
+/** POSITION **/
+.p-r { position: relative; }
+.p-a { position: absolute; }
+
+/** TOP **/
+.t-4 { top: 4px; }
+
+.full-vh { height: 100vh; }
+
+.ho-accent {
+  transition: color 0.15s ease-in-out;
+  &:hover {
+    color: map-get($theme, 'accent-text-color');
+  }
+}
+
+/** CURSOR **/
+.pointer { cursor: pointer; }
+
+/** OVERFLOW **/
+.o-a { overflow: auto; }
+
+/** FLOAT **/
+.f-r { float: right; }
+.f-l { float: left; }
+
+/** ELLIPSIS FOR OVERFLOW TEXT **/
+.ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

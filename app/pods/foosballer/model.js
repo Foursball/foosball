@@ -12,10 +12,14 @@ export default DS.Model.extend({
   /* jshint ignore:end */
 
   /* jshint ignore:start */
+  @attr('string') uid,
+  /* jshint ignore:end */
+
+  /* jshint ignore:start */
   @computed('name')
   /* jshint ignore:end */
   firstName(name) {
-    const [first] = name ? name.split(' ') : ['', ''];
+    let [first] = name ? name.split(' ') : ['', ''];
     return first;
   },
 
@@ -23,7 +27,7 @@ export default DS.Model.extend({
   @computed('name')
   /* jshint ignore:end */
   lastName(name) {
-    const [, last] = name ? name.split(' ') : ['', ''];
+    let [, last] = name ? name.split(' ') : ['', ''];
     return last;
   },
 
@@ -31,7 +35,7 @@ export default DS.Model.extend({
   @computed('firstName', 'lastName')
   /* jshint ignore:end */
   displayName(firstName, lastName) {
-    const [last] = lastName;
+    let [last] = lastName;
 
     return `${firstName} ${last}`;
   }

@@ -18,27 +18,21 @@ export default Controller.extend({
   @computed
   /* jshint ignore:end */
   foosballers() {
-    const { store } = this;
-
-    return store.peekAll('foosballer');
+    return this.store.peekAll('foosballer');
   },
 
   /* jshint ignore:start */
   @computed
   /* jshint ignore:end */
   teams() {
-    const { store } = this;
-
-    return store.peekAll('team');
+    return this.store.peekAll('team');
   },
 
   /* jshint ignore:start */
   @computed
   /* jshint ignore:end */
   games() {
-    const { store } = this;
-
-    return store.peekAll('game');
+    return this.store.peekAll('game');
   },
 
   /* jshint ignore:start */

@@ -21,11 +21,28 @@ $warn: (
 );
 
 @import 'ember-paper';
-
+@import 'main-nav';
+@import 'flex';
+@import 'routes/index';
+@import 'components/index';
+@import 'semantics';
 
 .ember-application {
   max-width: 100%;
   max-height: 100%;
+}
+
+a.player-name {
+  @extend .black;
+  @extend .p-4;
+  &.c-primary {
+    @extend .c-primary;
+    &:hover {
+      @extend .white;
+      @extend .bc-primary;
+      @extend .td-none;
+    }
+  }
 }
 
 .md-button.md-default-theme {
@@ -53,45 +70,3 @@ $warn: (
 .is-asc, .is-desc, .is-sort-win-percentage, .is-sort-losses, .is-sort-wins, .is-sort-win-loss-ratio {
   background-color: rgba(0, 0, 0, 0.0980392) !important;
 }
-
-// utils
-.pl-16 { padding-left: 16px; }
-.pr-16 { padding-right: 16px; }
-.pt-16 { padding-top: 16px; }
-.pb-16 { padding-bottom: 16px; }
-
-.mb-8 { margin-bottom: 8px; }
-.ml-8 { margin-left: 8px; }
-.m-8 { margin: 8px; }
-
-.d-b { display: block; }
-.d-ib { display: inline-block; }
-.d-f { display: flex; }
-
-.ta-c { text-align: center; }
-.ta-r { text-align: right; }
-
-.black { color: #000; }
-.white { color: #fff; }
-.yellow { color: map-get($accent, 'A200'); }
-
-.ts-grey { text-shadow: -2px 2px 2px map-get($color-grey, '300'); }
-
-.bold { font-weight: bold; }
-
-.fs-24 { font-size: 24px; }
-
-.p-r { position: relative; }
-
-.t-4 { top: 4px; }
-
-.bc-black { background-color: black; color: white; }
-.bc-yellow { background-color: map-get($accent, '500'); color: black; }
-.bc-grey { background-color: map-get($color-grey, '300'); }
-
-.full-vh { height: 100vh; }
-
-//Flex
-.flex-50 { flex: 0 1 50%; }
-.column { flex-direction: column; }
-.jc-center { justify-content: center; }

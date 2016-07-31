@@ -1,0 +1,68 @@
+<vbox md="4" class="p-8">
+  {{partial 'foosballer/profile-card'}}
+
+  {{partial 'trends'}}
+
+  {{partial 'footer-links'}}
+</vbox>
+
+<vbox md="8" class="p-8">
+  <div class="bc-white mr-8 ml-8">
+    <hbox justify="start">
+      {{#link-to 'foosballer' (query-params tab='games') class="tab"}}Games ({{playerGames.length}}){{/link-to}}
+      {{#link-to 'foosballer' (query-params tab='wins') class="tab"}}Wins ({{gamesWon.length}}){{/link-to}}
+      {{#link-to 'foosballer' (query-params tab='teams') class="tab"}}Teams{{/link-to}}
+    </hbox>
+  </div>
+
+  {{#if (eq tab 'teams')}}
+    <box class="bc-white pl-16 pr-16 ml-8 mr-8 fg-0 teams-team">
+      <hbox justify="between" class="pt-16 {{if isAsc 'sort-asc' 'sort-desc'}}">
+        <div onclick={{action 'sortBy' 'rank'}} class="pr-8 rank pointer sortable {{if isSortRank 'sorted'}}">Rank</div>
+        <div class="name">Name</div>
+        <div onclick={{action 'sortBy' 'wins'}} class="w-l pr-16 pointer sortable {{if isSortWins 'sorted'}}">Wins : Losses</div>
+        <div onclick={{action 'sortBy' 'winLossRatio'}} class="ratio pr-16 pointer sortable {{if isSortWinLossRatio 'sorted'}}">Win/Loss Ratio</div>
+        <div onclick={{action 'sortBy' 'winPercentage'}} class="percentage pointer sortable {{if isSortWinPercentage 'sorted'}}">Win %</div>
+      </hbox>
+    </box>
+  {{/if}}
+
+  <div class="o-a">
+    {{#if (eq tab 'games')}}
+      {{#each sortedGames as |game index|}}
+        {{#if (or
+          (eq currentPlayer.id game.winningTeam.player1.id)
+          (eq currentPlayer.id game.winningTeam.player2.id)
+          (eq currentPlayer.id game.losingTeam.player1.id)
+          (eq currentPlayer.id game.losingTeam.player2.id)
+        )}}
+          {{partial 'game'}}
+        {{/if}}
+      {{/each}}
+    {{else if (eq tab 'wins')}}
+      {{#each sortedGames as |game index|}}
+        {{#if (or
+          (eq currentPlayer.id game.winningTeam.player1.id)
+          (eq currentPlayer.id game.winningTeam.player2.id)
+        )}}
+          {{partial 'game'}}
+        {{/if}}
+      {{/each}}
+    {{else if (eq tab 'teams')}}
+      {{#teams-sorter
+        tagName=""
+        teams=teams
+        sortAscending=sortAscending
+        sortBy=sortBy
+        as |sortedDecoratedTeams|}}
+        <div class="o-a">
+          {{#each sortedDecoratedTeams as |decoratedTeam index|}}
+            {{#if (or (eq currentPlayer.id decoratedTeam.team.player1.id) (eq currentPlayer.id decoratedTeam.team.player2.id))}}
+              {{partial 'team'}}
+            {{/if}}
+          {{/each}}
+        </div>
+      {{/teams-sorter}}
+    {{/if}}
+  </div>
+</vbox>

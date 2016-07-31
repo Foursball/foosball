@@ -1,0 +1,21 @@
+.home-game {
+  flex-basis: 56px;
+  .home-game-hbox {
+    padding-top: 12px;
+    .index {
+      width: 32px;
+    }
+    .winners {
+      flex: 1 0 calc(50% - 100px);
+    }
+    .dash {
+      width: 50px;
+    }
+    .losers {
+      flex: 1 0 calc(50% - 100px);
+    }
+    .time {
+      width: 112px;
+    }
+  }
+}

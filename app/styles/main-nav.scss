@@ -1,0 +1,71 @@
+.center-content {
+  flex-basis: 918px;
+  max-width: 918px;
+  width: 918px;
+  padding: 16px;
+}
+
+.main-nav {
+  background-color: #fff;
+  border-bottom: 1px solid rgba(0,0,0,0.15);
+  height: 48px;
+  max-height: 48px;
+  .center-content {
+    .left-nav, .middle-nav, .right-nav {
+      flex-grow: 1;
+    }
+    padding: 0 16px;
+
+    .right-nav {
+      display: flex;
+      justify-content: flex-end;
+      ul {
+        display: inline-block;
+      }
+      button {
+        display: inline-block;
+      }
+      .img-container {
+        height: 36px;
+        width: 36px;
+        margin-right: 8px;
+        img {
+          height: 36px;
+          width: 36px;
+          position: relative;
+          top: 6px;
+          border-radius: 4px;
+        }
+      }
+    }
+  }
+}
+
+.fh-nav {
+  height: calc(100vh - 48px);
+  max-height: calc(100vh - 48px);
+}
+
+.tab {
+  height: 48px;
+  padding: 17px 12px 20px 12px;
+  text-transform: uppercase;
+  display: inline-block;
+  text-decoration: none;
+  color: black;
+  box-sizing: border-box;
+  cursor: pointer;
+  transition: border-bottom 0.15s ease-in-out;
+  &.active {
+    border-bottom: 4px solid map-get($theme, 'accent-text-color');
+  }
+  &:hover {
+    color: map-get($theme, 'accent-text-color');
+    border-bottom: 4px solid map-get($theme, 'accent-text-color');
+    text-decoration: none;
+  }
+  &:focus {
+    color: black;
+    text-decoration: none;
+  }
+}

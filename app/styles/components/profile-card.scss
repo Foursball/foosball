@@ -1,0 +1,40 @@
+.profile-card {
+  .avatar-container {
+    padding: 1px;
+    border-radius: 6px;
+    left: -8px;
+    top: -50px;
+
+    .avatar {
+      height: 72px;
+      width: 72px;
+      border-radius: 7px;
+      border: 2px solid white;
+    }
+  }
+  .display-name {
+    top: -13px;
+    left: 86px;
+  }
+
+  md-card-content {
+    height: 108px;
+  }
+
+  .stats {
+    top: -55px;
+    h3 {
+      color: map-get($theme, 'accent-text-color');
+    }
+
+    a {
+      &:hover {
+        text-decoration: none;
+      }
+      &:focus {
+        @extend .grey;
+        text-decoration: none;
+      }
+    }
+  }
+}

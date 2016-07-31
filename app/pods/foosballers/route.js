@@ -8,10 +8,8 @@ export default Route.extend({
   },
 
   afterModel() {
-    const { store } = this;
-
-    let gamesPromise = store.findAll('game');
-    let teamsPromise = store.findAll('team');
+    let gamesPromise = this.store.findAll('game');
+    let teamsPromise = this.store.findAll('team');
 
     return RSVP.all([gamesPromise, teamsPromise]);
   }

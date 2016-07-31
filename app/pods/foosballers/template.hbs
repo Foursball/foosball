@@ -1,3 +1,4 @@
+{{!--
 {{#paper-toolbar}}
   <div class="md-toolbar-tools">
     {{#paper-sidenav-toggle as |toggle|}}
@@ -36,3 +37,60 @@
     {{/paper-list}}
   {{/paper-content}}
 {{/paper-content}}
+--}}
+
+<vbox md="4" class="p-8">
+  {{partial 'foosballer/profile-card'}}
+
+  {{partial 'trends'}}
+
+  {{partial 'footer-links'}}
+</vbox>
+
+<vbox md="8" class="p-8">
+  {{#paper-card class="bc-white teams-top-10"}}
+    {{#paper-card-content}}
+      <h3>Top 10 performing foosballers</h3>
+      <p>
+        Coming soon!
+      </p>
+    {{/paper-card-content}}
+  {{/paper-card}}
+
+  <box class="bc-white pl-16 pr-16 ml-8 mr-8 teams-team">
+    <hbox justify="between" class="pt-16 {{if isAsc 'sort-asc' 'sort-desc'}}">
+      <div onclick={{action 'sortBy' 'rank'}} class="pr-8 rank pointer sortable {{if isSortRank 'sorted'}}">Rank</div>
+      <div onclick={{action 'sortBy' 'foosballer.name'}} class="name pointer sortable {{if isSortName 'sorted'}}">Name</div>
+      <div onclick={{action 'sortBy' 'wins'}} class="w-l pr-16 pointer sortable {{if isSortWins 'sorted'}}">Wins : Losses</div>
+      <div onclick={{action 'sortBy' 'winLossRatio'}} class="ratio pr-16 pointer sortable {{if isSortWinLossRatio 'sorted'}}">Win/Loss Ratio</div>
+      <div onclick={{action 'sortBy' 'winPercentage'}} class="percentage pointer sortable {{if isSortWinPercentage 'sorted'}}">Win %</div>
+    </hbox>
+  </box>
+  {{#foosballers-sorter
+    tagName=""
+    foosballers=model
+    sortAscending=sortAscending
+    sortBy=sortBy
+    as |sortedDecoratedFoosballers|}}
+
+    <div class="o-a">
+      {{#current-user foosballers=model as |currentPlayer|}}
+        {{#each sortedDecoratedFoosballers as |decoratedFoosballer index|}}
+          <box class="bc-white p-16 ml-8 mr-8 teams-team">
+            <hbox justify="between">
+              <div class="pr-8 rank">{{decoratedFoosballer.rank}}</div>
+              <div class="name ellipsis pr-8">
+                <a class="player-name {{if (eq currentPlayer.id decoratedFoosballer.foosballer.id) 'c-primary'}}" href={{href-to 'foosballer' decoratedFoosballer.foosballer}}>
+                  {{decoratedFoosballer.foosballer.name}}
+                </a>
+              </div>
+              <div class="w-l pr-16">{{decoratedFoosballer.wins}} : {{decoratedFoosballer.losses}}</div>
+              <div class="ratio pr-16">{{decoratedFoosballer.winLossRatio}}</div>
+              <div class="percentage">{{decoratedFoosballer.winPercentage}}%</div>
+            </hbox>
+          </box>
+        {{/each}}
+      {{/current-user}}
+    </div>
+  {{/foosballers-sorter}}
+</vbox>

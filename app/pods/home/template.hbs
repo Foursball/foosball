@@ -1,0 +1,30 @@
+<vbox md="4" class="p-8">
+  {{partial 'foosballer/profile-card'}}
+
+  {{partial 'trends'}}
+
+  {{partial 'footer-links'}}
+</vbox>
+<box md="8" class="p-8">
+  <box class="bc-white p-8 home-game">
+    <h3>Games</h3>
+  </box>
+  <div class="o-a">
+    {{#each sortedGames as |game index|}}
+      {{#current-user foosballers=foosballers as |currentPlayer|}}
+        {{partial 'game'}}
+      {{/current-user}}
+    {{/each}}
+  </div>
+
+  {{!--
+    {{#index-plus-one index=index numItems=sortedGames.length as |rank count|}}
+      {{#paper-item param=game action="expandGame"}}
+        {{game-display game=game expandedId=expandedId count=count}}
+      {{/paper-item}}
+    {{/index-plus-one}}
+    <small class="pr-16 d-b mb-8 ta-r"><i>{{moment-format game.time "MMM. Do, YYYY @ h:mm a"}}</i></small>
+    {{paper-divider class="theme"}}
+  {{/each}}
+  --}}
+</box>

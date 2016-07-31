@@ -1,3 +1,4 @@
+{{!--
 <div class="ember-application">
   {{#paper-nav-container}}
     {{#paper-sidenav class="md-sidenav-left" locked-open="gt-lg"}}
@@ -22,3 +23,37 @@
   {{/paper-nav-container}}
   <div id="paper-wormhole"></div>
 </div>
+--}}
+<screen>
+  <hbox justify="center" class="main-nav">
+    <hbox class="center-content" fill nowrap>
+      <div class="left-nav">
+        {{#if session.isAuthenticated}}
+          {{#link-to 'home' class="tab"}}Home{{/link-to}}
+          {{#link-to 'teams' class="tab"}}Teams{{/link-to}}
+          {{#link-to 'foosballers' class="tab"}}Players{{/link-to}}
+        {{else}}
+          {{#link-to 'login' class="tab"}}Login{{/link-to}}
+        {{/if}}
+      </div>
+      <div class="middle-nav">
+        <div class="icon">Icon</div>
+      </div>
+      <hbox justify="end" class="right-nav">
+        {{#if session.isAuthenticated}}
+          {{#current-user foosballers=foosballers as |currentPlayer|}}
+            {{#link-to 'foosballer' currentPlayer class="img-container"}}
+              <img src={{session.currentUser.profileImageURL}}>
+            {{/link-to}}
+          {{/current-user}}
+          {{#paper-button primary=true raised=true}}Game{{/paper-button}}
+        {{/if}}
+      </hbox>
+    </hbox>
+  </hbox>
+  <hbox justify="center">
+    <hbox justify="center" class="center-content fh-nav" fill>
+      {{outlet}}
+    </hbox>
+  </hbox>
+</screen>

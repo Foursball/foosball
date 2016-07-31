@@ -7,6 +7,9 @@ module.exports = function(environment) {
     contentSecurityPolicy: { 'connect-src': "'self' https://auth.firebase.com wss://*.firebaseio.com https://*.amazonaws.com" },
     podModulePrefix: 'foosball/pods',
     firebase: 'https://netuitivefoosball.firebaseio.com/',
+    torii: {
+      sessionServiceName: 'session'
+    },
     slackRelay: 'https://ewpeg1xccj.execute-api.us-east-1.amazonaws.com/prod/slack-relay',
     baseURL: '/',
     locationType: 'auto',

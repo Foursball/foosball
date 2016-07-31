@@ -85,7 +85,7 @@ export default Service.extend({
   },
 
   decorate(teams, games) {
-    return teams.map((team) => {
+    let decoratedTeams = teams.map((team) => {
       let teamId = get(team, 'id');
       let gamesPlayedIn = games.filter((game) => {
         return get(game, 'team1.id') === teamId || get(game, 'team2.id') === teamId;
@@ -138,5 +138,12 @@ export default Service.extend({
 
       return scoreKeeper;
     });
+
+    decoratedTeams
+      .sortBy('winLossRatio')
+      .reverse()
+      .forEach((t, index) => set(t, 'rank', ++index));
+
+    return decoratedTeams;
   }
 });
