@@ -1,17 +1,5 @@
-<span class="md-avatar">{{rank}}</span>
-<div class="md-list-item-text">
-  <h3 class="accent-text">{{decoratedFoosballer.foosballer.name}}</h3>
-  <p class="metrics-container">
-    <span>{{decoratedFoosballer.wins}} : {{decoratedFoosballer.losses}}</span>
-    <span>({{decoratedFoosballer.winLossRatio}})</span>
-    <span>{{decoratedFoosballer.winPercentage}}%</span>
-
-  </p>
-
-  {{#if shouldExpand}}
-    <p><strong>Wins</strong> Black - {{decoratedFoosballer.winsBlack}} Yellow - {{decoratedFoosballer.winsYellow}}</p>
-    <p><strong>Losses</strong> Black - {{decoratedFoosballer.lossesBlack}} Yellow - {{decoratedFoosballer.lossesYellow}}</p>
-
-    {{high-charts content=graphData chartOptions=chartOptions theme=theme}}
-  {{/if}}
-</div>
+{{yield (hash
+  graphData=graphData
+  chartOptions=chartOptions
+  theme=theme
+)}}

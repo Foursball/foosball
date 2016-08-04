@@ -1,14 +1,20 @@
 {{#paper-card class="bc-white profile-card"}}
-  <img src="http://miguelcobain.github.io/ember-paper/washedout-70b84b894d88b367d49d56a8cd808cca.png">
+
+  {{#foosballers-sorter
+    as |sortedDecoratedFoosballers|}}
+    {{#each sortedDecoratedFoosballers as |f|}}
+      {{#if (eq f.foosballer.id user.currentPlayer.id)}}
+        {{#foosballer-display decoratedFoosballer=f as |display|}}
+          {{high-charts content=display.graphData chartOptions=display.chartOptions theme=display.theme}}
+        {{/foosballer-display}}
+      {{/if}}
+    {{/each}}
+  {{/foosballers-sorter}}
+
   {{#paper-card-content class="p-r"}}
-    {{#current-user
-      foosballers=foosballers
-      controllerCurrentPlayer=currentPlayer
-      as |user|}}
       {{#link-to 'foosballer' user.currentPlayer class="avatar-container d-ib p-r"}}
         <img src={{user.currentPlayer.profileImageURL}} class="avatar">
       {{/link-to}}
-      {{log stats}}
 
       <h3 class="p-a display-name">{{user.currentPlayer.displayName}}</h3>
       <hbox class="stats" fill>
@@ -25,6 +31,5 @@
           <h3 class="mt-0">{{user.stats.playerTeams.length}}</h3>
         {{/link-to}}
       </hbox>
-    {{/current-user}}
   {{/paper-card-content}}
 {{/paper-card}}

@@ -22,7 +22,12 @@ export default Component.extend({
     return get(this, 'store').peekAll('team');
   },
 
-  foosballers: [],
+  /* jshint ignore:start */
+  @computed
+  /* jshint ignore:end */
+  foosballers() {
+    return get(this, 'store').peekAll('foosballer');
+  },
 
   sortAscending: false,
 

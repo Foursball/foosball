@@ -8,6 +8,8 @@ export default Component.extend(BusSubscriberMixin, {
   session: service(),
   store: service(),
 
+  tagName: '',
+
   foosballers: [],
 
   updateFoosballers: on('foosballersFound', function(foosballers) {
@@ -48,6 +50,14 @@ export default Component.extend(BusSubscriberMixin, {
   @computed('teams', 'games', 'currentPlayer')
   /* jshint ignore:end */
   stats(teams, games, currentPlayer) {
+    if (!currentPlayer) {
+      return {
+        playerGames: [],
+        gamesWon: [],
+        playerTeams: []
+      };
+    }
+
     let playerGames = games
       .filter((g) => {
         let wP1 = get(g, 'winningTeam.player1.id');
