@@ -41,7 +41,7 @@
       </div>
       <hbox justify="end" class="right-nav">
         {{#if session.isAuthenticated}}
-          {{#current-user foosballers=foosballers as |currentPlayer|}}
+          {{#current-user foosballers=foosballers as |user|}}
             {{#link-to 'foosballer' user.currentPlayer class="img-container"}}
               <img src={{session.currentUser.profileImageURL}}>
             {{/link-to}}

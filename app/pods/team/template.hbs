@@ -2,11 +2,11 @@
   <hbox justify="between">
     <div class="pr-8 rank">{{decoratedTeam.rank}}</div>
     <div class="name ellipsis pr-8">
-      <a class="player-name {{if (eq currentPlayer.id decoratedTeam.team.player1.id) 'c-primary'}}" href={{href-to 'foosballer' decoratedTeam.team.player1}}>
+      <a class="player-name {{if (eq user.currentPlayer.id decoratedTeam.team.player1.id) 'c-primary'}}" href={{href-to 'foosballer' decoratedTeam.team.player1}}>
         {{decoratedTeam.team.player1.displayName}}
       </a>
       <span class="p-4">-</span>
-      <a class="player-name {{if (eq currentPlayer.id decoratedTeam.team.player2.id) 'c-primary'}}" href={{href-to 'foosballer' decoratedTeam.team.player2}}>
+      <a class="player-name {{if (eq user.currentPlayer.id decoratedTeam.team.player2.id) 'c-primary'}}" href={{href-to 'foosballer' decoratedTeam.team.player2}}>
         {{decoratedTeam.team.player2.displayName}}
       </a>
     </div>
