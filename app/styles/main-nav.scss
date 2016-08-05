@@ -39,6 +39,18 @@
       }
     }
   }
+
+  .middle-nav {
+    .icon {
+      background: url('/favicon-32x32.png');
+      background-repeat: no-repeat;
+      height: 32px;
+      width: 32px;
+      @extend .p-r;
+      top: 8px;
+      border-radius: 2px;
+    }
+  }
 }
 
 .fh-nav {
