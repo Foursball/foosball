@@ -11,6 +11,8 @@ export default DS.Model.extend({
   team1WinsYellow: DS.attr('number'),
   team2WinsBlack: DS.attr('number'),
   team2WinsYellow: DS.attr('number'),
+  team1Wins: DS.attr('number'),
+  team2Wins: DS.attr('number'),
   time: DS.attr('string'),
 
   /* jshint ignore:start */
@@ -28,26 +30,12 @@ export default DS.Model.extend({
   },
 
   /* jshint ignore:start */
-  @computed('team1WinsBlack', 'team1WinsYellow')
-  /* jshint ignore:end */
-  team1Wins(team1WinsBlack, team1WinsYellow) {
-    return team1WinsBlack + team1WinsYellow;
-  },
-
-  /* jshint ignore:start */
   @alias('team2Wins') team1Losses,
   @alias('team1Wins') team2Losses,
   @equal('winner', 'team1') team1IsWinner,
   @equal('winner', 'team2') team2IsWinner,
   @not('time') isNotFullyCreated,
   /* jshint ignore:end */
-
-  /* jshint ignore:start */
-  @computed('team2WinsBlack', 'team2WinsYellow')
-  /* jshint ignore:end */
-  team2Wins(team2WinsBlack, team2WinsYellow) {
-    return team2WinsBlack + team2WinsYellow;
-  },
 
   /* jshint ignore:start */
   @computed('team1Wins', 'team2Wins')

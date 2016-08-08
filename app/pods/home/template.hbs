@@ -7,9 +7,17 @@
     {{partial 'footer-links'}}
   </vbox>
   <box md="8" class="p-8">
-    <box class="bc-white p-8 home-game">
+    <hbox class="bc-white p-8 home-game">
       <h3>Games</h3>
-    </box>
+
+      {{#unless addGame}}
+        {{#paper-button raised=true primary=true action="addGame"}}Add Game{{/paper-button}}
+      {{/unless}}
+    </hbox>
+
+    {{#if addGame}}
+      {{new-game gameAdded=(action 'addGame')}}
+    {{/if}}
     <div class="o-a">
       {{#each sortedGames as |game index|}}
         {{partial 'game'}}

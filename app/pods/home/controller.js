@@ -11,6 +11,8 @@ const {
 } = Ember;
 
 export default Controller.extend({
+  addGame: false,
+
   /* jshint ignore:start */
   @computed()
   /* jshint ignore:end*/
@@ -40,6 +42,10 @@ export default Controller.extend({
   actions: {
     expandGame(game) {
       set(this, 'expandedId', game.id);
+    },
+
+    addGame() {
+      this.toggleProperty('addGame');
     }
   }
 });
