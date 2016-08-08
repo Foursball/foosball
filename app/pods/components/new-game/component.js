@@ -187,27 +187,24 @@ export default Component.extend({
           let postingToSlackMessage = notify.success('Game saved. Posting to Slack...', {
             closeAfter: null
           });
-          if (ENV.environment === 'development') {
-            return RSVP.resolve();
-          } else {
-            // jscs:disable
-            return new RSVP.Promise((resolve, reject) => {
-              $.ajax({
-                type: 'POST',
-                processData: false,
-                contentType: 'application/json',
-                url: ENV.slackRelay,
-                data: JSON.stringify({
-                  message: slackMessage
-                }),
-                success: function() {
-                  postingToSlackMessage.set('visible', false);
-                  resolve();
-                }
-              });
+
+          // jscs:disable
+          return new RSVP.Promise((resolve, reject) => {
+            $.ajax({
+              type: 'POST',
+              processData: false,
+              contentType: 'application/json',
+              url: ENV.slackRelay,
+              data: JSON.stringify({
+                message: slackMessage
+              }),
+              success: function() {
+                postingToSlackMessage.set('visible', false);
+                resolve();
+              }
             });
-            // jscs:enable
-          }
+          });
+          // jscs:enable
         })
         .then(() => {
           notify.success('Posted to Slack!');

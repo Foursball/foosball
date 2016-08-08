@@ -7,27 +7,9 @@ const { get } = Ember;
 export default DS.Model.extend({
   team1: DS.belongsTo('team', { async: true }),
   team2: DS.belongsTo('team', { async: true }),
-  team1WinsBlack: DS.attr('number'),
-  team1WinsYellow: DS.attr('number'),
-  team2WinsBlack: DS.attr('number'),
-  team2WinsYellow: DS.attr('number'),
   team1Wins: DS.attr('number'),
   team2Wins: DS.attr('number'),
   time: DS.attr('string'),
-
-  /* jshint ignore:start */
-  @computed('team1WinsBlack', 'team2WinsBlack')
-  /* jshint ignore:end */
-  blackWins(team1WinsBlack, team2WinsBlack) {
-    return team1WinsBlack + team2WinsBlack;
-  },
-
-  /* jshint ignore:start */
-  @computed('team1WinsYellow', 'team2WinsYellow')
-  /* jshint ignore:end */
-  yellowWins(team1WinsYellow, team2WinsYellow) {
-    return team1WinsYellow + team2WinsYellow;
-  },
 
   /* jshint ignore:start */
   @alias('team2Wins') team1Losses,
@@ -61,46 +43,16 @@ export default DS.Model.extend({
   /* jshint ignore:start */
   @computed('winner')
   /* jshint ignore:end */
-  winningTeamBlackWins(winner) {
-    return get(this, `${winner}WinsBlack`);
+  winningTeamWins(winner) {
+    return get(this, `${winner}Wins`);
   },
 
   /* jshint ignore:start */
   @computed('winner')
   /* jshint ignore:end */
-  winningTeamYellowWins(winner) {
-    return get(this, `${winner}WinsYellow`);
-  },
-
-  /* jshint ignore:start */
-  @computed('winningTeamYellowWins', 'winningTeamBlackWins')
-  /* jshint ignore:end */
-  winningTeamWins(winningTeamYellowWins, winningTeamBlackWins) {
-    return winningTeamYellowWins + winningTeamBlackWins;
-  },
-
-  /* jshint ignore:start */
-  @computed('winner')
-  /* jshint ignore:end */
-  losingTeamBlackWins(winner) {
+  losingTeamWins(winner) {
     let team = winner === 'team1' ? 'team2' : 'team1';
 
-    return get(this, `${team}WinsBlack`);
-  },
-
-  /* jshint ignore:start */
-  @computed('winner')
-  /* jshint ignore:end */
-  losingTeamYellowWins(winner) {
-    let team = winner === 'team1' ? 'team2' : 'team1';
-
-    return get(this, `${team}WinsYellow`);
-  },
-
-  /* jshint ignore:start */
-  @computed('losingTeamYellowWins', 'losingTeamBlackWins')
-  /* jshint ignore:end */
-  losingTeamWins(losingTeamYellowWins, losingTeamBlackWins) {
-    return losingTeamYellowWins + losingTeamBlackWins;
+    return get(this, `${team}Wins`);
   }
 });
