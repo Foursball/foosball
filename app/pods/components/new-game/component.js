@@ -132,7 +132,15 @@ export default Component.extend({
 
   actions: {
     cancelGame() {
+      let game = get(this, 'game');
+      let gameAdded = get(this, 'gameAdded');
 
+      if (game) {
+        game.rollbackAttributes();
+        set(this, 'game', null);
+      }
+
+      gameAdded();
     },
 
     saveGame() {
@@ -232,7 +240,7 @@ export default Component.extend({
         if (foundTeam) {
           return RSVP.resolve(foundTeam);
         } else {
-          return this.store.createRecord('team', {
+          return get(this, 'store').createRecord('team', {
             player1: p1,
             player2: p2
           }).save();
