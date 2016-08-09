@@ -1,7 +1,13 @@
 import Ember from 'ember';
 import computed from 'ember-computed-decorators';
 
-const { Controller, get, set, inject: { service } } = Ember;
+const {
+  Controller,
+  get,
+  set,
+  setProperties,
+  inject: { service }
+} = Ember;
 
 export default Controller.extend({
   /* jshint ignore:start */
@@ -16,10 +22,14 @@ export default Controller.extend({
   actions: {
     linkUser() {
       let uid = get(this, 'session.uid');
+      let profileImageURL = get(this, 'session.currentUser.profileImageURL');
       let selectedFoosballer = get(this, 'selectedFoosballer');
 
       if (selectedFoosballer) {
-        set(selectedFoosballer, 'uid', uid);
+        setProperties(selectedFoosballer, {
+          uid,
+          profileImageURL
+        });
 
         selectedFoosballer
           .save()

@@ -34,7 +34,7 @@ export default Component.extend(BusSubscriberMixin, {
   },
 
   /* jshint ignore:start */
-  @computed('foosballers.[]', 'controllerCurrentPlayer')
+  @computed('foosballers.@each.profileImageURL', 'controllerCurrentPlayer')
   /* jshint ignore:end */
   currentPlayer(foosballers, controllerCurrentPlayer) {
     if (controllerCurrentPlayer) {

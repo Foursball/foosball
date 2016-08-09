@@ -1,29 +1,3 @@
-{{!--
-<div class="ember-application">
-  {{#paper-nav-container}}
-    {{#paper-sidenav class="md-sidenav-left" locked-open="gt-lg"}}
-      {{#paper-toolbar}}
-        <div class="md-toolbar-tools">
-          {{#link-to 'application' tagName="h3"}}Foosball{{/link-to}}
-        </div>
-      {{/paper-toolbar}}
-      {{#paper-content}}
-        {{#paper-list}}
-          {{#paper-item action="transitionTo" param="summary"}}Summary{{/paper-item}}
-          {{#paper-item action="transitionTo" param="foosballers"}}Foosballers{{/paper-item}}
-          {{#paper-item action="transitionTo" param="teams"}}Teams{{/paper-item}}
-          {{#paper-item action="transitionTo" param="games"}}Games{{/paper-item}}
-        {{/paper-list}}
-      {{/paper-content}}
-    {{/paper-sidenav}}
-
-    <div layout="column" tabindex="-1" role="main" flex>
-      {{outlet}}
-    </div>
-  {{/paper-nav-container}}
-  <div id="paper-wormhole"></div>
-</div>
---}}
 <screen>
   <hbox justify="center" class="main-nav">
     <hbox class="center-content" fill nowrap>
@@ -43,7 +17,7 @@
         {{#if session.isAuthenticated}}
           {{#current-user foosballers=foosballers as |user|}}
             {{#link-to 'foosballer' user.currentPlayer class="img-container"}}
-              <img src={{session.currentUser.profileImageURL}}>
+              <img src={{user.currentPlayer.profileImageURL}}>
             {{/link-to}}
           {{/current-user}}
 
