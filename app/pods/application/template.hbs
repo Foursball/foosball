@@ -1,7 +1,7 @@
 <screen>
   <hbox justify="center" class="main-nav">
     <hbox class="center-content" fill nowrap>
-      <div class="left-nav">
+      <div class="left-nav fb-33">
         {{#if session.isAuthenticated}}
           {{#link-to 'home' class="tab"}}Home{{/link-to}}
           {{#link-to 'teams' class="tab"}}Teams{{/link-to}}
@@ -10,10 +10,10 @@
           {{#link-to 'login' class="tab"}}Login{{/link-to}}
         {{/if}}
       </div>
-      <div class="middle-nav d-f jc-center">
+      <div class="middle-nav d-f jc-center fb-33">
         <div class="icon"></div>
       </div>
-      <hbox justify="end" class="right-nav">
+      <hbox justify="end" class="right-nav fb-33">
         {{#if session.isAuthenticated}}
           {{#current-user foosballers=foosballers as |user|}}
             {{#link-to 'foosballer' user.currentPlayer class="img-container"}}

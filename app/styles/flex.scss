@@ -5,3 +5,6 @@
 .flex-50 { flex: 0 1 50%; }
 .column { flex-direction: column; }
 .jc-center { justify-content: center; }
+
+//flex-basis
+.fb-33 { flex-basis: calc(100% / 3); }

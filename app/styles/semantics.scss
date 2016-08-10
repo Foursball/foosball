@@ -101,3 +101,6 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+/** WIDTH ADJUSTMENTS **/
+.no-scroll { width: calc(100% - 15px); }

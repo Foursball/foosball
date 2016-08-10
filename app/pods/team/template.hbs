@@ -1,4 +1,4 @@
-<box class="bc-white p-16 ml-8 teams-team">
+<box class="bc-white p-16 teams-team">
   <hbox justify="between">
     <div class="pr-8 rank">{{decoratedTeam.rank}}</div>
     <div class="name ellipsis pr-8">
@@ -13,12 +13,5 @@
     <div class="w-l pr-16">{{decoratedTeam.wins}} : {{decoratedTeam.losses}}</div>
     <div class="ratio pr-16">{{decoratedTeam.winLossRatio}}</div>
     <div class="percentage">{{decoratedTeam.winPercentage}}%</div>
-    {{!--
-  {{#index-plus-one index=index as |rank|}}
-    {{#paper-item param=decoratedTeam.team action="expandTeam" class="md-3-line"}}
-      {{team-display decoratedTeam=decoratedTeam expandedId=expandedId rank=rank}}
-    {{/paper-item}}
-  {{/index-plus-one}}
-  --}}
   </hbox>
 </box>
