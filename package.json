@@ -48,7 +48,7 @@
     "ember-route-action-helper": "0.3.3",
     "ember-suave": "2.0.1",
     "ember-truth-helpers": "1.2.0",
-    "emberfire": "1.6.6",
+    "emberfire": "2.0.1",
     "flexi": "1.1.5",
     "loader.js": "^4.0.0",
     "torii": "0.6.1"

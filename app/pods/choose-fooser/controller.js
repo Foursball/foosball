@@ -22,7 +22,8 @@ export default Controller.extend({
   actions: {
     linkUser() {
       let uid = get(this, 'session.uid');
-      let profileImageURL = get(this, 'session.currentUser.profileImageURL');
+      let provider = get(this, 'session.provider');
+      let profileImageURL = get(this, 'session.currentUser.providerData.firstObject.photoURL');
       let selectedFoosballer = get(this, 'selectedFoosballer');
 
       if (selectedFoosballer) {
