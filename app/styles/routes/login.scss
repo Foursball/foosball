@@ -1,4 +1,14 @@
 .login-route {
   flex-grow: 1;
   max-height: 300px;
+
+  .login-provider {
+    @extend .pointer;
+    width: 100px;
+    height: 100px;
+    margin: 0 16px;
+    &:hover {
+      @extend .bc-grey;
+    }
+  }
 }

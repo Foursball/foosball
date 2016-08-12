@@ -32,6 +32,9 @@ export default Route.extend(BusPublisherMixin, {
                 this.transitionTo('choose-fooser');
               }
             });
+        })
+        .catch((e) => {
+          console.log(e);
         });
     },
 
