@@ -6,6 +6,12 @@ module.exports = function(environment) {
     environment: environment,
     contentSecurityPolicy: { 'connect-src': "'self' https://auth.firebase.com wss://*.firebaseio.com https://*.amazonaws.com" },
     podModulePrefix: 'foosball/pods',
+    firebase: {
+      apiKey: "AIzaSyAhgRJKQsY1ybOu2AYUqe1SNCft-A9gRFE",
+      authDomain: "netuitivefoosball.firebaseapp.com",
+      databaseURL: "https://netuitivefoosball.firebaseio.com",
+      storageBucket: "netuitivefoosball.appspot.com"
+    },
     firebase: 'https://netuitivefoosball.firebaseio.com/',
     torii: {
       sessionServiceName: 'session'
@@ -40,7 +46,12 @@ module.exports = function(environment) {
      'report-uri': "'none'",
      'script-src': "*"
    };
-    ENV.firebase = 'https://dev-foosball.firebaseio.com/';
+    ENV.firebase = {
+      apiKey: "AIzaSyCAo5vuqeAccE4pcdQhGSlWc70yasWW0K0",
+      authDomain: "dev-foosball.firebaseapp.com",
+      databaseURL: "https://dev-foosball.firebaseio.com",
+      storageBucket: "dev-foosball.appspot.com"
+    };
     ENV.slackRelay = 'https://ewpeg1xccj.execute-api.us-east-1.amazonaws.com/dev/slack-relay';
   }
 
