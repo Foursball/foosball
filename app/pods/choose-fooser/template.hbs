@@ -7,10 +7,8 @@
       {{#each nonLinkedFoosers as |foosballer|}}
         {{#paper-radio value=foosballer selected=selectedFoosballer}}{{foosballer.name}}{{/paper-radio}}
       {{/each}}
-
-      <div class="md-actions" layout="row" layout-align="end center">
-        {{#paper-button primary=true raised=true action="linkUser"}}Link User{{/paper-button}}
-      </div>
     {{/paper-card-content}}
   {{/paper-card}}
+
+  {{#paper-button primary=true raised=true action="linkUser"}}Link User{{/paper-button}}
 </vbox>
