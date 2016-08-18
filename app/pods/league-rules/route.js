@@ -1,4 +1,10 @@
 import Ember from 'ember';
 
-export default Ember.Route.extend({
+const { Route, get } = Ember;
+
+export default Route.extend({
+  model() {
+    return this.store.findRecord('tenant', 'netuitive')
+      .then((tenant) => get(tenant, 'rules'));
+  }
 });

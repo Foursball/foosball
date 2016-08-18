@@ -1,1 +1,7 @@
-{{outlet}}
+<div class='bc-white'>
+  <ol>
+    {{#each model as |rule|}}
+      <li>{{rule.message}}</li>
+    {{/each}}
+  </ol>
+</div>

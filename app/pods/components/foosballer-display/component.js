@@ -29,6 +29,9 @@ export default Component.extend(PaperItemExpandMixin, {
   theme: DarkUnicaTheme,
 
   chartOptions: {
+    chart: {
+      height: 200
+    },
     title: {
       text: ''
     },
