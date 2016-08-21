@@ -1,4 +1,4 @@
-{{#paper-card class="bc-white profile-card"}}
+{{#paper-card class="bc-white profile-card" as |card|}}
 
   {{#foosballers-sorter
     as |sortedDecoratedFoosballers|}}
@@ -11,7 +11,7 @@
     {{/each}}
   {{/foosballers-sorter}}
 
-  {{#paper-card-content class="p-r"}}
+  {{#card.content class="p-r"}}
       {{#link-to 'foosballer' user.currentPlayer class="avatar-container d-ib p-r"}}
         <img src={{user.currentPlayer.profileImageURL}} class="avatar">
       {{/link-to}}
@@ -31,5 +31,5 @@
           <h3 class="mt-0">{{user.stats.playerTeams.length}}</h3>
         {{/link-to}}
       </hbox>
-  {{/paper-card-content}}
+  {{/card.content}}
 {{/paper-card}}

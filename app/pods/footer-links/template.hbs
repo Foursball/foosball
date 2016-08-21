@@ -1,9 +1,9 @@
-{{#paper-card class="bc-white"}}
-  {{#paper-card-content}}
+{{#paper-card class="bc-white" as |card|}}
+  {{#card.content}}
     <div class="footer-links">
       <a {{action 'logout'}}>Logout</a>
       <a href={{href-to 'about'}}>About</a>
       <a href={{href-to 'league-rules'}}>League Rules</a>
     </div>
-  {{/paper-card-content}}
+  {{/card.content}}
 {{/paper-card}}

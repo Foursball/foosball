@@ -10,13 +10,17 @@
   </vbox>
 
   <vbox md="8" class="p-8">
-    {{#paper-card class="bc-white teams-top-10"}}
-      {{#paper-card-content}}
-        <h3>Top 10 performing teams</h3>
+    {{#paper-card class="bc-white teams-top-10" as |card|}}
+      {{#card.title as |title|}}
+        {{#title.text as |text|}}
+          {{#text.headline}}Top 10 performing teams{{/text.headline}}
+        {{/title.text}}
+      {{/card.title}}
+      {{#card.content}}
         <p>
           Coming soon!
         </p>
-      {{/paper-card-content}}
+      {{/card.content}}
     {{/paper-card}}
 
     <div class="bc-white pl-16 teams-team">
