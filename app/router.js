@@ -22,6 +22,7 @@ Router.map(function() {
   this.route('about');
   this.route('league-rules');
   this.authenticatedRoute('choose-fooser');
+  this.route('logout');
 });
 
 export default Router;

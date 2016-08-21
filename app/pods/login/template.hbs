@@ -1,11 +1,18 @@
-{{#paper-card class="login-route bc-white"}}
-  {{#paper-card-content class="fg-1"}}
-    {{#if session.isAuthenticated}}
-      <h1 class="c-primary ta-c">You're already logged in!</h1>
-      <button {{action 'logout'}}>Logout</button>
-    {{else}}
-      <h1 class="c-primary ta-c">Log in to Foursball</h1>
-
+{{#paper-card class="login-route bc-white" as |card|}}
+  {{#if session.isAuthenticated}}
+    {{#card.title as |title|}}
+      {{#title.text as |text|}}
+        {{#text.headline}}You're already logged in!{{/text.headline}}
+        {{#paper-button href=(href-to 'logout')}}Logout{{/paper-button}}
+      {{/title.text}}
+    {{/card.title}}
+  {{else}}
+    {{#card.title as |title|}}
+      {{#title.text as |text|}}
+        {{#text.headline class='c-primary'}}Log in to Foursball{{/text.headline}}
+      {{/title.text}}
+    {{/card.title}}
+    {{#card.content}}
       <hbox justify='center'>
         <img
           class='login-provider'
@@ -25,9 +32,9 @@
           onclick={{route-action 'login' 'google'}}
           src='/login-providers/Google_Logo.png'>
       </hbox>
-    {{/if}}
-  {{/paper-card-content}}
-  {{#paper-card-content class="bc-grey"}}
-    {{#link-to 'about'}}About{{/link-to}}
-  {{/paper-card-content}}
+    {{/card.content}}
+  {{/if}}
+  {{#card.actions class="bc-grey"}}
+    {{#paper-button href=(href-to 'about')}}About{{/paper-button}}
+  {{/card.actions}}
 {{/paper-card}}
