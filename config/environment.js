@@ -12,7 +12,6 @@ module.exports = function(environment) {
       databaseURL: "https://netuitivefoosball.firebaseio.com",
       storageBucket: "netuitivefoosball.appspot.com"
     },
-    firebase: 'https://netuitivefoosball.firebaseio.com/',
     torii: {
       sessionServiceName: 'session'
     },
