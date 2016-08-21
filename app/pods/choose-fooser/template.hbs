@@ -3,12 +3,13 @@
     {{#card.title as |title|}}
       {{#title.text as |text|}}
         {{#text.headline}}Select who you are{{/text.headline}}
-        {{#text.subhead}}You need to link up your account to your existing user.{{/text.subhead}}
+        {{#text.subhead}}You need to link your account to your existing user. If you don't see your name
+        and you've done this before, then <a href={{href-to 'logout'}}>logout</a> and log in with the original account you logged in with.{{/text.subhead}}
       {{/title.text}}
     {{/card.title}}
     {{#card.content}}
       {{#each nonLinkedFoosers as |foosballer|}}
-        {{#paper-radio groupValue=selectedFoosballer value=foosballer onChange=(action 'selectUser')}}{{foosballer.name}}{{/paper-radio}}
+        {{#paper-radio groupValue=selectedFoosballer value=foosballer onChange=(action (mut selectedFoosballer))}}{{foosballer.name}}{{/paper-radio}}
       {{/each}}
     {{/card.content}}
   {{/paper-card}}
