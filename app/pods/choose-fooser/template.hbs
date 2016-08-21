@@ -1,14 +1,17 @@
 <vbox md="12" class="p-8">
-  {{#paper-card class="bc-white teams-top-10 o-a"}}
-    {{#paper-card-content}}
-      <h3>Select who you are</h3>
-      <p>You need to link up your account to your existing user.</p>
-
+  {{#paper-card class="bc-white teams-top-10 o-a" as |card|}}
+    {{#card.title as |title|}}
+      {{#title.text as |text|}}
+        {{#text.headline}}Select who you are{{/text.headline}}
+        {{#text.subhead}}You need to link up your account to your existing user.{{/text.subhead}}
+      {{/title.text}}
+    {{/card.title}}
+    {{#card.content}}
       {{#each nonLinkedFoosers as |foosballer|}}
-        {{#paper-radio value=foosballer selected=selectedFoosballer}}{{foosballer.name}}{{/paper-radio}}
+        {{#paper-radio groupValue=selectedFoosballer value=foosballer onChange=(action 'selectUser')}}{{foosballer.name}}{{/paper-radio}}
       {{/each}}
-    {{/paper-card-content}}
+    {{/card.content}}
   {{/paper-card}}
 
-  {{#paper-button primary=true raised=true action="linkUser"}}Link User{{/paper-button}}
+  {{#paper-button primary=true raised=true onClick=(action 'linkUser')}}Link User{{/paper-button}}
 </vbox>

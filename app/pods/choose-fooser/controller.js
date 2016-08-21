@@ -20,6 +20,10 @@ export default Controller.extend({
   selectedFoosballer: null,
 
   actions: {
+    selectUser(user) {
+      set(this, 'selectedFoosballer', user);
+    },
+
     linkUser() {
       let uid = get(this, 'session.uid');
       let provider = get(this, 'session.provider');
