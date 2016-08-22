@@ -9,10 +9,10 @@
 
     {{content-for 'head'}}
 
-    <link rel="stylesheet" href="assets/vendor.css">
+    <link rel="stylesheet" href="{{rootURL}}assets/vendor.css">
     <link rel="stylesheet" href="vendor-css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="vendor-css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/foosball.css">
+    <link rel="stylesheet" href="{{rootURL}}assets/foosball.css">
 
     <link rel="apple-touch-icon" sizes="57x57" href="apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="apple-icon-60x60.png">
@@ -41,8 +41,8 @@
   <body>
     {{content-for 'body'}}
 
-    <script src="assets/vendor.js"></script>
-    <script src="assets/foosball.js"></script>
+    <script src="{{rootURL}}assets/vendor.js"></script>
+    <script src="{{rootURL}}assets/foosball.js"></script>
 
     {{content-for 'body-footer'}}
   </body>

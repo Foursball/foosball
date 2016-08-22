@@ -1,8 +1,12 @@
-{{#paper-card class="bc-white"}}
-  {{#paper-card-content}}
-    <h3>Trends</h3>
+{{#paper-card class="bc-white" as |card|}}
+  {{#card.title as |title|}}
+    {{#title.text as |text|}}
+      {{#text.headline}}Trends{{/text.headline}}
+    {{/title.text}}
+  {{/card.title}}
+  {{#card.content}}
     <p>
       Coming soon!
     </p>
-  {{/paper-card-content}}
+  {{/card.content}}
 {{/paper-card}}

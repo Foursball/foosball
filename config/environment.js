@@ -17,6 +17,7 @@ module.exports = function(environment) {
     },
     slackRelay: 'https://ewpeg1xccj.execute-api.us-east-1.amazonaws.com/prod/slack-relay',
     baseURL: '/',
+    rootURL: '/',
     locationType: 'auto',
     EmberENV: {
       FEATURES: {

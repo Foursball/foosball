@@ -2,7 +2,8 @@ import Ember from 'ember';
 import config from './config/environment';
 
 const Router = Ember.Router.extend({
-  location: config.locationType
+  location: config.locationType,
+  rootURL: config.rootURL
 });
 
 Router.map(function() {
@@ -22,6 +23,7 @@ Router.map(function() {
   this.route('about');
   this.route('league-rules');
   this.authenticatedRoute('choose-fooser');
+  this.route('logout');
 });
 
 export default Router;
