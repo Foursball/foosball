@@ -1,26 +1,27 @@
 {{#if isScoringGame}}
-  {{#paper-content class="md-padding theme"}}
-    {{#paper-card}}
-      {{#paper-card-content}}
-        <h4>{{game.team1.player1.displayName}} & {{game.team1.player2.displayName}}</h4>
-        {{paper-input label='Wins' value=game.team1Wins type="number"}}
-        <h4>{{game.team2.player1.displayName}} & {{game.team2.player2.displayName}}</h4>
-        {{paper-input label='Wins' value=game.team2Wins type="number"}}
-
-        <div class="md-actions" layout="row" layout-align="end center">
-          {{#paper-button action="cancelGame"}}{{cancelOrDelete}}{{/paper-button}}
-          {{#paper-button raised=true primary=true action="saveGame" disabled=cannotSave}}Save{{/paper-button}}
-        </div>
-      {{/paper-card-content}}
-    {{/paper-card}}
-  {{/paper-content}}
+  {{#paper-card class='bc-white' as |card|}}
+    {{#card.content}}
+      <h4>{{game.team1.player1.displayName}} & {{game.team1.player2.displayName}}</h4>
+      {{paper-input label='Wins' value=game.team1Wins type="number" onChange=(action (mut game.team1Wins))}}
+      <h4>{{game.team2.player1.displayName}} & {{game.team2.player2.displayName}}</h4>
+      {{paper-input label='Wins' value=game.team2Wins type="number" onChange=(action (mut game.team2Wins))}}
+    {{/card.content}}
+    {{#card.actions}}
+      {{#paper-button onClick=(action 'cancelGame')}}{{cancelOrDelete}}{{/paper-button}}
+      {{#paper-button raised=true primary=true onClick=(action 'saveGame') disabled=cannotSave}}Save{{/paper-button}}
+    {{/card.actions}}
+  {{/paper-card}}
 {{else}}
-  {{#paper-card class="bc-white"}}
-    {{#paper-card-content}}
+  {{#paper-card class='bc-white' as |card|}}
+    {{#card.content}}
       <h4>Team 1</h4>
       <div class="d-f">
         <div class="flex-50">
-          {{#paper-select placeholder="Player 1" model=team1Player1 item-label-callback=retrievePlayerName}}
+          {{#paper-select
+            placeholder="Player 1"
+            value=team1Player1
+            itemLabelCallback=retrievePlayerName
+            onChange=(action (mut team1Player1))}}
             {{#each players as |player|}}
               {{#paper-option value=player}}
                 {{player.name}}
@@ -30,7 +31,11 @@
         </div>
 
         <div class="flex-50">
-          {{#paper-select placeholder="Player 2" model=team1Player2 item-label-callback=retrievePlayerName}}
+          {{#paper-select
+            placeholder="Player 2"
+            value=team1Player2
+            itemLabelCallback=retrievePlayerName
+            onChange=(action (mut team1Player2))}}
             {{#each players as |player|}}
               {{#paper-option value=player}}
                 {{player.name}}
@@ -43,7 +48,11 @@
       <h4>Team 2</h4>
       <div class="d-f">
         <div class="flex-50">
-          {{#paper-select placeholder="Player 1" model=team2Player1 item-label-callback=retrievePlayerName}}
+          {{#paper-select
+            placeholder="Player 1"
+            value=team2Player1
+            itemLabelCallback=retrievePlayerName
+            onChange=(action (mut team2Player1))}}
             {{#each players as |player|}}
               {{#paper-option value=player}}
                 {{player.name}}
@@ -52,7 +61,11 @@
           {{/paper-select}}
         </div>
         <div class="flex-50">
-          {{#paper-select placeholder="Player 2" model=team2Player2 item-label-callback=retrievePlayerName}}
+          {{#paper-select
+            placeholder="Player 2"
+            value=team2Player2
+            itemLabelCallback=retrievePlayerName
+            onChange=(action (mut team2Player2))}}
             {{#each players as |player|}}
               {{#paper-option value=player}}
                 {{player.name}}
@@ -62,11 +75,11 @@
         </div>
       </div>
 
-    {{/paper-card-content}}
+    {{/card.content}}
   {{/paper-card}}
 
-  {{#paper-card class="bc-white"}}
-    {{#paper-card-content}}
+  {{#paper-card class='bc-white' as |card|}}
+    {{#card.content}}
       <h4>Previous Records</h4>
       {{#if gamesAgainst.isPending}}
         {{paper-progress-circular}}
@@ -82,11 +95,11 @@
           {{/if}}
         </div>
       {{/if}}
+    {{/card.content}}
 
-      <div class="md-actions" layout="row" layout-align="end center">
-        {{#paper-button action="cancelGame" param=model}}Cancel{{/paper-button}}
-        {{#paper-button raised=true primary=true disabled=cannotStart action="startGame"}}Start{{/paper-button}}
-      </div>
-    {{/paper-card-content}}
+    {{#card.actions}}
+      {{#paper-button oncClick=(action 'cancelGame') param=model}}Cancel{{/paper-button}}
+      {{#paper-button raised=true primary=true disabled=cannotStart onClick=(action 'startGame')}}Start{{/paper-button}}
+    {{/card.actions}}
   {{/paper-card}}
 {{/if}}

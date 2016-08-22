@@ -11,7 +11,7 @@
       <h3>Games</h3>
 
       {{#unless addGame}}
-        {{#paper-button raised=true primary=true action="addGame"}}Add Game{{/paper-button}}
+        {{#paper-button raised=true primary=true onClick=(action 'addGame')}}Add Game{{/paper-button}}
       {{/unless}}
     </hbox>
 
