@@ -1,16 +1,18 @@
 <vbox md='12'>
-{{#paper-card class='bc-white' as |card|}}
-  {{#card.title as |title|}}
-    {{#title.text as |text|}}
-      {{#text.headline class='c-primary'}}League Rules{{/text.headline}}
-    {{/title.text}}
-  {{/card.title}}
-  {{#card.content}}
-    <ol>
-      {{#each model as |rule|}}
-        <li>{{rule.message}}</li>
-      {{/each}}
-    </ol>
-  {{/card.content}}
-{{/paper-card}}
+  {{#paper-card class='bc-white' as |card|}}
+    {{#card.title as |title|}}
+      {{#title.text as |text|}}
+        {{#text.headline class='c-primary'}}League Rules{{/text.headline}}
+      {{/title.text}}
+    {{/card.title}}
+    {{#card.content}}
+      <ol>
+        {{#each model as |rule|}}
+          <li>{{rule.message}}</li>
+        {{/each}}
+      </ol>
+    {{/card.content}}
+  {{/paper-card}}
+
+  {{partial 'footer-links'}}
 </vbox>
