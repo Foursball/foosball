@@ -15,15 +15,18 @@
       </div>
       <hbox justify="end" class="right-nav fb-33">
         {{#if session.isAuthenticated}}
+          {{#paper-button
+            primary=true
+            raised=true
+            onClick=(action 'toggleDialog' 'newGame' target=dialogsService)}}
+            Game
+          {{/paper-button}}
+
           {{#current-user foosballers=foosballers as |user|}}
             {{#link-to 'foosballer' user.currentPlayer class="img-container"}}
               <img src={{user.currentPlayer.profileImageURL}}>
             {{/link-to}}
           {{/current-user}}
-
-          {{!--
-          {{#paper-button primary=true raised=true}}Game{{/paper-button}}
-          --}}
         {{/if}}
       </hbox>
     </hbox>
