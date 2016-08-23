@@ -24,6 +24,16 @@ export default Component.extend({
 
   game: null,
 
+  currentUser: null,
+
+  didReceiveAttrs() {
+    let currentUser = get(this, 'currentUser');
+
+    if (currentUser) {
+      set(this, 'team1Player1', currentUser);
+    }
+  },
+
   /* jshint ignore:start */
   @computed
   /* jshint ignore:end */

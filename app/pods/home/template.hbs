@@ -16,7 +16,7 @@
     </hbox>
 
     {{#if addGame}}
-      {{new-game gameAdded=(action 'addGame')}}
+      {{new-game gameAdded=(action 'addGame') currentUser=user.currentPlayer}}
     {{/if}}
     <div class="o-a">
       {{#each sortedGames as |game index|}}
