@@ -8,6 +8,8 @@ export default DS.Model.extend({
   @attr('string') name,
   @attr('string') uid,
   @attr('string') profileImageURL,
+  @attr('boolean') retired,
+  @attr('boolean') active,
   /* jshint ignore:end */
 
   /* jshint ignore:start */

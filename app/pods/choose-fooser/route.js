@@ -4,7 +4,11 @@ const { Route, get } = Ember;
 
 export default Route.extend({
   model() {
-    return this.store.findAll('foosballer');
+    return this.store
+      .findAll('foosballer')
+      .then((foosballers) => {
+        return foosballers.filter((f) => !get(f, 'retired'));
+      });
   },
 
   afterModel(foosballers) {
