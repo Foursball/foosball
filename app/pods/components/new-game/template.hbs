@@ -98,7 +98,7 @@
     {{/card.content}}
 
     {{#card.actions}}
-      {{#paper-button oncClick=(action 'cancelGame') param=model}}Cancel{{/paper-button}}
+      {{#paper-button onClick=(action 'cancelGame') param=model}}Cancel{{/paper-button}}
       {{#paper-button raised=true primary=true disabled=cannotStart onClick=(action 'startGame')}}Start{{/paper-button}}
     {{/card.actions}}
   {{/paper-card}}
