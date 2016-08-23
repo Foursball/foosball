@@ -2,7 +2,7 @@
 
 $theme: (
   'primary': map-merge($color-blue, ('500': color($color-blue, '500'))),
-  'background': color($color-orange, '200'),
+  'background': #f5f8fa,
   'text': black,
   'card-color': white,
   'card-text-color': black,
