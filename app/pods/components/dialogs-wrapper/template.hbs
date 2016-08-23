@@ -1,23 +1,24 @@
 {{#if dialogsService.newGame}}
   {{#paper-dialog
-    fullscreen=fullscreen
+    fullscreen=true
     onClose=(action 'toggleDialog' 'newGame' target=dialogsService)
     origin=dialogOrigin}}
 
+    {{#paper-toolbar}}
+      <div class='md-toolbar-tools'>
+        <h2>New Game</h2>
+        <span class='flex'></span>
+        {{#paper-button iconButton=true onClick=(action 'toggleDialog' 'newGame' target=dialogsService)}}
+          {{paper-icon icon="close"}}
+        {{/paper-button}}
+      </div>
+    {{/paper-toolbar}}
+
     {{#paper-dialog-content}}
-      <h2 class="md-title">What would you name your dog?</h2>
-      <p>Bowser is a common name.</p>
-      {{paper-input placeholder="dog name" autofocus=true value=dogName onChange=(action (mut dogName))}}
-      <div>
-        {{#paper-checkbox value=fullscreen onChange=null}}Display fullscreen at small window size breakpoints{{/paper-checkbox}}
+      <div style='width:800px'>
+        {{new-game currentUser=currentUser gameAdded=(action 'toggleDialog' 'newGame' target=dialogsService)}}
       </div>
     {{/paper-dialog-content}}
-
-    {{#paper-dialog-actions class="layout-row"}}
-      <span class="flex"></span>
-      {{#paper-button onClick=(action 'toggleDialog' 'newGame' target=dialogsService)}}Cancel{{/paper-button}}
-      {{#paper-button primary=true onClick=null}}Okay!{{/paper-button}}
-    {{/paper-dialog-actions}}
 
   {{/paper-dialog}}
 {{/if}}
