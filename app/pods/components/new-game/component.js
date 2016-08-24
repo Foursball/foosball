@@ -254,7 +254,7 @@ export default Component.extend({
         }
       }
 
-      promises = players.map(getTeam);
+      promises = players.map(getTeam.bind(this));
 
       RSVP.all(promises).then((teams) => {
         let [team1, team2] = teams;

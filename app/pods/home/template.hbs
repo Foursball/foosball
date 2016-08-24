@@ -3,30 +3,22 @@
     currentUser=user.currentPlayer
   }}
 
-  <vbox md="4" class="p-8">
+  <vbox md="4">
     {{partial 'foosballer/profile-card'}}
 
     {{partial 'trends'}}
 
     {{partial 'footer-links'}}
   </vbox>
-  <box md="8" class="p-8">
-    <hbox class="bc-white p-8 home-game">
-      <h3>Games</h3>
+  <box md="8">
 
-      {{#unless addGame}}
-        {{#paper-button raised=true primary=true onClick=(action 'addGame')}}Add Game{{/paper-button}}
-      {{/unless}}
-    </hbox>
-
-    {{#if addGame}}
-      {{new-game gameAdded=(action 'addGame') currentUser=user.currentPlayer}}
-    {{/if}}
-    <div class="o-a">
-      {{#each sortedGames as |game index|}}
-        {{partial 'game'}}
-      {{/each}}
-    </div>
+    {{#paper-card as |card|}}
+      {{#card.content class='o-a'}}
+        {{#each sortedGames as |game index|}}
+          {{partial 'game'}}
+        {{/each}}
+      {{/card.content}}
+    {{/paper-card}}
 
   </box>
 {{/current-user}}
