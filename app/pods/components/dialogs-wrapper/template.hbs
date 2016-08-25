@@ -1,0 +1,127 @@
+{{#if dialogsService.newGame}}
+  {{#paper-dialog
+    fullscreen=true
+    onClose=(action 'toggleDialog' 'newGame' target=dialogsService)
+    origin=dialogOrigin}}
+
+    {{#paper-toolbar}}
+      <div class='md-toolbar-tools'>
+        <h2>New Game</h2>
+        <span class='flex'></span>
+        {{#paper-button iconButton=true onClick=(action 'toggleDialog' 'newGame' target=dialogsService)}}
+          {{paper-icon icon="close"}}
+        {{/paper-button}}
+      </div>
+    {{/paper-toolbar}}
+
+    {{#new-game
+      currentUser=currentUser
+      gameAdded=(action 'toggleDialog' 'newGame' target=dialogsService)
+      tagName=''
+      as |nG|}}
+      {{#paper-dialog-content}}
+        <div style='width: 800px;'>
+          {{#if nG.isScoringGame}}
+
+            <h4>{{nG.game.team1.player1.displayName}} & {{nG.game.team1.player2.displayName}}</h4>
+            {{paper-input label='Wins' value=nG.game.team1Wins type="number" onChange=(action (mut nG.game.team1Wins))}}
+            <h4>{{nG.game.team2.player1.displayName}} & {{nG.game.team2.player2.displayName}}</h4>
+            {{paper-input label='Wins' value=nG.game.team2Wins type="number" onChange=(action (mut nG.game.team2Wins))}}
+
+          {{else}}
+
+            <h4>Team 1</h4>
+            <div class="d-f">
+              <div class="flex-50">
+                {{#paper-select
+                  placeholder="Player 1"
+                  value=nG.team1Player1
+                  itemLabelCallback=nG.retrievePlayerName
+                  onChange=(action nG.updatePlayer 'team1Player1')}}
+                  {{#each nG.players as |player|}}
+                    {{#paper-option value=player}}
+                      {{player.name}}
+                    {{/paper-option}}
+                  {{/each}}
+                {{/paper-select}}
+              </div>
+
+              <div class="flex-50">
+                {{#paper-select
+                  placeholder="Player 2"
+                  value=nG.team1Player2
+                  itemLabelCallback=nG.retrievePlayerName
+                  onChange=(action nG.updatePlayer 'team1Player2')}}
+                  {{#each nG.players as |player|}}
+                    {{#paper-option value=player}}
+                      {{player.name}}
+                    {{/paper-option}}
+                  {{/each}}
+                {{/paper-select}}
+              </div>
+            </div>
+
+            <h4>Team 2</h4>
+            <div class="d-f">
+              <div class="flex-50">
+                {{#paper-select
+                  placeholder="Player 1"
+                  value=nG.team2Player1
+                  itemLabelCallback=nG.retrievePlayerName
+                  onChange=(action nG.updatePlayer 'team2Player1')}}
+                  {{#each nG.players as |player|}}
+                    {{#paper-option value=player}}
+                      {{player.name}}
+                    {{/paper-option}}
+                  {{/each}}
+                {{/paper-select}}
+              </div>
+              <div class="flex-50">
+                {{#paper-select
+                  placeholder="Player 2"
+                  value=nG.team2Player2
+                  itemLabelCallback=nG.retrievePlayerName
+                  onChange=(action nG.updatePlayer 'team2Player2')}}
+                  {{#each nG.players as |player|}}
+                    {{#paper-option value=player}}
+                      {{player.name}}
+                    {{/paper-option}}
+                  {{/each}}
+                {{/paper-select}}
+              </div>
+            </div>
+
+            <h4>Previous Records</h4>
+            {{#if nG.gamesAgainst.isPending}}
+              {{paper-progress-circular}}
+            {{else}}
+              <div class="md-text-items">
+                {{#if nG.gamesAgainst.content.length}}
+                  <p>{{nG.mostRecent.winningTeam.player1.displayName}} & {{nG.mostRecent.winningTeam.player2.displayName}} won {{nG.mostRecent.winningTeamWins}} - {{nG.mostRecent.losingTeamWins}}</p>
+                  <small><i>{{moment-format nG.mostRecent.time "MMM. Do, YYYY @ h:mm a"}}</i></small>
+                {{else}}
+                  {{#if (and nG.team1Player1 nG.team1Player2 nG.team2Player1 nG.team2Player2)}}
+                    <p>New matchup!</p>
+                  {{/if}}
+                {{/if}}
+              </div>
+            {{/if}}
+
+          {{/if}}
+        </div>
+      {{/paper-dialog-content}}
+
+      {{#paper-dialog-actions class="layout-row"}}
+        <span class="flex"></span>
+        {{#paper-button onClick=(action nG.cancelGame)}}Cancel{{/paper-button}}
+        {{#if nG.isScoringGame}}
+          {{#paper-button raised=true primary=true onClick=(action nG.saveGame) disabled=nG.cannotSave}}Save{{/paper-button}}
+        {{else}}
+          {{#paper-button raised=true primary=true disabled=nG.cannotStart onClick=(action nG.startGame)}}Start{{/paper-button}}
+        {{/if}}
+      {{/paper-dialog-actions}}
+
+    {{/new-game}}
+
+  {{/paper-dialog}}
+{{/if}}
