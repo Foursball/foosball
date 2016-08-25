@@ -18,15 +18,15 @@
       currentUser=currentUser
       gameAdded=(action 'toggleDialog' 'newGame' target=dialogsService)
       tagName=''
-      as |newGame|}}
+      as |nG|}}
       {{#paper-dialog-content}}
         <div style='width: 800px;'>
-          {{#if newGame.isScoringGame}}
+          {{#if nG.isScoringGame}}
 
-            <h4>{{newGame.game.team1.player1.displayName}} & {{newGame.game.team1.player2.displayName}}</h4>
-            {{paper-input label='Wins' value=newGame.game.team1Wins type="number" onChange=(action (mut newGame.game.team1Wins))}}
-            <h4>{{newGame.game.team2.player1.displayName}} & {{newGame.game.team2.player2.displayName}}</h4>
-            {{paper-input label='Wins' value=newGame.game.team2Wins type="number" onChange=(action (mut newGame.game.team2Wins))}}
+            <h4>{{nG.game.team1.player1.displayName}} & {{nG.game.team1.player2.displayName}}</h4>
+            {{paper-input label='Wins' value=nG.game.team1Wins type="number" onChange=(action (mut nG.game.team1Wins))}}
+            <h4>{{nG.game.team2.player1.displayName}} & {{nG.game.team2.player2.displayName}}</h4>
+            {{paper-input label='Wins' value=nG.game.team2Wins type="number" onChange=(action (mut nG.game.team2Wins))}}
 
           {{else}}
 
@@ -35,10 +35,10 @@
               <div class="flex-50">
                 {{#paper-select
                   placeholder="Player 1"
-                  value=newGame.team1Player1
-                  itemLabelCallback=newGame.retrievePlayerName
-                  onChange=(action (mut newGame.team1Player1))}}
-                  {{#each newGame.players as |player|}}
+                  value=nG.team1Player1
+                  itemLabelCallback=nG.retrievePlayerName
+                  onChange=(action nG.updatePlayer 'team1Player1')}}
+                  {{#each nG.players as |player|}}
                     {{#paper-option value=player}}
                       {{player.name}}
                     {{/paper-option}}
@@ -49,10 +49,10 @@
               <div class="flex-50">
                 {{#paper-select
                   placeholder="Player 2"
-                  value=newGame.team1Player2
-                  itemLabelCallback=newGame.retrievePlayerName
-                  onChange=(action (mut newGame.team1Player2))}}
-                  {{#each newGame.players as |player|}}
+                  value=nG.team1Player2
+                  itemLabelCallback=nG.retrievePlayerName
+                  onChange=(action nG.updatePlayer 'team1Player2')}}
+                  {{#each nG.players as |player|}}
                     {{#paper-option value=player}}
                       {{player.name}}
                     {{/paper-option}}
@@ -66,10 +66,10 @@
               <div class="flex-50">
                 {{#paper-select
                   placeholder="Player 1"
-                  value=newGame.team2Player1
-                  itemLabelCallback=newGame.retrievePlayerName
-                  onChange=(action (mut newGame.team2Player1))}}
-                  {{#each newGame.players as |player|}}
+                  value=nG.team2Player1
+                  itemLabelCallback=nG.retrievePlayerName
+                  onChange=(action nG.updatePlayer 'team2Player1')}}
+                  {{#each nG.players as |player|}}
                     {{#paper-option value=player}}
                       {{player.name}}
                     {{/paper-option}}
@@ -79,10 +79,10 @@
               <div class="flex-50">
                 {{#paper-select
                   placeholder="Player 2"
-                  value=newGame.team2Player2
-                  itemLabelCallback=newGame.retrievePlayerName
-                  onChange=(action (mut newGame.team2Player2))}}
-                  {{#each newGame.players as |player|}}
+                  value=nG.team2Player2
+                  itemLabelCallback=nG.retrievePlayerName
+                  onChange=(action nG.updatePlayer 'team2Player2')}}
+                  {{#each nG.players as |player|}}
                     {{#paper-option value=player}}
                       {{player.name}}
                     {{/paper-option}}
@@ -92,15 +92,15 @@
             </div>
 
             <h4>Previous Records</h4>
-            {{#if newGame.gamesAgainst.isPending}}
+            {{#if nG.gamesAgainst.isPending}}
               {{paper-progress-circular}}
             {{else}}
               <div class="md-text-items">
-                {{#if newGame.gamesAgainst.content.length}}
-                  <p>{{newGame.mostRecent.winningTeam.player1.displayName}} & {{newGame.mostRecent.winningTeam.player2.displayName}} won {{newGame.mostRecent.winningTeamWins}} - {{newGame.mostRecent.losingTeamWins}}</p>
-                  <small class="pr-16 d-b mb-8 ta-r"><i>{{moment-format newGame.mostRecent.time "MMM. Do, YYYY @ h:mm a"}}</i></small>
+                {{#if nG.gamesAgainst.content.length}}
+                  <p>{{nG.mostRecent.winningTeam.player1.displayName}} & {{nG.mostRecent.winningTeam.player2.displayName}} won {{nG.mostRecent.winningTeamWins}} - {{nG.mostRecent.losingTeamWins}}</p>
+                  <small><i>{{moment-format nG.mostRecent.time "MMM. Do, YYYY @ h:mm a"}}</i></small>
                 {{else}}
-                  {{#if (and newGame.team1Player1 newGame.team1Player2 newGame.team2Player1 newGame.team2Player2)}}
+                  {{#if (and nG.team1Player1 nG.team1Player2 nG.team2Player1 nG.team2Player2)}}
                     <p>New matchup!</p>
                   {{/if}}
                 {{/if}}
@@ -113,11 +113,11 @@
 
       {{#paper-dialog-actions class="layout-row"}}
         <span class="flex"></span>
-        {{#paper-button onClick=(action newGame.cancelGame)}}Cancel{{/paper-button}}
-        {{#if newGame.isScoringGame}}
-          {{#paper-button raised=true primary=true onClick=(action newGame.saveGame) disabled=newGame.cannotSave}}Save{{/paper-button}}
+        {{#paper-button onClick=(action nG.cancelGame)}}Cancel{{/paper-button}}
+        {{#if nG.isScoringGame}}
+          {{#paper-button raised=true primary=true onClick=(action nG.saveGame) disabled=nG.cannotSave}}Save{{/paper-button}}
         {{else}}
-          {{#paper-button raised=true primary=true disabled=cannotStart onClick=(action newGame.startGame)}}Start{{/paper-button}}
+          {{#paper-button raised=true primary=true disabled=nG.cannotStart onClick=(action nG.startGame)}}Start{{/paper-button}}
         {{/if}}
       {{/paper-dialog-actions}}
 

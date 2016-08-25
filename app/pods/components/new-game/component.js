@@ -59,11 +59,12 @@ export default Component.extend({
   @computed('team1Player1.id', 'team1Player2.id', 'team2Player1.id', 'team2Player2.id', 'foosballers.[]')
   /* jshint ignore:end */
   players(t1p1, t1p2, t2p1, t2p2, foosballers) {
-    return foosballers.filter((foosballer) => {
-      let fId = foosballer.id;
-      return fId !== t1p1 && fId !== t1p2 && fId !== t2p1 && fId !== t2p2;
-    })
-    .sort((a, b) => get(a, 'name') < get(b, 'name') ? -1 : 1);
+    return foosballers
+      .filter((foosballer) => {
+        let fId = foosballer.id;
+        return fId !== t1p1 && fId !== t1p2 && fId !== t2p1 && fId !== t2p2;
+      })
+      .sortBy('name');
   },
 
   team1Player1: null,
@@ -141,6 +142,12 @@ export default Component.extend({
   /* jshint ignore:end */
 
   actions: {
+    updatePlayer(whichPlayer, player) {
+      if (player) {
+        set(this, whichPlayer, player);
+      }
+    },
+
     cancelGame() {
       let game = get(this, 'game');
       let gameAdded = get(this, 'gameAdded');
