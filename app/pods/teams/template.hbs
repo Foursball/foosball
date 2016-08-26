@@ -1,7 +1,7 @@
 {{#current-user
   foosballers=foosballers
   as |user|}}
-  <vbox md="4" class="p-8">
+  <vbox md="4">
     {{partial 'foosballer/profile-card'}}
 
     {{partial 'trends'}}
@@ -9,7 +9,7 @@
     {{partial 'footer-links'}}
   </vbox>
 
-  <vbox md="8" class="p-8">
+  <vbox md="8">
     {{#paper-card class="bc-white teams-top-10" as |card|}}
       {{#card.title as |title|}}
         {{#title.text as |text|}}
@@ -23,40 +23,42 @@
       {{/card.content}}
     {{/paper-card}}
 
-    <div class="bc-white pl-16 teams-team">
-      {{#link-to 'teams' (query-params allTeams=true) class="tab"}}All Teams{{/link-to}}
-      {{#link-to 'teams' (query-params allTeams=false) class="tab"}}My Teams{{/link-to}}
-    </div>
+    {{#paper-card as |card|}}
+      {{#card.content class='o-a'}}
+        <div class="bc-white teams-team">
+          {{#link-to 'teams' (query-params allTeams=true) class="tab"}}All Teams{{/link-to}}
+          {{#link-to 'teams' (query-params allTeams=false) class="tab"}}My Teams{{/link-to}}
+        </div>
 
-    <box class="bc-white pl-16 pr-16 teams-team">
-      <hbox justify="between" class="pt-16 no-scroll {{if isAsc 'sort-asc' 'sort-desc'}}">
-        <div onclick={{action 'sortBy' 'rank'}} class="pr-8 rank pointer sortable {{if isSortRank 'sorted'}}">Rank</div>
-        <div class="name">Foosers</div>
-        <div onclick={{action 'sortBy' 'wins'}} class="w-l pr-16 pointer sortable {{if isSortWins 'sorted'}}">Wins : Losses</div>
-        <div onclick={{action 'sortBy' 'winLossRatio'}} class="ratio pr-16 pointer sortable {{if isSortWinLossRatio 'sorted'}}">Win/Loss Ratio</div>
-        <div onclick={{action 'sortBy' 'winPercentage'}} class="percentage pointer sortable {{if isSortWinPercentage 'sorted'}}">Win %</div>
-      </hbox>
-    </box>
-    {{#teams-sorter
-      tagName=""
-      teams=model
-      sortAscending=sortAscending
-      sortBy=sortBy
-      as |sortedDecoratedTeams|}}
-      <div class="o-a">
-        {{#each sortedDecoratedTeams as |decoratedTeam index|}}
-          {{#if allTeams}}
-            {{partial 'team'}}
-          {{else}}
-            {{#if (or
-              (eq user.currentPlayer.id decoratedTeam.team.player1.id)
-              (eq user.currentPlayer.id decoratedTeam.team.player2.id)
-            )}}
+        <box class="bc-white pr-16 teams-team">
+          <hbox justify="between" class="pt-16 no-scroll {{if isAsc 'sort-asc' 'sort-desc'}}">
+            <div onclick={{action 'sortBy' 'rank'}} class="pr-8 rank pointer sortable {{if isSortRank 'sorted'}}">Rank</div>
+            <div class="name">Foosers</div>
+            <div onclick={{action 'sortBy' 'wins'}} class="w-l pr-16 pointer sortable {{if isSortWins 'sorted'}}">Wins : Losses</div>
+            <div onclick={{action 'sortBy' 'winLossRatio'}} class="ratio pr-16 pointer sortable {{if isSortWinLossRatio 'sorted'}}">Win/Loss Ratio</div>
+            <div onclick={{action 'sortBy' 'winPercentage'}} class="percentage pointer sortable {{if isSortWinPercentage 'sorted'}}">Win %</div>
+          </hbox>
+        </box>
+        {{#teams-sorter
+          tagName=""
+          teams=model
+          sortAscending=sortAscending
+          sortBy=sortBy
+          as |sortedDecoratedTeams|}}
+          {{#each sortedDecoratedTeams as |decoratedTeam index|}}
+            {{#if allTeams}}
               {{partial 'team'}}
+            {{else}}
+              {{#if (or
+                (eq user.currentPlayer.id decoratedTeam.team.player1.id)
+                (eq user.currentPlayer.id decoratedTeam.team.player2.id)
+              )}}
+                {{partial 'team'}}
+              {{/if}}
             {{/if}}
-          {{/if}}
-        {{/each}}
-      </div>
-    {{/teams-sorter}}
+          {{/each}}
+        {{/teams-sorter}}
+      {{/card.content}}
+    {{/paper-card}}
   </vbox>
 {{/current-user}}

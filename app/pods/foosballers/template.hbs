@@ -9,7 +9,7 @@
     {{partial 'footer-links'}}
   </vbox>
 
-  <vbox md="8" class="p-8">
+  <vbox md="8">
     {{#paper-card class="bc-white teams-top-10" as |card|}}
       {{#card.title as |title|}}
         {{#title.text as |text|}}
@@ -23,39 +23,41 @@
       {{/card.content}}
     {{/paper-card}}
 
-    <box class="bc-white pl-16 pr-16 teams-team">
-      <hbox justify="between" class="pt-16 no-scroll {{if isAsc 'sort-asc' 'sort-desc'}}">
-        <div onclick={{action 'sortBy' 'rank'}} class="pr-8 rank pointer sortable {{if isSortRank 'sorted'}}">Rank</div>
-        <div onclick={{action 'sortBy' 'foosballer.name'}} class="name pointer sortable {{if isSortName 'sorted'}}">Name</div>
-        <div onclick={{action 'sortBy' 'wins'}} class="w-l pr-16 pointer sortable {{if isSortWins 'sorted'}}">Wins : Losses</div>
-        <div onclick={{action 'sortBy' 'winLossRatio'}} class="ratio pr-16 pointer sortable {{if isSortWinLossRatio 'sorted'}}">Win/Loss Ratio</div>
-        <div onclick={{action 'sortBy' 'winPercentage'}} class="percentage pointer sortable {{if isSortWinPercentage 'sorted'}}">Win %</div>
-      </hbox>
-    </box>
-    {{#foosballers-sorter
-      tagName=""
-      foosballers=model
-      sortAscending=sortAscending
-      sortBy=sortBy
-      as |sortedDecoratedFoosballers|}}
+    {{#paper-card as |card|}}
+      {{#card.content class='o-a'}}
+        <box class="bc-white pr-16 teams-team">
+          <hbox justify="between" class="pt-16 no-scroll {{if isAsc 'sort-asc' 'sort-desc'}}">
+            <div onclick={{action 'sortBy' 'rank'}} class="pr-8 rank pointer sortable {{if isSortRank 'sorted'}}">Rank</div>
+            <div onclick={{action 'sortBy' 'foosballer.name'}} class="name pointer sortable {{if isSortName 'sorted'}}">Name</div>
+            <div onclick={{action 'sortBy' 'wins'}} class="w-l pr-16 pointer sortable {{if isSortWins 'sorted'}}">Wins : Losses</div>
+            <div onclick={{action 'sortBy' 'winLossRatio'}} class="ratio pr-16 pointer sortable {{if isSortWinLossRatio 'sorted'}}">Win/Loss Ratio</div>
+            <div onclick={{action 'sortBy' 'winPercentage'}} class="percentage pointer sortable {{if isSortWinPercentage 'sorted'}}">Win %</div>
+          </hbox>
+        </box>
+        {{#foosballers-sorter
+          tagName=""
+          foosballers=model
+          sortAscending=sortAscending
+          sortBy=sortBy
+          as |sortedDecoratedFoosballers|}}
 
-      <div class="o-a">
-        {{#each sortedDecoratedFoosballers as |decoratedFoosballer index|}}
-          <box class="bc-white p-16 teams-team">
-            <hbox justify="between">
-              <div class="pr-8 rank">{{decoratedFoosballer.rank}}</div>
-              <div class="name ellipsis pr-8">
-                <a class="player-name {{if (eq user.currentPlayer.id decoratedFoosballer.foosballer.id) 'c-primary'}}" href={{href-to 'foosballer' decoratedFoosballer.foosballer}}>
-                  {{decoratedFoosballer.foosballer.name}}
-                </a>
-              </div>
-              <div class="w-l pr-16">{{decoratedFoosballer.wins}} : {{decoratedFoosballer.losses}}</div>
-              <div class="ratio pr-16">{{decoratedFoosballer.winLossRatio}}</div>
-              <div class="percentage">{{decoratedFoosballer.winPercentage}}%</div>
-            </hbox>
-          </box>
-        {{/each}}
-      </div>
-    {{/foosballers-sorter}}
+          {{#each sortedDecoratedFoosballers as |decoratedFoosballer index|}}
+            <box class="bc-white p-16 teams-team">
+              <hbox justify="between">
+                <div class="pr-8 rank">{{decoratedFoosballer.rank}}</div>
+                <div class="name ellipsis pr-8">
+                  <a class="player-name {{if (eq user.currentPlayer.id decoratedFoosballer.foosballer.id) 'c-primary'}}" href={{href-to 'foosballer' decoratedFoosballer.foosballer}}>
+                    {{decoratedFoosballer.foosballer.name}}
+                  </a>
+                </div>
+                <div class="w-l pr-16">{{decoratedFoosballer.wins}} : {{decoratedFoosballer.losses}}</div>
+                <div class="ratio pr-16">{{decoratedFoosballer.winLossRatio}}</div>
+                <div class="percentage">{{decoratedFoosballer.winPercentage}}%</div>
+              </hbox>
+            </box>
+          {{/each}}
+        {{/foosballers-sorter}}
+      {{/card.content}}
+    {{/paper-card}}
   </vbox>
 {{/current-user}}
