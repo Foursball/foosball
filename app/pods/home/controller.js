@@ -21,7 +21,7 @@ export default Controller.extend({
   },
 
   /* jshint ignore:start */
-  @computed('model.[]')
+  @computed('model.@each.time')
   /* jshint ignore:end */
   legitGames(games) {
     return games.filter((g) => get(g, 'time'));
