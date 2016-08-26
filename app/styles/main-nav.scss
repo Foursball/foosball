@@ -42,13 +42,13 @@
 
   .middle-nav {
     .icon {
-      background: url('/favicon-32x32.png');
+      background: url('/4sBall.png');
+      background-size: contain;
       background-repeat: no-repeat;
-      height: 32px;
-      width: 32px;
+      height: 41px;
+      width: 41px;
       @extend .p-r;
-      top: 8px;
-      border-radius: 2px;
+      top: 3px;
     }
   }
 }
