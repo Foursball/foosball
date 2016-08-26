@@ -15,12 +15,18 @@
       </div>
       <hbox justify="end" class="right-nav fb-33">
         {{#if session.isAuthenticated}}
-          {{#paper-button
-            primary=true
-            raised=true
-            onClick=(action 'toggleDialog' 'newGame' target=dialogsService)}}
-            Game
-          {{/paper-button}}
+          {{#unless (or
+            (eq currentRouteName 'about')
+            (eq currentRouteName 'league-rules')
+            (eq currentRouteName 'loading')
+          )}}
+            {{#paper-button
+              primary=true
+              raised=true
+              onClick=(action 'toggleDialog' 'newGame' target=dialogsService)}}
+              Game
+            {{/paper-button}}
+          {{/unless}}
 
           {{#current-user foosballers=foosballers as |user|}}
             {{#link-to 'foosballer' user.currentPlayer class="img-container"}}
