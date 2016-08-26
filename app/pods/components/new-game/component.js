@@ -105,10 +105,15 @@ export default Component.extend({
 
     if (get(gamesAgainst, 'isFulfilled')) {
       let games = get(this, 'games');
-      let recentGame = gamesService.mostRecentGame(get(gamesAgainst, 'content'));
-      let recentStoreGame = games.findBy('id', recentGame.id);
 
-      return getProperties(recentStoreGame, 'time', 'winningTeam', 'winningTeamWins', 'losingTeamWins');
+      if (get(gamesAgainst, 'length')) {
+        let recentGame = gamesService.mostRecentGame(get(gamesAgainst, 'content'));
+        let recentStoreGame = games.findBy('id', recentGame.id);
+
+        return getProperties(recentStoreGame, 'time', 'winningTeam', 'winningTeamWins', 'losingTeamWins');
+      } else {
+        return {};
+      }
     } else {
       return {};
     }
