@@ -50,7 +50,7 @@
     "ember-truth-helpers": "1.2.0",
     "ember-welcome-page": "^1.0.1",
     "emberfire": "2.0.1",
-    "flexi": "1.1.5",
+    "flexi": "1.1.7",
     "highcharts": "4.2.6",
     "loader.js": "^4.0.1",
     "torii": "0.8.0"
