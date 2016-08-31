@@ -1,0 +1,6 @@
+{{#paper-button onClick=(action nG.cancelGame)}}Cancel{{/paper-button}}
+{{#if nG.isScoringGame}}
+  {{#paper-button raised=true primary=true onClick=(action nG.saveGame) disabled=nG.cannotSave}}Save{{/paper-button}}
+{{else}}
+  {{#paper-button raised=true primary=true disabled=nG.cannotStart onClick=(action nG.startGame)}}Start{{/paper-button}}
+{{/if}}

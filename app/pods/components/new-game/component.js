@@ -26,6 +26,15 @@ export default Component.extend({
 
   currentUser: null,
 
+  /** @property {String} name of scoring component **/
+  newGameScoring: 'new-game/scoring',
+
+  /** @property {String} name of player selection component **/
+  newGamePlayerSelection: 'new-game/player-selection',
+
+  /** @property {String} name of actions component **/
+  newGameActions: 'new-game/actions',
+
   didReceiveAttrs() {
     let currentUser = get(this, 'currentUser');
 
