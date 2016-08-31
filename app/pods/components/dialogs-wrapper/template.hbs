@@ -22,16 +22,16 @@
       {{#paper-dialog-content}}
         <div style='width: 800px;'>
           {{#if nG.isScoringGame}}
-            {{nG.scoring nG=nG}}
+            {{nG.scoring}}
           {{else}}
-            {{nG.playerSelection nG=nG}}
+            {{nG.playerSelection}}
           {{/if}}
         </div>
       {{/paper-dialog-content}}
 
       {{#paper-dialog-actions class="layout-row"}}
         <span class="flex"></span>
-        {{nG.actions nG=nG}}
+        {{nG.actions}}
       {{/paper-dialog-actions}}
 
     {{/new-game}}

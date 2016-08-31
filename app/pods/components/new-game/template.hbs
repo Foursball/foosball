@@ -1,21 +1,28 @@
 {{yield (hash
   isScoringGame=isScoringGame
-  saveGame=(action 'saveGame')
-  startGame=(action 'startGame')
-  cancelGame=(action 'cancelGame')
-  game=game
-  retrievePlayerName=retrievePlayerName
-  players=players
-  gamesAgainst=gamesAgainst
-  mostRecent=mostRecent
-  cannotStart=cannotStart
-  cannotSave=cannotSave
-  team1Player1=team1Player1
-  team1Player2=team1Player2
-  team2Player1=team2Player1
-  team2Player2=team2Player2
-  updatePlayer=(action 'updatePlayer')
-  scoring=(component newGameScoring)
-  playerSelection=(component newGamePlayerSelection)
-  actions=(component newGameActions)
+  scoring=(component
+    newGameScoring
+    game=game
+  )
+  playerSelection=(component
+    newGamePlayerSelection
+    updatePlayer=(action 'updatePlayer')
+    retrievePlayerName=retrievePlayerName
+    team1Player1=team1Player1
+    team1Player2=team1Player2
+    team2Player1=team2Player1
+    team2Player2=team2Player2
+    players=players
+    gamesAgainst=gamesAgainst
+    mostRecent=mostRecent
+  )
+  actions=(component
+    newGameActions
+    saveGame=(action 'saveGame')
+    startGame=(action 'startGame')
+    cancelGame=(action 'cancelGame')
+    cannotStart=cannotStart
+    cannotSave=cannotSave
+    isScoringGame=isScoringGame
+  )
 )}}

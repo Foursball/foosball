@@ -3,10 +3,10 @@
   <div class="flex-50">
     {{#paper-select
       placeholder="Player 1"
-      value=nG.team1Player1
-      itemLabelCallback=nG.retrievePlayerName
-      onChange=(action nG.updatePlayer 'team1Player1')}}
-      {{#each nG.players as |player|}}
+      value=team1Player1
+      itemLabelCallback=retrievePlayerName
+      onChange=(action updatePlayer 'team1Player1')}}
+      {{#each players as |player|}}
         {{#paper-option value=player}}
           {{player.name}}
         {{/paper-option}}
@@ -17,10 +17,10 @@
   <div class="flex-50">
     {{#paper-select
       placeholder="Player 2"
-      value=nG.team1Player2
-      itemLabelCallback=nG.retrievePlayerName
-      onChange=(action nG.updatePlayer 'team1Player2')}}
-      {{#each nG.players as |player|}}
+      value=team1Player2
+      itemLabelCallback=retrievePlayerName
+      onChange=(action updatePlayer 'team1Player2')}}
+      {{#each players as |player|}}
         {{#paper-option value=player}}
           {{player.name}}
         {{/paper-option}}
@@ -34,10 +34,10 @@
   <div class="flex-50">
     {{#paper-select
       placeholder="Player 1"
-      value=nG.team2Player1
-      itemLabelCallback=nG.retrievePlayerName
-      onChange=(action nG.updatePlayer 'team2Player1')}}
-      {{#each nG.players as |player|}}
+      value=team2Player1
+      itemLabelCallback=retrievePlayerName
+      onChange=(action updatePlayer 'team2Player1')}}
+      {{#each players as |player|}}
         {{#paper-option value=player}}
           {{player.name}}
         {{/paper-option}}
@@ -47,10 +47,10 @@
   <div class="flex-50">
     {{#paper-select
       placeholder="Player 2"
-      value=nG.team2Player2
-      itemLabelCallback=nG.retrievePlayerName
-      onChange=(action nG.updatePlayer 'team2Player2')}}
-      {{#each nG.players as |player|}}
+      value=team2Player2
+      itemLabelCallback=retrievePlayerName
+      onChange=(action updatePlayer 'team2Player2')}}
+      {{#each players as |player|}}
         {{#paper-option value=player}}
           {{player.name}}
         {{/paper-option}}
@@ -60,15 +60,15 @@
 </div>
 
 <h4>Previous Records</h4>
-{{#if nG.gamesAgainst.isPending}}
+{{#if gamesAgainst.isPending}}
   {{paper-progress-circular}}
 {{else}}
   <div class="md-text-items">
-    {{#if nG.gamesAgainst.content.length}}
-      <p>{{nG.mostRecent.winningTeam.player1.displayName}} & {{nG.mostRecent.winningTeam.player2.displayName}} won {{nG.mostRecent.winningTeamWins}} - {{nG.mostRecent.losingTeamWins}}</p>
-      <small><i>{{moment-format nG.mostRecent.time "MMM. Do, YYYY @ h:mm a"}}</i></small>
+    {{#if gamesAgainst.content.length}}
+      <p>{{mostRecent.winningTeam.player1.displayName}} & {{mostRecent.winningTeam.player2.displayName}} won {{mostRecent.winningTeamWins}} - {{mostRecent.losingTeamWins}}</p>
+      <small><i>{{moment-format mostRecent.time "MMM. Do, YYYY @ h:mm a"}}</i></small>
     {{else}}
-      {{#if (and nG.team1Player1 nG.team1Player2 nG.team2Player1 nG.team2Player2)}}
+      {{#if (and team1Player1 team1Player2 team2Player1 team2Player2)}}
         <p>New matchup!</p>
       {{/if}}
     {{/if}}
