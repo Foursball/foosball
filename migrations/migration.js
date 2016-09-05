@@ -1,13 +1,16 @@
 var firebase = require('./data/firebase');
+var lib = require('./lib');
 
 var functions = {
   removeColors: function(firebaseUrl) {
     if (!firebaseUrl) {
       console.log('Error: Firebase URL is required as a parameter');
     }
-    return firebase.getGames(firebaseUrl).then(function(games) {
-      console.log(games);
-    });
+    return firebase.getGames(firebaseUrl)
+      .then(lib.removeTeamColors)
+      .then(function(migratedGames) {
+        console.log(migratedGames);
+      });
   }
 };
 
