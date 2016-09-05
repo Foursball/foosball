@@ -6,6 +6,7 @@
 
 # dependencies
 /node_modules
+/migrations/node_modules
 /bower_components
 
 # misc
