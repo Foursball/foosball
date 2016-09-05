@@ -9,7 +9,10 @@ var functions = {
     return firebase.getGames(firebaseUrl)
       .then(lib.removeTeamColors)
       .then(function(migratedGames) {
-        console.log(migratedGames);
+        return firebase.setGames(firebaseUrl, migratedGames);
+      })
+      .then(function(migratedGames) {
+        console.log('Finished team color migration for ' + firebaseUrl);
       });
   }
 };
