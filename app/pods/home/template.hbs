@@ -3,16 +3,18 @@
     currentUser=user.currentPlayer
   }}
 
-  <vbox md="4" xs="12">
+  <div class="layout-column d-f fd-c flex-33 flex-xs-100 flex-sm-100">
     {{partial 'foosballer/profile-card'}}
 
     {{partial 'trends'}}
 
-    {{partial 'footer-links'}}
-  </vbox>
-  <box md="8" xs="12">
+    {{#unless (or media.isMobile media.isTablet)}}
+      {{partial 'footer-links'}}
+    {{/unless}}
+  </div>
+  <div class="d-f flex-66 flex-xs-100 flex-sm-100">
 
-    {{#paper-card as |card|}}
+    {{#paper-card classNames="w-100" as |card|}}
       {{#card.content class='o-a'}}
         {{#each sortedGames as |game index|}}
           {{partial 'game'}}
@@ -20,5 +22,11 @@
       {{/card.content}}
     {{/paper-card}}
 
-  </box>
+  </div>
+
+  {{#if (or media.isMobile media.isTablet)}}
+    <div class="w-100">
+      {{partial 'footer-links'}}
+    </div>
+  {{/if}}
 {{/current-user}}

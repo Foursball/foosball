@@ -1,24 +1,24 @@
-<screen>
-  <hbox justify="center" class="main-nav">
+<div class="bs-bb w-100 minh-100vh">
+  <div class="d-f jc-c main-nav">
     <div class="d-f fw-nw fg-1 center-content">
       <div class="left-nav fb-33 fg-1 fs-0">
         {{#if session.isAuthenticated}}
           {{#link-to 'home' class="tab"}}
-            {{#if FlexiLayout.isMobile}}
+            {{#if media.isMobile}}
               H
             {{else}}
               Home
             {{/if}}
           {{/link-to}}
           {{#link-to 'teams' class="tab"}}
-            {{#if FlexiLayout.isMobile}}
+            {{#if media.isMobile}}
               T
             {{else}}
               Teams
             {{/if}}
           {{/link-to}}
           {{#link-to 'foosballers' class="tab"}}
-            {{#if FlexiLayout.isMobile}}
+            {{#if media.isMobile}}
               P
             {{else}}
               Players
@@ -41,9 +41,9 @@
             {{#paper-button
               primary=true
               raised=true
-              iconButton=(eq FlexiLayout.isMobile true)
+              iconButton=(eq media.isMobile true)
               onClick=(action 'toggleDialog' 'newGame' target=dialogsService)}}
-              {{#if FlexiLayout.isMobile}}
+              {{#if media.isMobile}}
                 {{paper-icon "games"}}
               {{else}}
                 Game
@@ -59,11 +59,11 @@
         {{/if}}
       </div>
     </div>
-  </hbox>
-  <hbox justify="center">
-    <hbox justify="center" class="center-content fh-nav" style='min-height: 829px;' fill>
+  </div>
+  <div class="d-f jc-c">
+    <div class="layout-row jc-c fw-w center-content fh-nav" style='min-height: 829px;' fill>
       {{outlet}}
-    </hbox>
-  </hbox>
+    </div>
+  </div>
   {{ember-notify messageStyle='bootstrap'}}
-</screen>
+</div>

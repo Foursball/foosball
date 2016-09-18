@@ -17,7 +17,7 @@
       {{/link-to}}
 
       <h3 class="p-a display-name">{{user.currentPlayer.displayName}}</h3>
-      <hbox class="stats" fill>
+      <div class="d-f p-r layout-wrap stats">
         {{#link-to 'foosballer' user.currentPlayer (query-params tab='games') class="fg-1 ta-c ho-accent pointer grey"}}
           <h5 class="mb-4">GAMES</h5>
           <h3 class="mt-0">{{user.stats.playerGames.length}}</h3>
@@ -30,6 +30,6 @@
           <h5 class="mb-4">TEAMS</h5>
           <h3 class="mt-0">{{user.stats.playerTeams.length}}</h3>
         {{/link-to}}
-      </hbox>
+      </div>
   {{/card.content}}
 {{/paper-card}}

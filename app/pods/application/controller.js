@@ -4,7 +4,7 @@ const { Controller, computed, inject: { service } } = Ember;
 
 export default Controller.extend({
   dialogsService: service('dialogs'),
-  FlexiLayout: service('device/layout'),
+  media: service('media'),
 
   foosballers: computed(function() {
     return this.store.peekAll('foosballer');

@@ -106,4 +106,9 @@
 /** WIDTH ADJUSTMENTS **/
 .no-scroll { width: calc(100% - 15px); }
 .w-33 { width: calc(100% / 3); }
+.w-100 { width: 100%; }
 .mw-33 { max-width: calc(100% / 3); }
+.minh-100vh { min-height: 100vh; }
+
+/** BOX SIZING **/
+.bs-bb { box-sizing: border-box; }
