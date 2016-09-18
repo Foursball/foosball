@@ -26,6 +26,8 @@ $warn: (
 @import 'components/index';
 @import 'semantics';
 
+@import 'responsive';
+
 .ember-application {
   max-width: 100%;
   max-height: 100%;

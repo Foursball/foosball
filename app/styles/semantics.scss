@@ -105,3 +105,5 @@
 
 /** WIDTH ADJUSTMENTS **/
 .no-scroll { width: calc(100% - 15px); }
+.w-33 { width: calc(100% / 3); }
+.mw-33 { max-width: calc(100% / 3); }
