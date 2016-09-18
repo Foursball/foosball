@@ -1,0 +1,76 @@
+<h4>Team 1</h4>
+<div class="d-f">
+  <div class="flex-50">
+    {{#paper-select
+      placeholder="Player 1"
+      value=team1Player1
+      itemLabelCallback=retrievePlayerName
+      onChange=(action updatePlayer 'team1Player1')}}
+      {{#each players as |player|}}
+        {{#paper-option value=player}}
+          {{player.name}}
+        {{/paper-option}}
+      {{/each}}
+    {{/paper-select}}
+  </div>
+
+  <div class="flex-50">
+    {{#paper-select
+      placeholder="Player 2"
+      value=team1Player2
+      itemLabelCallback=retrievePlayerName
+      onChange=(action updatePlayer 'team1Player2')}}
+      {{#each players as |player|}}
+        {{#paper-option value=player}}
+          {{player.name}}
+        {{/paper-option}}
+      {{/each}}
+    {{/paper-select}}
+  </div>
+</div>
+
+<h4>Team 2</h4>
+<div class="d-f">
+  <div class="flex-50">
+    {{#paper-select
+      placeholder="Player 1"
+      value=team2Player1
+      itemLabelCallback=retrievePlayerName
+      onChange=(action updatePlayer 'team2Player1')}}
+      {{#each players as |player|}}
+        {{#paper-option value=player}}
+          {{player.name}}
+        {{/paper-option}}
+      {{/each}}
+    {{/paper-select}}
+  </div>
+  <div class="flex-50">
+    {{#paper-select
+      placeholder="Player 2"
+      value=team2Player2
+      itemLabelCallback=retrievePlayerName
+      onChange=(action updatePlayer 'team2Player2')}}
+      {{#each players as |player|}}
+        {{#paper-option value=player}}
+          {{player.name}}
+        {{/paper-option}}
+      {{/each}}
+    {{/paper-select}}
+  </div>
+</div>
+
+<h4>Previous Records</h4>
+{{#if gamesAgainst.isPending}}
+  {{paper-progress-circular}}
+{{else}}
+  <div class="md-text-items">
+    {{#if gamesAgainst.content.length}}
+      <p>{{mostRecent.winningTeam.player1.displayName}} & {{mostRecent.winningTeam.player2.displayName}} won {{mostRecent.winningTeamWins}} - {{mostRecent.losingTeamWins}}</p>
+      <small><i>{{moment-format mostRecent.time "MMM. Do, YYYY @ h:mm a"}}</i></small>
+    {{else}}
+      {{#if (and team1Player1 team1Player2 team2Player1 team2Player2)}}
+        <p>New matchup!</p>
+      {{/if}}
+    {{/if}}
+  </div>
+{{/if}}

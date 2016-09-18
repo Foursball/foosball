@@ -1,0 +1,6 @@
+{{#paper-button onClick=(action cancelGame)}}Cancel{{/paper-button}}
+{{#if isScoringGame}}
+  {{#paper-button raised=true primary=true onClick=(action saveGame) disabled=cannotSave}}Save{{/paper-button}}
+{{else}}
+  {{#paper-button raised=true primary=true disabled=cannotStart onClick=(action startGame)}}Start{{/paper-button}}
+{{/if}}
