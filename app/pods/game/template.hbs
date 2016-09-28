@@ -20,6 +20,8 @@
         {{game.losingTeam.player2.displayName}}
       </a>
     </div>
-    <small class="d-ib time ta-r"><i>{{moment-format game.time "MMM. Do @ h:mm a"}}</i></small>
+    {{#unless media.isMobile}}
+      <small class="d-ib time ta-r"><i>{{moment-format game.time "MMM. Do @ h:mm a"}}</i></small>
+    {{/unless}}
   </div>
 </div>
