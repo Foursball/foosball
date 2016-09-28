@@ -1,7 +1,7 @@
-<box class="bc-white p-16 teams-team">
-  <hbox justify="between">
-    <div class="pr-8 rank">{{decoratedTeam.rank}}</div>
-    <div class="name ellipsis pr-8">
+<div class="bc-white p-16 teams-team">
+  <div class="d-f jc-sb">
+    <div class="pr-8 {{unless media.isMobile 'rank'}}">{{decoratedTeam.rank}}</div>
+    <div class="{{unless media.isMobile 'name'}} ellipsis pr-8">
       <a class="player-name {{if (eq user.currentPlayer.id decoratedTeam.team.player1.id) 'c-primary'}}" href={{href-to 'foosballer' decoratedTeam.team.player1}}>
         {{decoratedTeam.team.player1.displayName}}
       </a>
@@ -10,8 +10,10 @@
         {{decoratedTeam.team.player2.displayName}}
       </a>
     </div>
-    <div class="w-l pr-16">{{decoratedTeam.wins}} : {{decoratedTeam.losses}}</div>
-    <div class="ratio pr-16">{{decoratedTeam.winLossRatio}}</div>
-    <div class="percentage">{{decoratedTeam.winPercentage}}%</div>
-  </hbox>
-</box>
+    {{#unless media.isMobile}}
+      <div class="w-l pr-16">{{decoratedTeam.wins}} : {{decoratedTeam.losses}}</div>
+      <div class="ratio pr-16">{{decoratedTeam.winLossRatio}}</div>
+    {{/unless}}
+    <div class="{{unless media.isMobile 'percentage'}}">{{decoratedTeam.winPercentage}}%</div>
+  </div>
+</div>
