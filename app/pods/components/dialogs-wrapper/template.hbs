@@ -20,7 +20,7 @@
       tagName=''
       as |nG|}}
       {{#paper-dialog-content}}
-        <div style='width: 800px;'>
+        <div class="{{unless media.isMobile 'vw-80 mw-800'}}">
           {{#if nG.isScoringGame}}
             {{nG.scoring}}
           {{else}}
