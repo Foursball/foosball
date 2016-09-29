@@ -1,4 +1,4 @@
-{{#paper-card class="login-route bc-white" as |card|}}
+{{#paper-card class="login-route bc-white w-100" as |card|}}
   {{#if session.isAuthenticated}}
     {{#card.title as |title|}}
       {{#title.text as |text|}}
@@ -13,7 +13,7 @@
       {{/title.text}}
     {{/card.title}}
     {{#card.content}}
-      <hbox justify='center'>
+      <div class="{{if media.isMobile 'layout-column ai-c' 'layout-row'}} jc-c">
         <img
           class='login-provider'
           title='Twitter'
@@ -31,7 +31,7 @@
           title='Google'
           onclick={{route-action 'login' 'google'}}
           src='/login-providers/Google_Logo.png'>
-      </hbox>
+      </div>
     {{/card.content}}
   {{/if}}
   {{#card.actions}}

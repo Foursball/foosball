@@ -7,11 +7,14 @@ const {
   set,
   RSVP: {
     Promise
-  }
+  },
+  inject: { service }
 } = Ember;
 
 export default Controller.extend({
   addGame: false,
+
+  media: service(),
 
   /* jshint ignore:start */
   @computed()

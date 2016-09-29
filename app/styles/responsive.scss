@@ -1,0 +1,17 @@
+@media (max-width: 767px) {
+  .main-nav {
+    .center-content {
+      .right-nav {
+        .md-button {
+          margin: 3px 6px;
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 767px) {
+  .login-route {
+    max-height: 300px;
+  }
+}

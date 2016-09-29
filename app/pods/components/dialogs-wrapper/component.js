@@ -6,5 +6,7 @@ const {
 } = Ember;
 
 export default Component.extend({
-  dialogsService: service('dialogs')
+  dialogsService: service('dialogs'),
+
+  tagName: ''
 });

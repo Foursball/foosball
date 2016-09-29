@@ -6,15 +6,16 @@
     currentUser=user.currentPlayer
   }}
 
-  <vbox md="4">
+  <div class="layout-column d-f fd-c flex-33 flex-xs-100 flex-sm-100">
     {{partial 'foosballer/profile-card'}}
 
-    {{partial 'trends'}}
+    {{#unless (or media.isMobile media.isTablet)}}
+      {{partial 'trends'}}
+      {{partial 'footer-links'}}
+    {{/unless}}
+  </div>
 
-    {{partial 'footer-links'}}
-  </vbox>
-
-  <vbox md="8">
+  <div class="d-f fd-c flex-66 flex-xs-100 flex-sm-100">
     {{#paper-card class="bc-white teams-top-10" as |card|}}
       {{#card.title as |title|}}
         {{#title.text as |text|}}
@@ -30,15 +31,17 @@
 
     {{#paper-card as |card|}}
       {{#card.content class='o-a'}}
-        <box class="bc-white pr-16 teams-team">
-          <hbox justify="between" class="pt-16 no-scroll {{if isAsc 'sort-asc' 'sort-desc'}}">
-            <div onclick={{action 'sortBy' 'rank'}} class="pr-8 rank pointer sortable {{if isSortRank 'sorted'}}">Rank</div>
-            <div onclick={{action 'sortBy' 'foosballer.name'}} class="name pointer sortable {{if isSortName 'sorted'}}">Name</div>
-            <div onclick={{action 'sortBy' 'wins'}} class="w-l pr-16 pointer sortable {{if isSortWins 'sorted'}}">Wins : Losses</div>
-            <div onclick={{action 'sortBy' 'winLossRatio'}} class="ratio pr-16 pointer sortable {{if isSortWinLossRatio 'sorted'}}">Win/Loss Ratio</div>
-            <div onclick={{action 'sortBy' 'winPercentage'}} class="percentage pointer sortable {{if isSortWinPercentage 'sorted'}}">Win %</div>
-          </hbox>
-        </box>
+        <div class="bc-white pr-16 teams-team">
+          <div class="d-f jc-sb pt-16 no-scroll {{if isAsc 'sort-asc' 'sort-desc'}}">
+            <div onclick={{action 'sortBy' 'rank'}} class="pr-8 {{unless media.isMobile 'rank'}} pointer sortable {{if isSortRank 'sorted'}}">Rank</div>
+            <div onclick={{action 'sortBy' 'foosballer.name'}} class="{{unless media.isMobile 'name'}} pointer sortable {{if isSortName 'sorted'}}">Name</div>
+            {{#unless media.isMobile}}
+              <div onclick={{action 'sortBy' 'wins'}} class="w-l pr-16 pointer sortable {{if isSortWins 'sorted'}}">Wins : Losses</div>
+              <div onclick={{action 'sortBy' 'winLossRatio'}} class="ratio pr-16 pointer sortable {{if isSortWinLossRatio 'sorted'}}">Win/Loss Ratio</div>
+            {{/unless}}
+            <div onclick={{action 'sortBy' 'winPercentage'}} class="{{unless media.isMobile 'percentage'}} pointer sortable {{if isSortWinPercentage 'sorted'}}">Win %</div>
+          </div>
+        </div>
         {{#foosballers-sorter
           tagName=""
           foosballers=model
@@ -47,22 +50,30 @@
           as |sortedDecoratedFoosballers|}}
 
           {{#each sortedDecoratedFoosballers as |decoratedFoosballer index|}}
-            <box class="bc-white p-16 teams-team">
-              <hbox justify="between">
-                <div class="pr-8 rank">{{decoratedFoosballer.rank}}</div>
-                <div class="name ellipsis pr-8">
+            <div class="bc-white p-16 teams-team">
+              <div class="d-f jc-sb">
+                <div class="pr-8 {{unless media.isMobile 'rank'}}">{{decoratedFoosballer.rank}}</div>
+                <div class="{{unless media.isMobile 'name'}} ellipsis pr-8">
                   <a class="player-name {{if (eq user.currentPlayer.id decoratedFoosballer.foosballer.id) 'c-primary'}}" href={{href-to 'foosballer' decoratedFoosballer.foosballer}}>
                     {{decoratedFoosballer.foosballer.name}}
                   </a>
                 </div>
-                <div class="w-l pr-16">{{decoratedFoosballer.wins}} : {{decoratedFoosballer.losses}}</div>
-                <div class="ratio pr-16">{{decoratedFoosballer.winLossRatio}}</div>
-                <div class="percentage">{{decoratedFoosballer.winPercentage}}%</div>
-              </hbox>
-            </box>
+                {{#unless media.isMobile}}
+                  <div class="w-l pr-16">{{decoratedFoosballer.wins}} : {{decoratedFoosballer.losses}}</div>
+                  <div class="ratio pr-16">{{decoratedFoosballer.winLossRatio}}</div>
+                {{/unless}}
+                <div class="{{unless media.isMobile 'percentage'}}">{{decoratedFoosballer.winPercentage}}%</div>
+              </div>
+            </div>
           {{/each}}
         {{/foosballers-sorter}}
       {{/card.content}}
     {{/paper-card}}
-  </vbox>
+  </div>
+
+  {{#if (or media.isMobile media.isTablet)}}
+    <div class="w-100">
+      {{partial 'footer-links'}}
+    </div>
+  {{/if}}
 {{/current-user}}

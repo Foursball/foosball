@@ -1,19 +1,37 @@
-<screen>
-  <hbox justify="center" class="main-nav">
-    <hbox class="center-content" fill nowrap>
-      <div class="left-nav fb-33">
+<div class="bs-bb w-100 minh-100vh">
+  <div class="d-f jc-c main-nav">
+    <div class="d-f fw-nw fg-1 center-content">
+      <div class="left-nav fb-33 fg-1 fs-0">
         {{#if session.isAuthenticated}}
-          {{#link-to 'home' class="tab"}}Home{{/link-to}}
-          {{#link-to 'teams' class="tab"}}Teams{{/link-to}}
-          {{#link-to 'foosballers' class="tab"}}Players{{/link-to}}
+          {{#link-to 'home' class="tab"}}
+            {{#if media.isMobile}}
+              H
+            {{else}}
+              Home
+            {{/if}}
+          {{/link-to}}
+          {{#link-to 'teams' class="tab"}}
+            {{#if media.isMobile}}
+              T
+            {{else}}
+              Teams
+            {{/if}}
+          {{/link-to}}
+          {{#link-to 'foosballers' class="tab"}}
+            {{#if media.isMobile}}
+              P
+            {{else}}
+              Players
+            {{/if}}
+          {{/link-to}}
         {{else}}
           {{#link-to 'login' class="tab"}}Login{{/link-to}}
         {{/if}}
       </div>
-      <div class="middle-nav d-f jc-center fb-33">
+      <div class="middle-nav mw-33 d-f jc-c fg-1 fs-1">
         <div class="icon"></div>
       </div>
-      <hbox justify="end" class="right-nav fb-33">
+      <div class="right-nav fb-33 d-f jc-fe fg-1 fs-0">
         {{#if session.isAuthenticated}}
           {{#unless (or
             (eq currentRouteName 'about')
@@ -23,8 +41,13 @@
             {{#paper-button
               primary=true
               raised=true
+              iconButton=(eq media.isMobile true)
               onClick=(action 'toggleDialog' 'newGame' target=dialogsService)}}
-              Game
+              {{#if media.isMobile}}
+                {{paper-icon "games"}}
+              {{else}}
+                Game
+              {{/if}}
             {{/paper-button}}
           {{/unless}}
 
@@ -34,13 +57,13 @@
             {{/link-to}}
           {{/current-user}}
         {{/if}}
-      </hbox>
-    </hbox>
-  </hbox>
-  <hbox justify="center">
-    <hbox justify="center" class="center-content fh-nav" style='min-height: 829px;' fill>
+      </div>
+    </div>
+  </div>
+  <div class="d-f jc-c">
+    <div class="layout-row jc-c fw-w center-content fh-nav w-100">
       {{outlet}}
-    </hbox>
-  </hbox>
+    </div>
+  </div>
   {{ember-notify messageStyle='bootstrap'}}
-</screen>
+</div>

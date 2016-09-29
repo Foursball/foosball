@@ -7,35 +7,56 @@
     currentUser=user.currentPlayer
   }}
 
-  <vbox md="4">
+  <div class="layout-column d-f fd-c flex-33 flex-xs-100 flex-sm-100">
     {{partial 'foosballer/profile-card'}}
 
-    {{partial 'trends'}}
+    {{#unless (or media.isMobile media.isTablet)}}
+      {{partial 'trends'}}
+      {{partial 'footer-links'}}
+    {{/unless}}
+  </div>
 
-    {{partial 'footer-links'}}
-  </vbox>
-
-  <vbox md="8">
+  <div class="d-f fd-c flex-66 flex-xs-100 flex-sm-100">
     {{#paper-card as |card|}}
       {{#card.content class='o-a'}}
         <div class="bc-white">
-          <hbox justify="start">
-            {{#link-to 'foosballer' (query-params tab='games') class="tab"}}Games ({{playerGames.length}}){{/link-to}}
-            {{#link-to 'foosballer' (query-params tab='wins') class="tab"}}Wins ({{gamesWon.length}}){{/link-to}}
-            {{#link-to 'foosballer' (query-params tab='teams') class="tab"}}Teams{{/link-to}}
-          </hbox>
+          <div class="d-f jc-fs">
+            {{#link-to 'foosballer' (query-params tab='games') class="tab"}}
+              {{#if media.isMobile}}
+                G ({{playerGames.length}})
+              {{else}}
+                Games ({{playerGames.length}})
+              {{/if}}
+            {{/link-to}}
+            {{#link-to 'foosballer' (query-params tab='wins') class="tab"}}
+              {{#if media.isMobile}}
+                W ({{gamesWon.length}})
+              {{else}}
+                Wins ({{gamesWon.length}})
+              {{/if}}
+            {{/link-to}}
+            {{#link-to 'foosballer' (query-params tab='teams') class="tab"}}
+              {{#if media.isMobile}}
+                T
+              {{else}}
+                Teams
+              {{/if}}
+            {{/link-to}}
+          </div>
         </div>
 
         {{#if (eq tab 'teams')}}
-          <box class="bc-white pl-16 pr-16 fg-0 teams-team">
-            <hbox justify="between" class="pt-16 {{if isAsc 'sort-asc' 'sort-desc'}}">
-              <div onclick={{action 'sortBy' 'rank'}} class="pr-8 rank pointer sortable {{if isSortRank 'sorted'}}">Rank</div>
-              <div class="name">Name</div>
-              <div onclick={{action 'sortBy' 'wins'}} class="w-l pr-16 pointer sortable {{if isSortWins 'sorted'}}">Wins : Losses</div>
-              <div onclick={{action 'sortBy' 'winLossRatio'}} class="ratio pr-16 pointer sortable {{if isSortWinLossRatio 'sorted'}}">Win/Loss Ratio</div>
-              <div onclick={{action 'sortBy' 'winPercentage'}} class="percentage pointer sortable {{if isSortWinPercentage 'sorted'}}">Win %</div>
-            </hbox>
-          </box>
+          <div class="bc-white pl-16 pr-16 fg-0 teams-team">
+            <div class="d-f jc-sb pt-16 {{if isAsc 'sort-asc' 'sort-desc'}}">
+              <div onclick={{action 'sortBy' 'rank'}} class="pr-8 {{unless media.isMobile 'rank'}} pointer sortable {{if isSortRank 'sorted'}}">Rank</div>
+              <div class="{{unless media.isMobile 'name'}}">Name</div>
+              {{#unless media.isMobile}}
+                <div onclick={{action 'sortBy' 'wins'}} class="w-l pr-16 pointer sortable {{if isSortWins 'sorted'}}">Wins : Losses</div>
+                <div onclick={{action 'sortBy' 'winLossRatio'}} class="ratio pr-16 pointer sortable {{if isSortWinLossRatio 'sorted'}}">Win/Loss Ratio</div>
+              {{/unless}}
+              <div onclick={{action 'sortBy' 'winPercentage'}} class="{{unless media.isMobile 'percentage'}} pointer sortable {{if isSortWinPercentage 'sorted'}}">Win %</div>
+            </div>
+          </div>
         {{/if}}
 
         {{#if (eq tab 'games')}}
@@ -79,5 +100,11 @@
         {{/if}}
       {{/card.content}}
     {{/paper-card}}
-  </vbox>
+  </div>
+
+  {{#if (or media.isMobile media.isTablet)}}
+    <div class="w-100">
+      {{partial 'footer-links'}}
+    </div>
+  {{/if}}
 {{/current-user}}

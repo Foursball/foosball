@@ -3,8 +3,24 @@
 .fg-0 { flex-grow: 0; }
 
 .flex-50 { flex: 0 1 50%; }
-.column { flex-direction: column; }
-.jc-center { justify-content: center; }
 
+.fd-r { flex-direction: row; }
+.fd-c { flex-direction: column; }
+.column { flex-direction: column; }
+
+
+.jc-center { justify-content: center; }
+.jc-c { justify-content: center; }
+.jc-fe { justify-content: flex-end; }
+.jc-fs { justify-content: flex-start; }
+.jc-sb { justify-content: space-between; }
+
+.fw-w { flex-wrap: wrap; }
+.fw-nw { flex-wrap: nowrap; }
+
+.fs-0 { flex-shrink: 0; }
+.fs-1 { flex-shrink: 1; }
+
+.ai-c { align-items: center; }
 //flex-basis
 .fb-33 { flex-basis: calc(100% / 3); }
