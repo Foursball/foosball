@@ -1,4 +1,10 @@
-<h4>{{game.team1.player1.displayName}} & {{game.team1.player2.displayName}}</h4>
-{{paper-input label='Wins' value=game.team1Wins type="number" onChange=(action (mut game.team1Wins))}}
-<h4>{{game.team2.player1.displayName}} & {{game.team2.player2.displayName}}</h4>
-{{paper-input label='Wins' value=game.team2Wins type="number" onChange=(action (mut game.team2Wins))}}
+<div class="d-f fd-c jc-c">
+  <div class="d-f jc-c">
+    <div class="d-f fd-c">
+      <h4>{{game.team1.player1.displayName}} & {{game.team1.player2.displayName}}</h4>
+      {{paper-input label='Wins' value=game.team1Wins type="number" onChange=(action (mut game.team1Wins))}}
+      <h4>{{game.team2.player1.displayName}} & {{game.team2.player2.displayName}}</h4>
+      {{paper-input label='Wins' value=game.team2Wins type="number" onChange=(action (mut game.team2Wins))}}
+    </div>
+  </div>
+</div>
