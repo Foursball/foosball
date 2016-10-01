@@ -3,6 +3,12 @@ import Ember from 'ember';
 const { Service, get, set } = Ember;
 
 export default Service.extend({
+  prune(foosballers) {
+    return foosballers.filter((f) => {
+      return !get(f, 'retired') && get(f, 'hasMinimumGames');
+    });
+  },
+
   winLossByTimePeriod(foosballer, groupedGames) {
     return Object.keys(groupedGames).reduce((prev, time) => {
       let games = get(groupedGames, time);
@@ -75,6 +81,7 @@ export default Service.extend({
 
   decorate(foosballers, decoratedTeams) {
     let decoratedFoosballers = foosballers
+      .filter((f) => get(f, 'hasMinimumGames'))
       .map((foosballer) => {
         let foosballerId = get(foosballer, 'id');
         let teamsPlayedIn = decoratedTeams.filter((team) => {
@@ -83,22 +90,14 @@ export default Service.extend({
         let scoreKeeper = {
           foosballer,
           wins: 0,
-          winsBlack: 0,
-          winsYellow: 0,
           losses: 0,
-          lossesBlack: 0,
-          lossesYellow: 0,
           winPercentage: 0,
           winLossRatio: 0
         };
 
         scoreKeeper = teamsPlayedIn.reduce((prev, curr) => {
           prev.wins += get(curr, 'wins');
-          prev.winsBlack += get(curr, 'winsBlack');
-          prev.winsYellow += get(curr, 'winsYellow');
           prev.losses += get(curr, 'losses');
-          prev.lossesBlack += get(curr, 'lossesBlack');
-          prev.lossesYellow += get(curr, 'lossesYellow');
 
           return prev;
         }, scoreKeeper);
