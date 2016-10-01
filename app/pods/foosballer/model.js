@@ -9,6 +9,7 @@ export default DS.Model.extend({
   @attr('string') uid,
   @attr('string') profileImageURL,
   @attr('boolean') retired,
+  @attr('boolean') hasMinimumGames,
   @attr('boolean') active,
   /* jshint ignore:end */
 

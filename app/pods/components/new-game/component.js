@@ -19,6 +19,7 @@ export default Component.extend({
   teamService: service('team-decorator'),
   notify: service(),
   store: service(),
+  foosballerDecorator: service(),
 
   isScoringGame: false,
 
@@ -47,7 +48,8 @@ export default Component.extend({
   @computed
   /* jshint ignore:end */
   foosballers() {
-    return get(this, 'store').peekAll('foosballer');
+    return get(this, 'store').peekAll('foosballer')
+      .filter((f) => !get(f, 'retired'));
   },
 
   /* jshint ignore:start */
