@@ -1,9 +1,8 @@
 import Ember from 'ember';
-import { BusPublisherMixin } from 'ember-message-bus';
 
 const { Route, get, set, inject: { service } } = Ember;
 
-export default Route.extend(BusPublisherMixin, {
+export default Route.extend({
   transitionService: service('transition'),
 
   beforeModel(transition) {
@@ -12,21 +11,7 @@ export default Route.extend(BusPublisherMixin, {
     set(transitionService, 'transition', transition);
   },
 
-  afterModel(model, transition) {
-    if (transition.targetName !== 'login') {
-      return this.store
-        .findAll('foosballer')
-        .then((foosballers) => this.publish('foosballersFound', foosballers))
-        .then(() => this.store.findAll('game'))
-        .then(() => this.store.findAll('team'));
-    }
-  },
-
   actions: {
-    accessDenied() {
-      this.transitionTo('login');
-    },
-
     transitionTo(route) {
       this.transitionTo(route);
     },
@@ -51,11 +36,6 @@ export default Route.extend(BusPublisherMixin, {
 
     error(error, transition) {
       this.transitionTo('something-happened');
-    },
-
-    logout() {
-      get(this, 'session').close();
-      this.transitionTo('login');
     }
   }
 });
