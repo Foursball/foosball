@@ -6,7 +6,7 @@ export default Service.extend({
   prune(foosballers) {
     return foosballers.filter((f) => {
       return !get(f, 'retired') && get(f, 'hasMinimumGames');
-    })
+    });
   },
 
   winLossByTimePeriod(foosballer, groupedGames) {
