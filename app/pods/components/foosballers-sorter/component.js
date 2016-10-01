@@ -39,7 +39,7 @@ export default Component.extend({
   decoratedTeams(teams, games) {
     let teamDecorator = get(this, 'teamDecorator');
 
-    return teamDecorator.decorate(teams, games);
+    return teamDecorator.decorate(teams, games, false);
   },
 
   /* jshint ignore:start */

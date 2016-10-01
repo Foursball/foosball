@@ -81,6 +81,7 @@ export default Service.extend({
 
   decorate(foosballers, decoratedTeams) {
     let decoratedFoosballers = foosballers
+      .filter((f) => get(f, 'hasMinimumGames'))
       .map((foosballer) => {
         let foosballerId = get(foosballer, 'id');
         let teamsPlayedIn = decoratedTeams.filter((team) => {

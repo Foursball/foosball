@@ -84,7 +84,7 @@ export default Service.extend({
     });
   },
 
-  decorate(teams, games) {
+  decorate(teams, games, shouldLimitOnGamesPlayed = true) {
     let decoratedTeams = teams.map((team) => {
       let teamId = get(team, 'id');
       let gamesPlayedIn = games.filter((game) => {
@@ -99,7 +99,8 @@ export default Service.extend({
         winLossRatio: 0
       };
 
-      if (gamesPlayedIn.length >= 15) {
+      if (!shouldLimitOnGamesPlayed || gamesPlayedIn.length >= 15) {
+
         scoreKeeper = gamesPlayedIn.reduce((prev, curr) => {
           let isTeam1 = get(curr, 'team1.id') === teamId ? true : false;
 
@@ -130,7 +131,9 @@ export default Service.extend({
       return scoreKeeper;
     });
 
-    decoratedTeams = decoratedTeams.filter((t) => get(t, 'gamesPlayed') >= 15);
+    if (shouldLimitOnGamesPlayed) {
+      decoratedTeams = decoratedTeams.filter((t) => get(t, 'gamesPlayed') >= 15);
+    }
 
     decoratedTeams
       .sortBy('winLossRatio')
