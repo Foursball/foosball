@@ -13,7 +13,11 @@
 
   {{#card.content class="p-r"}}
       {{#link-to 'foosballer' user.currentPlayer class="avatar-container d-ib p-r"}}
-        <img src={{user.currentPlayer.profileImageURL}} class="avatar">
+        {{#if user.currentPlayer.profileImageURL}}
+          <img src={{user.currentPlayer.profileImageURL}} class="avatar">
+        {{else}}
+          <img src='/4sBall-58.png'>
+        {{/if}}
       {{/link-to}}
 
       <h3 class="p-a display-name">{{user.currentPlayer.displayName}}</h3>
