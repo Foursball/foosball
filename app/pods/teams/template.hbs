@@ -10,25 +10,11 @@
     {{partial 'foosballer/profile-card'}}
 
     {{#unless (or media.isMobile media.isTablet)}}
-      {{partial 'trends'}}
       {{partial 'footer-links'}}
     {{/unless}}
   </div>
 
   <div class="d-f fd-c flex-66 flex-xs-100 flex-sm-100">
-    {{#paper-card class="bc-white teams-top-10" as |card|}}
-      {{#card.title as |title|}}
-        {{#title.text as |text|}}
-          {{#text.headline}}Top 10 performing teams{{/text.headline}}
-        {{/title.text}}
-      {{/card.title}}
-      {{#card.content}}
-        <p>
-          Coming soon!
-        </p>
-      {{/card.content}}
-    {{/paper-card}}
-
     {{#paper-card as |card|}}
       {{#card.content class='o-a'}}
         <div class="bc-white teams-team">
