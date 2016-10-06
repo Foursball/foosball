@@ -10,6 +10,7 @@ export default DS.Model.extend({
   team1Wins: DS.attr('number'),
   team2Wins: DS.attr('number'),
   time: DS.attr('string'),
+  timestamp: DS.attr('number'),
 
   /* jshint ignore:start */
   @alias('team2Wins') team1Losses,
