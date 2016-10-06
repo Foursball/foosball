@@ -7,104 +7,110 @@
     currentUser=user.currentPlayer
   }}
 
-  <div class="layout-column d-f fd-c flex-33 flex-xs-100 flex-sm-100">
-    {{partial 'foosballer/profile-card'}}
+  <div class="layout-column">
+    <div class="d-f flex-100" style="min-height: 324px;">
+      {{partial 'foosballer/profile-card'}}
+    </div>
 
-    {{#unless (or media.isMobile media.isTablet)}}
-      {{partial 'trends'}}
-      {{partial 'footer-links'}}
-    {{/unless}}
-  </div>
+    <div class="layout-row layout-wrap">
+      <div class="layout-column d-f fd-c flex-33 flex-xs-100 flex-sm-100">
+        {{#unless (or media.isMobile media.isTablet)}}
+          {{partial 'trends'}}
+          {{partial 'footer-links'}}
+        {{/unless}}
+      </div>
 
-  <div class="d-f fd-c flex-66 flex-xs-100 flex-sm-100">
-    {{#paper-card as |card|}}
-      {{#card.content class='o-a'}}
-        <div class="bc-white">
-          <div class="d-f jc-fs">
-            {{#link-to 'foosballer' (query-params tab='games') class="tab"}}
-              {{#if media.isMobile}}
-                G ({{playerGames.length}})
-              {{else}}
-                Games ({{playerGames.length}})
-              {{/if}}
-            {{/link-to}}
-            {{#link-to 'foosballer' (query-params tab='wins') class="tab"}}
-              {{#if media.isMobile}}
-                W ({{gamesWon.length}})
-              {{else}}
-                Wins ({{gamesWon.length}})
-              {{/if}}
-            {{/link-to}}
-            {{#link-to 'foosballer' (query-params tab='teams') class="tab"}}
-              {{#if media.isMobile}}
-                T
-              {{else}}
-                Teams
-              {{/if}}
-            {{/link-to}}
-          </div>
-        </div>
-
-        {{#if (eq tab 'teams')}}
-          <div class="bc-white pl-16 pr-16 fg-0 teams-team">
-            <div class="d-f jc-sb pt-16 {{if isAsc 'sort-asc' 'sort-desc'}}">
-              <div onclick={{action 'sortBy' 'rank'}} class="pr-8 {{unless media.isMobile 'rank'}} pointer sortable {{if isSortRank 'sorted'}}">Rank</div>
-              <div class="{{unless media.isMobile 'name'}}">Name</div>
-              {{#unless media.isMobile}}
-                <div onclick={{action 'sortBy' 'wins'}} class="w-l pr-16 pointer sortable {{if isSortWins 'sorted'}}">Wins : Losses</div>
-                <div onclick={{action 'sortBy' 'winLossRatio'}} class="ratio pr-16 pointer sortable {{if isSortWinLossRatio 'sorted'}}">Win/Loss Ratio</div>
-              {{/unless}}
-              <div onclick={{action 'sortBy' 'winPercentage'}} class="{{unless media.isMobile 'percentage'}} pointer sortable {{if isSortWinPercentage 'sorted'}}">Win %</div>
+      <div class="d-f fd-c flex-66 flex-xs-100 flex-sm-100">
+        {{#paper-card as |card|}}
+          {{#card.content class='o-a'}}
+            <div class="bc-white">
+              <div class="d-f jc-fs">
+                {{#link-to 'foosballer' (query-params tab='games') class="tab"}}
+                  {{#if media.isMobile}}
+                    G ({{playerGames.length}})
+                  {{else}}
+                    Games ({{playerGames.length}})
+                  {{/if}}
+                {{/link-to}}
+                {{#link-to 'foosballer' (query-params tab='wins') class="tab"}}
+                  {{#if media.isMobile}}
+                    W ({{gamesWon.length}})
+                  {{else}}
+                    Wins ({{gamesWon.length}})
+                  {{/if}}
+                {{/link-to}}
+                {{#link-to 'foosballer' (query-params tab='teams') class="tab"}}
+                  {{#if media.isMobile}}
+                    T
+                  {{else}}
+                    Teams
+                  {{/if}}
+                {{/link-to}}
+              </div>
             </div>
-          </div>
-        {{/if}}
 
-        {{#if (eq tab 'games')}}
-          {{#each sortedGames as |game index|}}
-            {{#if (or
-              (eq user.currentPlayer.id game.winningTeam.player1.id)
-              (eq user.currentPlayer.id game.winningTeam.player2.id)
-              (eq user.currentPlayer.id game.losingTeam.player1.id)
-              (eq user.currentPlayer.id game.losingTeam.player2.id)
-            )}}
-              {{partial 'game'}}
+            {{#if (eq tab 'teams')}}
+              <div class="bc-white pl-16 pr-16 fg-0 teams-team">
+                <div class="d-f jc-sb pt-16 {{if isAsc 'sort-asc' 'sort-desc'}}">
+                  <div onclick={{action 'sortBy' 'rank'}} class="pr-8 {{unless media.isMobile 'rank'}} pointer sortable {{if isSortRank 'sorted'}}">Rank</div>
+                  <div class="{{unless media.isMobile 'name'}}">Name</div>
+                  {{#unless media.isMobile}}
+                    <div onclick={{action 'sortBy' 'wins'}} class="w-l pr-16 pointer sortable {{if isSortWins 'sorted'}}">Wins : Losses</div>
+                    <div onclick={{action 'sortBy' 'winLossRatio'}} class="ratio pr-16 pointer sortable {{if isSortWinLossRatio 'sorted'}}">Win/Loss Ratio</div>
+                  {{/unless}}
+                  <div onclick={{action 'sortBy' 'winPercentage'}} class="{{unless media.isMobile 'percentage'}} pointer sortable {{if isSortWinPercentage 'sorted'}}">Win %</div>
+                </div>
+              </div>
             {{/if}}
-          {{/each}}
-        {{else if (eq tab 'wins')}}
-          {{#each sortedGames as |game index|}}
-            {{#if (or
-              (eq user.currentPlayer.id game.winningTeam.player1.id)
-              (eq user.currentPlayer.id game.winningTeam.player2.id)
-            )}}
-              {{partial 'game'}}
-            {{/if}}
-          {{/each}}
-        {{else if (eq tab 'teams')}}
-          {{#teams-sorter
-            tagName=""
-            teams=teams
-            sortAscending=sortAscending
-            sortBy=sortBy
-            as |sortedDecoratedTeams|}}
-            <div class="o-a">
-              {{#each sortedDecoratedTeams as |decoratedTeam index|}}
+
+            {{#if (eq tab 'games')}}
+              {{#each sortedGames as |game index|}}
                 {{#if (or
-                  (eq user.currentPlayer.id decoratedTeam.team.player1.id)
-                  (eq user.currentPlayer.id decoratedTeam.team.player2.id)
+                  (eq user.currentPlayer.id game.winningTeam.player1.id)
+                  (eq user.currentPlayer.id game.winningTeam.player2.id)
+                  (eq user.currentPlayer.id game.losingTeam.player1.id)
+                  (eq user.currentPlayer.id game.losingTeam.player2.id)
                 )}}
-                  {{partial 'team'}}
+                  {{partial 'game'}}
                 {{/if}}
               {{/each}}
-            </div>
-          {{/teams-sorter}}
-        {{/if}}
-      {{/card.content}}
-    {{/paper-card}}
-  </div>
+            {{else if (eq tab 'wins')}}
+              {{#each sortedGames as |game index|}}
+                {{#if (or
+                  (eq user.currentPlayer.id game.winningTeam.player1.id)
+                  (eq user.currentPlayer.id game.winningTeam.player2.id)
+                )}}
+                  {{partial 'game'}}
+                {{/if}}
+              {{/each}}
+            {{else if (eq tab 'teams')}}
+              {{#teams-sorter
+                tagName=""
+                teams=teams
+                sortAscending=sortAscending
+                sortBy=sortBy
+                as |sortedDecoratedTeams|}}
+                <div class="o-a">
+                  {{#each sortedDecoratedTeams as |decoratedTeam index|}}
+                    {{#if (or
+                      (eq user.currentPlayer.id decoratedTeam.team.player1.id)
+                      (eq user.currentPlayer.id decoratedTeam.team.player2.id)
+                    )}}
+                      {{partial 'team'}}
+                    {{/if}}
+                  {{/each}}
+                </div>
+              {{/teams-sorter}}
+            {{/if}}
+          {{/card.content}}
+        {{/paper-card}}
+      </div>
 
-  {{#if (or media.isMobile media.isTablet)}}
-    <div class="w-100">
-      {{partial 'footer-links'}}
+      {{#if (or media.isMobile media.isTablet)}}
+        <div class="w-100">
+          {{partial 'footer-links'}}
+        </div>
+      {{/if}}
     </div>
-  {{/if}}
+  </div>
 {{/current-user}}

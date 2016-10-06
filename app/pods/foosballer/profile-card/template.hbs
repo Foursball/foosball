@@ -1,4 +1,4 @@
-{{#paper-card class="bc-white profile-card" as |card|}}
+{{#paper-card class=(if shouldFlex 'bc-white profile-card fg-1' 'bc-white profile-card') as |card|}}
 
   {{#foosballers-sorter
     as |sortedDecoratedFoosballers|}}

@@ -10,6 +10,8 @@ export default FoosballersController.extend({
 
   tab: 'games',
 
+  shouldFlex: true,
+
   /* jshint ignore:start */
   @alias('model') currentPlayer,
   /* jshint ignore:end */
