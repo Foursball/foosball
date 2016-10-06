@@ -1,0 +1,14 @@
+<div class="d-f fd-c jc-c">
+  <div class="d-f jc-c">
+    <div class="d-f fd-c">
+      {{#paper-radio-group groupValue=groupValue onChange=(action 'updateScore') as |group|}}
+        <h4>{{game.team1.player1.displayName}} & {{game.team1.player2.displayName}}</h4>
+        {{#group.radio value="t1-2-0"}}2 - 0{{/group.radio}}
+        {{#group.radio value="t1-2-1"}}2 - 1{{/group.radio}}
+        <h4>{{game.team2.player1.displayName}} & {{game.team2.player2.displayName}}</h4>
+        {{#group.radio value="t2-2-0"}}2 - 0{{/group.radio}}
+        {{#group.radio value="t2-2-1"}}2 - 1{{/group.radio}}
+      {{/paper-radio-group}}
+    </div>
+  </div>
+</div>
