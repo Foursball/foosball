@@ -181,6 +181,7 @@ export default Component.extend({
       let t1w = get(game, 'team1Wins');
       let t2w = get(game, 'team2Wins');
       let notify = get(this, 'notify');
+      let now = moment();
 
       if (!t1w) {
         set(game, 'team1Wins', 0);
@@ -190,7 +191,8 @@ export default Component.extend({
         set(game, 'team2Wins', 0);
       }
 
-      set(game, 'time', moment());
+      set(game, 'time', now);
+      set(game, 'timestamp', now.valueOf());
 
       let winningTeam = get(game, 'winningTeam');
       let losingTeam = get(game, 'losingTeam');
