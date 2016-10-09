@@ -1,5 +1,6 @@
 module.exports = {
-  removeTeamColors: removeTeamColors
+  removeTeamColors: removeTeamColors,
+  addTimestamp: addTimestamp
 };
 
 function removeTeamColors(games) {
@@ -15,5 +16,16 @@ function removeTeamColors(games) {
       games[gameId] = game;
     }
   });
+  return games;
+}
+
+function addTimestamp(games) {
+  Object.keys(games).forEach(function(gameId) {
+    var game = games[gameId];
+    var dateObject = new Date(game.date);
+
+    game.timestamp = dateObject.getTime();
+  });
+
   return games;
 }
