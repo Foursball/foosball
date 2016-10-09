@@ -14,6 +14,20 @@ var functions = {
       .then(function(migratedGames) {
         console.log('Finished team color migration for ' + firebaseUrl);
       });
+  },
+  addTimestamp: function(firebaseUrl) {
+    if (!firebaseUrl) {
+      console.log('Error: Firebase URL is required as a parameter');
+    }
+
+    return firebase.getGames(firebaseUrl)
+      .then(lib.addTimestamp)
+      .then(function(migratedGames) {
+        return firebase.setGames(firebaseUrl, migratedGames);
+      })
+      .then(function(migratedGames) {
+        console.log('Finished adding timestamps to ' + firebaseUrl);
+      });
   }
 };
 

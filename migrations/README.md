@@ -7,3 +7,9 @@ Used for removing team color wins (e.g. `team1WinsBlack`) and summing them to to
 ```bash
 node migration.js removeColors https://dev-foosball.firebaseio.com
 ```
+
+### Timestamp Migration
+Used for adding timestamps to games. The migration script takes a Firebase URL so the migration can be run against multiple databases. Example use:
+```bash
+node migration.js addTimestamp https://dev-foosball.firebaseio.com
+```
