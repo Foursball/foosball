@@ -22,7 +22,7 @@ function removeTeamColors(games) {
 function addTimestamp(games) {
   Object.keys(games).forEach(function(gameId) {
     var game = games[gameId];
-    var dateObject = new Date(game.date);
+    var dateObject = new Date(game.time);
 
     game.timestamp = dateObject.getTime();
   });
