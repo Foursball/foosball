@@ -1,6 +1,7 @@
 {{#paper-card class=(if shouldFlex 'bc-white profile-card fg-1' 'bc-white profile-card') as |card|}}
 
   {{#foosballers-sorter
+    shouldFilterMinimumGames=false
     as |sortedDecoratedFoosballers|}}
     {{#each sortedDecoratedFoosballers as |f|}}
       {{#if (eq f.foosballer.id user.currentPlayer.id)}}
