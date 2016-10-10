@@ -79,9 +79,16 @@ export default Service.extend({
     return get(game, 'team1.player1.id') === fId || get(game, 'team1.player2.id') === fId ? 'team1' : 'team2';
   },
 
-  decorate(foosballers, decoratedTeams) {
-    let decoratedFoosballers = foosballers
-      .filter((f) => get(f, 'hasMinimumGames'))
+  decorate(foosballers, decoratedTeams, shouldFilter=true) {
+    let decoratedFoosballers;
+
+    if (shouldFilter) {
+      decoratedFoosballers = foosballers.filter((f) => get(f, 'hasMinimumGames'));
+    } else {
+      decoratedFoosballers = foosballers;
+    }
+
+    decoratedFoosballers = decoratedFoosballers
       .map((foosballer) => {
         let foosballerId = get(foosballer, 'id');
         let teamsPlayedIn = decoratedTeams.filter((team) => {
