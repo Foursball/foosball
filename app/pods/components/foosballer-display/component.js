@@ -1,6 +1,6 @@
 import Ember from 'ember';
 import PaperItemExpandMixin from 'foosball/mixins/paper-item-expand';
-import DarkUnicaTheme from 'foosball/highchart-themes/dark-unica';
+import Foursball from 'foosball/highchart-themes/foursball';
 import computed, { alias } from 'ember-computed-decorators';
 
 const { Component, inject, get } = Ember;
@@ -26,7 +26,7 @@ export default Component.extend(PaperItemExpandMixin, {
     return get(this, 'store').peekAll('game');
   },
 
-  theme: DarkUnicaTheme,
+  theme: Foursball,
 
   chartOptions: {
     chart: {
