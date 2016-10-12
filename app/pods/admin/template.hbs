@@ -1,0 +1,18 @@
+{{#current-user foosballers=foosballers as |user|}}
+  {{dialogs-wrapper
+    currentUser=user.currentPlayer
+  }}
+
+  <div class="d-f fd-c flex-100 flex-xs-100 flex-sm-100">
+    {{#paper-card as |card|}}
+      {{#card.content class='o-a'}}
+        <div class="bc-white teams-team">
+          {{#link-to 'admin' (query-params section='players') class="tab"}}Players{{/link-to}}
+          {{#link-to 'admin' (query-params section='leagues') class="tab"}}Leagues{{/link-to}}
+          {{#link-to 'admin' (query-params section='seasons') class="tab"}}Seasons{{/link-to}}
+        </div>
+
+      {{/card.content}}
+    {{/paper-card}}
+  </div>
+{{/current-user}}
