@@ -4,7 +4,7 @@ const { Route, get } = Ember;
 
 export default Route.extend({
   model() {
-    return this.store.findRecord('tenant', 'netuitive')
-      .then((tenant) => get(tenant, 'rules'));
+    return this.store.findRecord('league', 'netuitive')
+      .then((league) => get(league, 'rules'));
   }
 });

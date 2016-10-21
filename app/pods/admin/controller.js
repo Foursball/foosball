@@ -8,10 +8,19 @@ export default Controller.extend({
 
   section: 'players',
 
+  selectedLeague: null,
+
   /* jshint ignore:start */
   @computed()
   /* jshint ignore:end*/
   foosballers() {
     return this.store.peekAll('foosballer');
+  },
+
+  /* jshint ignore:start */
+  @computed()
+  /* jshint ignore:end*/
+  leagues() {
+    return this.store.peekAll('league');
   }
 });

@@ -18,6 +18,7 @@ $warn: (
   'A700': #000,
   'contrast': $light-contrast-color
 );
+$ember-power-select-material-active-color: color($primary, '500');
 
 @import 'ember-paper';
 @import 'main-nav';
@@ -25,6 +26,8 @@ $warn: (
 @import 'routes/index';
 @import 'components/index';
 @import 'semantics';
+@import 'ember-power-select/themes/material';
+@import 'ember-power-select';
 
 @import 'responsive';
 

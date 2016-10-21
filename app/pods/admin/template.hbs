@@ -12,6 +12,17 @@
           {{#link-to 'admin' (query-params section='seasons') class="tab"}}Seasons{{/link-to}}
         </div>
 
+        {{#if (eq section 'players')}}
+          {{#if user.currentPlayer.isGlobalAdmin}}
+            {{#power-select
+              selected=selectedLeague
+              options=leagues
+              onchange=(action (mut selectedLeague))
+              as |league|}}
+              {{league.name}}
+            {{/power-select}}
+          {{/if}}
+        {{/if}}
       {{/card.content}}
     {{/paper-card}}
   </div>
