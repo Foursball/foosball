@@ -5,23 +5,48 @@
 
   <div class="d-f fd-c flex-100 flex-xs-100 flex-sm-100">
     {{#paper-card as |card|}}
+      {{#paper-toolbar as |toolbar|}}
+        {{#toolbar.tools}}
+          <h2>Admin</h2>
+        {{/toolbar.tools}}
+      {{/paper-toolbar}}
       {{#card.content class='o-a'}}
-        <div class="bc-white teams-team">
+        <div class="bc-white teams-team mb-16">
           {{#link-to 'admin' (query-params section='players') class="tab"}}Players{{/link-to}}
-          {{#link-to 'admin' (query-params section='leagues') class="tab"}}Leagues{{/link-to}}
+
+          {{#if user.currentPlayer.isGlobalAdmin}}
+            {{#link-to 'admin' (query-params section='leagues') class="tab"}}Leagues{{/link-to}}
+          {{/if}}
+
           {{#link-to 'admin' (query-params section='seasons') class="tab"}}Seasons{{/link-to}}
         </div>
 
         {{#if (eq section 'players')}}
           {{#if user.currentPlayer.isGlobalAdmin}}
-            {{#power-select
-              selected=selectedLeague
-              options=leagues
-              onchange=(action (mut selectedLeague))
-              as |league|}}
-              {{league.name}}
-            {{/power-select}}
+            <div class="mb-16">
+              {{#power-select
+                selected=selectedLeague
+                options=leagues
+                onchange=(action (mut selectedLeague))
+                classNames="mb-12"
+                as |league|}}
+                {{league.name}}
+              {{/power-select}}
+            </div>
           {{/if}}
+
+          {{#each selectedLeague.foosballers as |foosballer|}}
+            <div class="material-list-item">
+              <div class="d-f fd-c jc-c">
+                <div>{{foosballer.name}}</div>
+              </div>
+              <div class="fg-1"></div>
+              {{#paper-button iconButton=true}}
+                {{paper-icon 'open-in-new'}}
+              {{/paper-button}}
+            </div>
+          {{/each}}
+
         {{/if}}
       {{/card.content}}
     {{/paper-card}}
