@@ -1,6 +1,9 @@
 {{#current-user foosballers=foosballers as |user|}}
   {{dialogs-wrapper
     currentUser=user.currentPlayer
+    foosballer=selectedFoosballer
+    save=(action 'saveFoosballer')
+    cancel=(action 'cancelFoosballer')
   }}
 
   <div class="d-f fd-c flex-100 flex-xs-100 flex-sm-100">
@@ -23,16 +26,16 @@
 
         {{#if (eq section 'players')}}
           {{#if user.currentPlayer.isGlobalAdmin}}
-            <div class="mb-16">
-              {{#power-select
-                selected=selectedLeague
-                options=leagues
-                onchange=(action (mut selectedLeague))
-                classNames="mb-12"
-                as |league|}}
-                {{league.name}}
-              {{/power-select}}
-            </div>
+            {{#paper-select
+              label='League'
+              options=leagues
+              selected=selectedLeague
+              classNames='flex'
+              onChange=(action (mut selectedLeague))
+              as |league|
+            }}
+              {{league.name}}
+            {{/paper-select}}
           {{/if}}
 
           {{#each selectedLeague.foosballers as |foosballer|}}
@@ -41,7 +44,7 @@
                 <div>{{foosballer.name}}</div>
               </div>
               <div class="fg-1"></div>
-              {{#paper-button iconButton=true}}
+              {{#paper-button iconButton=true onClick=(action 'editFoosballer' foosballer)}}
                 {{paper-icon 'open-in-new'}}
               {{/paper-button}}
             </div>
