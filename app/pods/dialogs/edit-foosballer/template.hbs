@@ -1,59 +1,70 @@
 {{#paper-dialog
   fullscreen=true
-  onClose=(action 'toggleDialog' 'editFoosballer' target=dialogsService)
+  onClose=(pipe-action
+    (action 'toggleDialog' 'editFoosballer' target=dialogsService)
+    (action 'cancel'))
   origin=dialogOrigin}}
 
   {{#paper-toolbar}}
     <div class='md-toolbar-tools'>
       <h2>Edit Player</h2>
       <span class='flex'></span>
-      {{#paper-button iconButton=true onClick=(action 'toggleDialog' 'editFoosballer' target=dialogsService)}}
+      {{#paper-button iconButton=true onClick=(pipe-action
+        (action 'toggleDialog' 'editFoosballer' target=dialogsService)
+        (action 'cancel'))
+      }}
         {{paper-icon icon="close"}}
       {{/paper-button}}
     </div>
   {{/paper-toolbar}}
 
   {{#paper-dialog-content}}
-    <div class="{{unless media.isMobile 'vw-80 mw-800'}} d-f fd-c">
-      {{paper-input label='Name' flex=100 value=foosballer.name onChange=(action (mut foosballer.name))}}
-      {{paper-input label='Slack' flex=100 value=foosballer.slack onChange=(action (mut foosballer.slack))}}
+    <div class="{{unless media.isMobile 'vw-80 mw-800'}} d-f jc-c">
+      <div class="flex-40 d-f fd-c">
+        {{paper-input label='Name' value=foosballer.name onChange=(action (mut foosballer.name))}}
+        {{paper-input label='Slack' value=foosballer.slack onChange=(action (mut foosballer.slack))}}
 
-      {{#paper-select
-        label='Met minimum games'
-        options=(array true false)
-        selected=foosballer.hasMinimumGames
-        onChange=(action (mut foosballer.hasMinimumGames))
-        as |option|
-      }}
-        {{option}}
-      {{/paper-select}}
-
-      {{#paper-select
-        label='Retired'
-        selected=foosballer.retired
-        options=(array true false)
-        onchange=(action (mut foosballer.retired))
-        as |option|}}
-        {{option}}
-      {{/paper-select}}
-
-      {{#if currentUser.isAdmin}}
-        <h2 class="c-primary">Admin Only</h2>
         {{#paper-select
-          label='Admin'
-          selected=foosballer.isAdmin
+          label='Met minimum games'
           options=(array true false)
-          onchange=(action (mut foosballer.isAdmin))
+          selected=foosballer.hasMinimumGames
+          onChange=(action (mut foosballer.hasMinimumGames))
+          as |option|
+        }}
+          {{option}}
+        {{/paper-select}}
+
+        {{#paper-select
+          label='Retired'
+          selected=foosballer.retired
+          options=(array true false)
+          onchange=(action (mut foosballer.retired))
           as |option|}}
           {{option}}
         {{/paper-select}}
-      {{/if}}
+
+        {{#if currentUser.isAdmin}}
+          <h2 class="c-primary">Admin Only</h2>
+          {{#paper-select
+            label='Admin'
+            selected=foosballer.isAdmin
+            options=(array true false)
+            onchange=(action (mut foosballer.isAdmin))
+            as |option|}}
+            {{option}}
+          {{/paper-select}}
+        {{/if}}
+      </div>
     </div>
   {{/paper-dialog-content}}
 
   {{#paper-dialog-actions class="layout-row"}}
     <span class="flex"></span>
-    {{#paper-button onClick=(action 'toggleDialog' 'editFoosballer' target=dialogsService)}}Cancel{{/paper-button}}
+    {{#paper-button onClick=(pipe-action
+      (action 'toggleDialog' 'editFoosballer' target=dialogsService)
+      (action 'cancel'))}}
+      Cancel
+    {{/paper-button}}
     {{#paper-button
       primary=true
       raised=true

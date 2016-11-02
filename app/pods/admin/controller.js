@@ -51,7 +51,20 @@ export default Controller.extend({
     },
 
     cancelFoosballer(foosballer) {
-      
+      let selectedFoosballer = get(this, 'selectedFoosballer');
+
+      selectedFoosballer.rollbackAttributes();
+    },
+
+    newFoosballer() {
+      let selectedLeague = get(this, 'selectedLeague');
+      let dialogsService = get(this, 'dialogsService');
+      let newFoosballer = this.store.createRecord('foosballer', {
+        league: selectedLeague
+      });
+
+      set(this, 'selectedFoosballer', newFoosballer);
+      dialogsService.toggleDialog('editFoosballer');
     }
   }
 });

@@ -17,26 +17,37 @@
         <div class="bc-white teams-team mb-16">
           {{#link-to 'admin' (query-params section='players') class="tab"}}Players{{/link-to}}
 
+          {{!--
           {{#if user.currentPlayer.isGlobalAdmin}}
             {{#link-to 'admin' (query-params section='leagues') class="tab"}}Leagues{{/link-to}}
           {{/if}}
 
           {{#link-to 'admin' (query-params section='seasons') class="tab"}}Seasons{{/link-to}}
+          --}}
         </div>
 
         {{#if (eq section 'players')}}
-          {{#if user.currentPlayer.isGlobalAdmin}}
-            {{#paper-select
-              label='League'
-              options=leagues
-              selected=selectedLeague
-              classNames='flex'
-              onChange=(action (mut selectedLeague))
-              as |league|
-            }}
-              {{league.name}}
-            {{/paper-select}}
-          {{/if}}
+          <div class="d-f ai-fs">
+            {{#if user.currentPlayer.isGlobalAdmin}}
+              {{#paper-select
+                label='League'
+                options=leagues
+                selected=selectedLeague
+                classNames='flex'
+                onChange=(action (mut selectedLeague))
+                as |league|
+              }}
+                {{league.name}}
+              {{/paper-select}}
+            {{/if}}
+            <div class="flex"></div>
+            {{#paper-button
+              onClick=(action 'newFoosballer')
+              primary=true
+              raised=true}}
+              New Player
+            {{/paper-button}}
+          </div>
 
           {{#each selectedLeague.foosballers as |foosballer|}}
             <div class="material-list-item">
