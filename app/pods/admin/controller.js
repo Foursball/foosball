@@ -44,6 +44,12 @@ export default Controller.extend({
     saveFoosballer(foosballer) {
       let notify = get(this, 'notify');
 
+      if (get(foosballer, 'isNew')) {
+        let name = get(foosballer, 'name').toLowerCase();
+
+        set(foosballer, 'id', name.dasherize());
+      }
+
       foosballer
         .save()
         .then((foosballer) => notify.success('Foosballer saved'))
