@@ -52,7 +52,7 @@ export default Controller.extend({
 
       foosballer
         .save()
-        .then((foosballer) => notify.success('Foosballer saved'))
+        .then((foosballer) => notify.success('Player saved'))
         .catch((e) => notify.error('Unable to save'));
     },
 
