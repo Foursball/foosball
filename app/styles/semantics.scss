@@ -9,6 +9,7 @@
 .pt-16 { padding-top: 16px; }
 .pb-16 { padding-bottom: 16px; }
 .p-16 { padding: 16px; }
+.p-0-16 { padding: 0 16px; }
 .pl-8 { padding-left: 8px; }
 .pr-8 { padding-right: 8px; }
 .pt-8 { padding-top: 8px; }
@@ -36,6 +37,11 @@
 .mr-12 { margin-right: 12px; }
 .mt-12 { margin-top: 12px; }
 .m-12 { margin: 12px; }
+.mb-16 { margin-bottom: 16px; }
+.ml-16 { margin-left: 16px; }
+.mr-16 { margin-right: 16px; }
+.mt-16 { margin-top: 16px; }
+.m-16 { margin: 16px; }
 
 /** DISPLAY **/
 .d-b { display: block; }
@@ -82,6 +88,8 @@
 .t-4 { top: 4px; }
 
 .full-vh { height: 100vh; }
+.h-100 { height: 100%; }
+.h-40 { height: 40px; }
 
 .ho-accent {
   transition: color 0.15s ease-in-out;

@@ -4,6 +4,9 @@
       <a href={{href-to 'logout'}}>Logout</a>
       <a href={{href-to 'about'}}>About</a>
       <a href={{href-to 'league-rules'}}>League Rules</a>
+      {{#if (or user.currentPlayer.isAdmin user.currentPlayer.isGlobalAdmin)}}
+        <a href={{href-to 'admin'}}>Admin</a>
+      {{/if}}
     </div>
   {{/card.content}}
 {{/paper-card}}

@@ -13,6 +13,10 @@ export default DS.Model.extend({
   @attr('boolean') active,
   /* jshint ignore:end */
 
+  isGlobalAdmin: DS.attr('boolean', { defaultValue: false }),
+  isAdmin: DS.attr('boolean', { defaultValue: false }),
+  league: DS.belongsTo('league'),
+
   /* jshint ignore:start */
   @computed('name')
   /* jshint ignore:end */

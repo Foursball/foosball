@@ -1,0 +1,39 @@
+{{#paper-dialog
+  fullscreen=true
+  onClose=(action 'toggleDialog' 'newGame' target=dialogsService)
+  origin=dialogOrigin}}
+
+  {{#paper-toolbar}}
+    <div class='md-toolbar-tools'>
+      <h2>New Game</h2>
+      <span class='flex'></span>
+      {{#paper-button iconButton=true onClick=(action 'toggleDialog' 'newGame' target=dialogsService)}}
+        {{paper-icon icon="close"}}
+      {{/paper-button}}
+    </div>
+  {{/paper-toolbar}}
+
+  {{#new-game
+    currentUser=currentUser
+    newGameScoring='new-game/scoring-radio'
+    gameAdded=(action 'toggleDialog' 'newGame' target=dialogsService)
+    tagName=''
+    as |nG|}}
+    {{#paper-dialog-content}}
+      <div class="{{unless media.isMobile 'vw-80 mw-800'}}">
+        {{#if nG.isScoringGame}}
+          {{nG.scoring}}
+        {{else}}
+          {{nG.playerSelection}}
+        {{/if}}
+      </div>
+    {{/paper-dialog-content}}
+
+    {{#paper-dialog-actions class="layout-row"}}
+      <span class="flex"></span>
+      {{nG.actions}}
+    {{/paper-dialog-actions}}
+
+  {{/new-game}}
+
+{{/paper-dialog}}

@@ -1,0 +1,20 @@
+.material-list-item {
+  display: flex;
+  height: 48px;
+  padding: 0 16px;
+
+  button {
+    display: none;
+  }
+
+  &:hover {
+    background-color: color($primary, '500');
+    color: white;
+    button {
+      display: block;
+      md-icon {
+        color: white;
+      }
+    }
+  }
+}

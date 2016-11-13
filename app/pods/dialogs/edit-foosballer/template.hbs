@@ -1,0 +1,82 @@
+{{#paper-dialog
+  fullscreen=true
+  onClose=(pipe-action
+    (action 'toggleDialog' 'editFoosballer' target=dialogsService)
+    (action 'cancel'))
+  origin=dialogOrigin}}
+
+  {{#paper-toolbar}}
+    <div class='md-toolbar-tools'>
+      <h2>Edit Player</h2>
+      <span class='flex'></span>
+      {{#paper-button iconButton=true onClick=(pipe-action
+        (action 'toggleDialog' 'editFoosballer' target=dialogsService)
+        (action 'cancel'))
+      }}
+        {{paper-icon icon="close"}}
+      {{/paper-button}}
+    </div>
+  {{/paper-toolbar}}
+
+  {{#paper-form
+    onSubmit=(pipe-action (action 'save' foosballer) (action 'toggleDialog' 'editFoosballer' target=dialogsService))
+    as |form|
+  }}
+    {{#paper-dialog-content}}
+      <div class="{{unless media.isMobile 'vw-80 mw-800'}} d-f jc-c">
+        <div class="flex-40 d-f fd-c">
+          {{form.input
+            label='Name (First Last)'
+            value=foosballer.name
+            required=true
+            onChange=(action (mut foosballer.name))}}
+          {{form.input
+            label='Slack'
+            value=foosballer.slack
+            required=true
+            onChange=(action (mut foosballer.slack))}}
+
+          {{#if currentUser.isAdmin}}
+            <h2 class="c-primary">Admin Only</h2>
+            {{#paper-switch
+              value=foosballer.isAdmin
+              onChange=(action (mut foosballer.isAdmin))
+            }}
+              Admin
+            {{/paper-switch}}
+
+            {{#paper-switch
+              value=foosballer.retired
+              onChange=(action (mut foosballer.retired))
+            }}
+              Retired
+            {{/paper-switch}}
+
+            {{#paper-switch
+              value=foosballer.hasMinimumGames
+              onChange=(action (mut foosballer.hasMinimumGames))
+            }}
+              Ranked
+            {{/paper-switch}}
+          {{/if}}
+        </div>
+      </div>
+    {{/paper-dialog-content}}
+
+    {{#paper-dialog-actions class="layout-row"}}
+      <span class="flex"></span>
+      {{#paper-button onClick=(pipe-action
+        (action 'toggleDialog' 'editFoosballer' target=dialogsService)
+        (action 'cancel'))}}
+        Cancel
+      {{/paper-button}}
+      {{#form.submit-button
+        primary=true
+        raised=true
+        disabled=form.isInvalid
+      }}
+        Save
+      {{/form.submit-button}}
+    {{/paper-dialog-actions}}
+  {{/paper-form}}
+{{/paper-dialog}}
