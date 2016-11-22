@@ -43,6 +43,7 @@ export default Controller.extend({
 
     saveFoosballer(foosballer) {
       let notify = get(this, 'notify');
+      let selectedLeague = get(this, 'selectedLeague');
 
       if (get(foosballer, 'isNew')) {
         let name = get(foosballer, 'name').toLowerCase();
@@ -50,9 +51,12 @@ export default Controller.extend({
         set(foosballer, 'id', name.dasherize());
       }
 
+      selectedLeague.get('foosballers').pushObject(foosballer);
+
       foosballer
         .save()
         .then((foosballer) => notify.success('Player saved'))
+        .then(() => selectedLeague.save())
         .catch((e) => notify.error('Unable to save'));
     },
 
