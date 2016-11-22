@@ -1,0 +1,35 @@
+<div class="material-list-item pointer" {{action 'editFoosballer' foosballer}}>
+  <div class="d-f fd-c jc-c">
+    <div>{{foosballer.name}}</div>
+  </div>
+  <div class="fg-1"></div>
+  {{#paper-button
+    onClick=(pipe-action (toggle-action 'retired' foosballer) (action 'saveFoosballer' foosballer))
+    bubbles=false
+  }}
+    {{#if foosballer.retired}}
+      Activate
+    {{else}}
+      Retire
+    {{/if}}
+  {{/paper-button}}
+  {{#paper-button
+    iconButton=true
+    title=(if foosballer.hasMinimumGames 'Unrank Player' 'Rank Player')
+    onClick=(pipe-action (toggle-action 'hasMinimumGames' foosballer) (action 'saveFoosballer' foosballer))
+    bubbles=false
+  }}
+    {{#if foosballer.hasMinimumGames}}
+      {{paper-icon 'arrow-drop-down'}}
+    {{else}}
+      {{paper-icon 'arrow-drop-up'}}
+    {{/if}}
+  {{/paper-button}}
+  {{#paper-button
+    iconButton=true
+    onClick=(action 'editFoosballer' foosballer)
+    bubbles=false
+  }}
+    {{paper-icon 'edit'}}
+  {{/paper-button}}
+</div>

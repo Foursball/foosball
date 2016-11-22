@@ -1,0 +1,60 @@
+{{#paper-dialog
+  fullscreen=true
+  onClose=(pipe-action
+    (action 'toggleDialog' 'editSeason' target=dialogsService)
+    (action 'cancel'))
+  origin=dialogOrigin}}
+
+  {{#paper-toolbar}}
+    <div class='md-toolbar-tools'>
+      <h2>Edit Season</h2>
+      <span class='flex'></span>
+      {{#paper-button iconButton=true onClick=(pipe-action
+        (action 'toggleDialog' 'editSeason' target=dialogsService)
+        (action 'cancel' season))
+      }}
+        {{paper-icon icon="close"}}
+      {{/paper-button}}
+    </div>
+  {{/paper-toolbar}}
+
+  {{#paper-form
+    onSubmit=(pipe-action (action 'save' season) (action 'toggleDialog' 'editSeason' target=dialogsService))
+    as |form|
+  }}
+    {{#paper-dialog-content}}
+      <div class="{{unless media.isMobile 'vw-80 mw-800'}} d-f jc-c">
+        <div class="flex-40 d-f fd-c">
+          {{form.input
+            label='Name'
+            value=season.name
+            required=true
+            onChange=(action (mut season.name))}}
+
+          {{#paper-switch
+            value=season.isActive
+            onChange=(action (mut season.isActive))
+          }}
+            Is Active
+          {{/paper-switch}}
+        </div>
+      </div>
+    {{/paper-dialog-content}}
+
+    {{#paper-dialog-actions class="layout-row"}}
+      <span class="flex"></span>
+      {{#paper-button onClick=(pipe-action
+        (action 'toggleDialog' 'editSeason' target=dialogsService)
+        (action 'cancel' season))}}
+        Cancel
+      {{/paper-button}}
+      {{#form.submit-button
+        primary=true
+        raised=true
+        disabled=form.isInvalid
+      }}
+        Save
+      {{/form.submit-button}}
+    {{/paper-dialog-actions}}
+  {{/paper-form}}
+{{/paper-dialog}}

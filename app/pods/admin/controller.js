@@ -18,6 +18,7 @@ export default Controller.extend({
 
   selectedLeague: null,
   selectedFoosballer: null,
+  selectedSeason: null,
 
   /* jshint ignore:start */
   @computed()
@@ -41,25 +42,39 @@ export default Controller.extend({
       dialogsService.toggleDialog('editFoosballer');
     },
 
-    saveFoosballer(foosballer) {
+    save(model) {
       let notify = get(this, 'notify');
+      let modelType = model.constructor.modelName;
+      let selectedLeague = get(this, 'selectedLeague');
 
-      if (get(foosballer, 'isNew')) {
-        let name = get(foosballer, 'name').toLowerCase();
+      if (modelType === 'foosballer') {
+        if (get(model, 'isNew')) {
+          let name = get(model, 'name').toLowerCase();
 
-        set(foosballer, 'id', name.dasherize());
+          set(model, 'id', name.dasherize());
+        }
+      } else {
+        selectedLeague.get('seasons').pushObject(model);
       }
 
-      foosballer
+      model
         .save()
-        .then((foosballer) => notify.success('Player saved'))
+        .then((model) => notify.success(`${modelType.capitalize()} Saved`))
+        .then(() => selectedLeague.save())
         .catch((e) => notify.error('Unable to save'));
     },
 
-    cancelFoosballer(foosballer) {
-      let selectedFoosballer = get(this, 'selectedFoosballer');
+    cancel(model) {
+      let modelType = model.constructor.modelName;
+      let selected;
 
-      selectedFoosballer.rollbackAttributes();
+      if (modelType === 'season') {
+        selected = get(this, 'selectedSeason');
+      } else if (modelType === 'foosballer') {
+        selected = get(this, 'selectedFoosballer');
+      }
+
+      selected.rollbackAttributes();
     },
 
     newFoosballer() {
@@ -71,6 +86,24 @@ export default Controller.extend({
 
       set(this, 'selectedFoosballer', newFoosballer);
       dialogsService.toggleDialog('editFoosballer');
-    }
+    },
+
+    newSeason() {
+      let selectedLeague = get(this, 'selectedLeague');
+      let dialogsService = get(this, 'dialogsService');
+      let newSeason = this.store.createRecord('season', {
+        league: selectedLeague
+      });
+
+      set(this, 'selectedSeason', newSeason);
+      dialogsService.toggleDialog('editSeason');
+    },
+
+    editSeason(season) {
+      let dialogsService = get(this, 'dialogsService');
+
+      set(this, 'selectedSeason', season);
+      dialogsService.toggleDialog('editSeason');
+    },
   }
 });
