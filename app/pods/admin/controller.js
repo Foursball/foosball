@@ -52,6 +52,7 @@ export default Controller.extend({
           let name = get(model, 'name').toLowerCase();
 
           set(model, 'id', name.dasherize());
+          selectedLeague.get('foosballers').pushObject(foosballer);
         }
       } else {
         selectedLeague.get('seasons').pushObject(model);
