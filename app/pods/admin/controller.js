@@ -52,7 +52,7 @@ export default Controller.extend({
           let name = get(model, 'name').toLowerCase();
 
           set(model, 'id', name.dasherize());
-          selectedLeague.get('foosballers').pushObject(foosballer);
+          selectedLeague.get('foosballers').pushObject(model);
         }
       } else {
         selectedLeague.get('seasons').pushObject(model);
@@ -102,9 +102,26 @@ export default Controller.extend({
 
     editSeason(season) {
       let dialogsService = get(this, 'dialogsService');
+      let { startTime, endTime } = season.getProperties('startTime', 'endTime');
 
+      set(season, 'range', {
+        start: new Date(startTime),
+        end: new Date(endTime)
+      });
       set(this, 'selectedSeason', season);
       dialogsService.toggleDialog('editSeason');
     },
+
+    updateRange({ date }) {
+      let { end, start } = date;
+      let selectedSeason = get(this, 'selectedSeason');
+
+      selectedSeason.setProperties({
+        startTime: start ? start.valueOf() : null,
+        endTime: end ? end.valueOf() : null,
+        'range.start': start,
+        'range.end': end
+      });
+    }
   }
 });

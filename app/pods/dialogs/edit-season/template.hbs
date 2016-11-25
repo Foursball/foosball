@@ -35,8 +35,23 @@
             value=season.isActive
             onChange=(action (mut season.isActive))
           }}
-            Is Active
+            Active
           {{/paper-switch}}
+
+          <label class="mt-16 mb-16">
+            <strong>Date Range</strong>
+            <i>{{moment-format season.startTime "MMM Do, 'YY"}} - {{moment-format season.endTime "MMM Do, 'YY"}}</i>
+          </label>
+          {{#power-calendar-range
+            class='range-calendar'
+            center=foo
+            selected=season.range
+            onCenterChange=(action (mut foo) value="date")
+            onSelect=(action updateRange)
+            as |calendar|}}
+            {{calendar.nav}}
+            {{calendar.days}}
+          {{/power-calendar-range}}
         </div>
       </div>
     {{/paper-dialog-content}}
