@@ -77,7 +77,7 @@
             {{/paper-button}}
           </div>
 
-          {{#each selectedLeague.seasons as |season|}}
+          {{#each (sort-by 'endTime' selectedLeague.seasons) as |season|}}
             {{partial 'season/admin'}}
           {{/each}}
         {{/if}}

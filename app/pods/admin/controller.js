@@ -93,9 +93,15 @@ export default Controller.extend({
       let selectedLeague = get(this, 'selectedLeague');
       let dialogsService = get(this, 'dialogsService');
       let newSeason = this.store.createRecord('season', {
-        league: selectedLeague
+        league: selectedLeague,
+        startTime: Date.now(),
+        endTime: Date.now()
       });
 
+      set(newSeason, 'range', {
+        start: new Date(),
+        end: new Date()
+      });
       set(this, 'selectedSeason', newSeason);
       dialogsService.toggleDialog('editSeason');
     },
