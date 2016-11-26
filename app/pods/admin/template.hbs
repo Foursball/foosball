@@ -2,8 +2,10 @@
   {{dialogs-wrapper
     currentUser=user.currentPlayer
     foosballer=selectedFoosballer
-    save=(action 'saveFoosballer')
-    cancel=(action 'cancelFoosballer')
+    season=selectedSeason
+    save=(action 'save')
+    cancel=(action 'cancel')
+    updateRange=(action 'updateRange')
   }}
 
   <div class="d-f fd-c flex-100 flex-xs-100 flex-sm-100">
@@ -21,9 +23,8 @@
           {{#if user.currentPlayer.isGlobalAdmin}}
             {{#link-to 'admin' (query-params section='leagues') class="tab"}}Leagues{{/link-to}}
           {{/if}}
-
-          {{#link-to 'admin' (query-params section='seasons') class="tab"}}Seasons{{/link-to}}
           --}}
+          {{#link-to 'admin' (query-params section='seasons') class="tab"}}Seasons{{/link-to}}
         </div>
 
         {{#if (eq section 'players')}}
@@ -50,43 +51,35 @@
           </div>
 
           {{#each selectedLeague.foosballers as |foosballer|}}
-            <div class="material-list-item pointer" {{action 'editFoosballer' foosballer}}>
-              <div class="d-f fd-c jc-c">
-                <div>{{foosballer.name}}</div>
-              </div>
-              <div class="fg-1"></div>
-              {{#paper-button
-                onClick=(pipe-action (toggle-action 'retired' foosballer) (action 'saveFoosballer' foosballer))
-                bubbles=false
-              }}
-                {{#if foosballer.retired}}
-                  Activate
-                {{else}}
-                  Retire
-                {{/if}}
-              {{/paper-button}}
-              {{#paper-button
-                iconButton=true
-                title=(if foosballer.hasMinimumGames 'Unrank Player' 'Rank Player')
-                onClick=(pipe-action (toggle-action 'hasMinimumGames' foosballer) (action 'saveFoosballer' foosballer))
-                bubbles=false
-              }}
-                {{#if foosballer.hasMinimumGames}}
-                  {{paper-icon 'arrow-drop-down'}}
-                {{else}}
-                  {{paper-icon 'arrow-drop-up'}}
-                {{/if}}
-              {{/paper-button}}
-              {{#paper-button
-                iconButton=true
-                onClick=(action 'editFoosballer' foosballer)
-                bubbles=false
-              }}
-                {{paper-icon 'edit'}}
-              {{/paper-button}}
-            </div>
+            {{partial 'foosballer/admin'}}
           {{/each}}
 
+        {{else if (eq section 'seasons')}}
+          <div class="d-f ai-fs">
+            {{#if user.currentPlayer.isGlobalAdmin}}
+              {{#paper-select
+                label='League'
+                options=leagues
+                selected=selectedLeague
+                classNames='flex'
+                onChange=(action (mut selectedLeague))
+                as |league|
+              }}
+                {{league.name}}
+              {{/paper-select}}
+            {{/if}}
+            <div class="flex"></div>
+            {{#paper-button
+              onClick=(action 'newSeason')
+              primary=true
+              raised=true}}
+              New Season
+            {{/paper-button}}
+          </div>
+
+          {{#each (sort-by 'endTime' selectedLeague.seasons) as |season|}}
+            {{partial 'season/admin'}}
+          {{/each}}
         {{/if}}
       {{/card.content}}
     {{/paper-card}}

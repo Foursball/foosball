@@ -28,6 +28,8 @@ $ember-power-select-material-active-color: color($primary, '500');
 @import 'semantics';
 @import 'ember-power-select/themes/material';
 @import 'ember-power-select';
+@import "ember-power-calendar";
+@include ember-power-calendar($cell-size: 30px);
 
 @import 'responsive';
 

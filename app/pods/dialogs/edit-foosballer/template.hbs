@@ -2,7 +2,7 @@
   fullscreen=true
   onClose=(pipe-action
     (action 'toggleDialog' 'editFoosballer' target=dialogsService)
-    (action 'cancel'))
+    (action 'cancel' foosballer))
   origin=dialogOrigin}}
 
   {{#paper-toolbar}}
@@ -11,7 +11,7 @@
       <span class='flex'></span>
       {{#paper-button iconButton=true onClick=(pipe-action
         (action 'toggleDialog' 'editFoosballer' target=dialogsService)
-        (action 'cancel'))
+        (action 'cancel' foosballer))
       }}
         {{paper-icon icon="close"}}
       {{/paper-button}}
@@ -67,7 +67,7 @@
       <span class="flex"></span>
       {{#paper-button onClick=(pipe-action
         (action 'toggleDialog' 'editFoosballer' target=dialogsService)
-        (action 'cancel'))}}
+        (action 'cancel' foosballer))}}
         Cancel
       {{/paper-button}}
       {{#form.submit-button

@@ -1,0 +1,16 @@
+<div class="material-list-item pointer" {{action 'editSeason' season}}>
+  <div class="d-f fd-c jc-c">
+    <div>
+      {{season.name}}
+      <i>{{moment-format season.startTime "MMM Do, 'YY"}} - {{moment-format season.endTime "MMM Do, 'YY"}}</i>
+    </div>
+  </div>
+  <div class="fg-1"></div>
+  {{#paper-button
+    iconButton=true
+    onClick=(action 'editSeason' season)
+    bubbles=false
+  }}
+    {{paper-icon 'edit'}}
+  {{/paper-button}}
+</div>
