@@ -128,6 +128,14 @@ export default Controller.extend({
         'range.start': start,
         'range.end': end
       });
+    },
+
+    editLeague(league) {
+
+    },
+
+    newLeague() {
+      
     }
   }
 });

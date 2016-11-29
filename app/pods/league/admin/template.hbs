@@ -1,0 +1,15 @@
+<div class="material-list-item pointer" {{action 'editLeague' league}}>
+  <div class="d-f fd-c jc-c">
+    <div>
+      {{league.name}}
+    </div>
+  </div>
+  <div class="fg-1"></div>
+  {{#paper-button
+    iconButton=true
+    onClick=(action 'editLeague' league)
+    bubbles=false
+  }}
+    {{paper-icon 'edit'}}
+  {{/paper-button}}
+</div>
