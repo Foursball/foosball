@@ -54,7 +54,7 @@ export default Controller.extend({
           set(model, 'id', name.dasherize());
           selectedLeague.get('foosballers').pushObject(model);
         }
-      } else {
+      } else if (modelType === 'season') {
         selectedLeague.get('seasons').pushObject(model);
       }
 
@@ -73,6 +73,8 @@ export default Controller.extend({
         selected = get(this, 'selectedSeason');
       } else if (modelType === 'foosballer') {
         selected = get(this, 'selectedFoosballer');
+      } else if (modelType === 'league') {
+        selected = get(this, 'editingLeague');
       }
 
       selected.rollbackAttributes();
@@ -131,11 +133,18 @@ export default Controller.extend({
     },
 
     editLeague(league) {
+      let dialogsService = get(this, 'dialogsService');
 
+      set(this, 'editingLeague', league);
+      dialogsService.toggleDialog('editLeague');
     },
 
     newLeague() {
-      
+      let dialogsService = get(this, 'dialogsService');
+      let newLeague = this.store.createRecord('league', {});
+
+      set(this, 'editingLeague', newLeague);
+      dialogsService.toggleDialog('editLeague');
     }
   }
 });
