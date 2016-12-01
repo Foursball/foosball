@@ -12,6 +12,8 @@ export default Service.extend({
 
   editSeason: false,
 
+  editLeague: false,
+
   toggleDialog(dialogName) {
     this.toggleProperty(dialogName);
   },

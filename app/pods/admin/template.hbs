@@ -3,6 +3,7 @@
     currentUser=user.currentPlayer
     foosballer=selectedFoosballer
     season=selectedSeason
+    league=editingLeague
     save=(action 'save')
     cancel=(action 'cancel')
     updateRange=(action 'updateRange')
@@ -19,11 +20,10 @@
         <div class="bc-white teams-team mb-16">
           {{#link-to 'admin' (query-params section='players') class="tab"}}Players{{/link-to}}
 
-          {{!--
           {{#if user.currentPlayer.isGlobalAdmin}}
             {{#link-to 'admin' (query-params section='leagues') class="tab"}}Leagues{{/link-to}}
           {{/if}}
-          --}}
+
           {{#link-to 'admin' (query-params section='seasons') class="tab"}}Seasons{{/link-to}}
         </div>
 
@@ -54,6 +54,21 @@
             {{partial 'foosballer/admin'}}
           {{/each}}
 
+        {{else if (eq section 'leagues')}}
+          {{#if user.currentPlayer.isGlobalAdmin}}
+            <div class="d-f ai-fs">
+              <div class="flex"></div>
+              {{#paper-button
+                onClick=(action 'newLeague')
+                primary=true
+                raised=true}}
+                New League
+              {{/paper-button}}
+            </div>
+            {{#each leagues as |league|}}
+              {{partial 'league/admin'}}
+            {{/each}}
+          {{/if}}
         {{else if (eq section 'seasons')}}
           <div class="d-f ai-fs">
             {{#if user.currentPlayer.isGlobalAdmin}}
