@@ -1,11 +1,13 @@
 import Ember from 'ember';
 import computed from 'ember-computed-decorators';
+import moment from 'moment';
 
 const {
   Controller,
   inject: { service },
   set,
-  get
+  get,
+  RSVP
 } = Ember;
 
 export default Controller.extend({
@@ -34,6 +36,62 @@ export default Controller.extend({
     return this.store.peekAll('league');
   },
 
+  saveFoosballer(foosballer, league) {
+    let notify = get(this, 'notify');
+
+    if (get(foosballer, 'isNew')) {
+      let name = get(foosballer, 'name').toLowerCase();
+
+      set(foosballer, 'id', name.dasherize());
+      league.get('foosballers').addObject(foosballer);
+    }
+
+    return foosballer
+      .save()
+      .then((foosballer) => notify.success(`Player Saved`))
+      .then(() => league.save())
+      .catch((e) => notify.error('Unable to save'));
+  },
+
+  saveSeason(season, league) {
+    let notify = get(this, 'notify');
+
+    league.get('seasons').addObject(season);
+
+    return season
+      .save()
+      .then((season) => notify.success('Season Saved'))
+      .then(() => league.save())
+      .catch((e) => notify.error('Unable to save'));
+  },
+
+  saveLeague(league) {
+    let notify = get(this, 'notify');
+    let isNew = get(league, 'isNew');
+
+    return league
+      .save()
+      .then((league) => {
+        if (isNew) {
+          let now = moment();
+          let defaultSeason = this.store.createRecord('season', {
+            name: 'Season 1',
+            startTime: now.valueOf(),
+            endTime: now.add(3, 'months').valueOf(),
+            isActive: true
+          });
+
+          return this.saveSeason(defaultSeason, league);
+        } else {
+          return new RSVP.resolve();
+        }
+      })
+      .then(() => notify.success('League Saved'))
+      .catch((e) => {
+        debugger; notify.error('Unable to save');
+      });
+  },
+
   actions: {
     editFoosballer(foosballer) {
       let dialogsService = get(this, 'dialogsService');
@@ -43,26 +101,16 @@ export default Controller.extend({
     },
 
     save(model) {
-      let notify = get(this, 'notify');
       let modelType = model.constructor.modelName;
       let selectedLeague = get(this, 'selectedLeague');
 
       if (modelType === 'foosballer') {
-        if (get(model, 'isNew')) {
-          let name = get(model, 'name').toLowerCase();
-
-          set(model, 'id', name.dasherize());
-          selectedLeague.get('foosballers').pushObject(model);
-        }
+        return this.saveFoosballer(model, selectedLeague);
       } else if (modelType === 'season') {
-        selectedLeague.get('seasons').pushObject(model);
+        return this.saveSeason(model, selectedLeague);
+      } else if (modelType === 'league') {
+        return this.saveLeague(model);
       }
-
-      model
-        .save()
-        .then((model) => notify.success(`${modelType.capitalize()} Saved`))
-        .then(() => selectedLeague.save())
-        .catch((e) => notify.error('Unable to save'));
     },
 
     cancel(model) {
