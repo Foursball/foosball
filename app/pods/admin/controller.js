@@ -87,9 +87,7 @@ export default Controller.extend({
         }
       })
       .then(() => notify.success('League Saved'))
-      .catch((e) => {
-        debugger; notify.error('Unable to save');
-      });
+      .catch((e) => notify.error('Unable to save'));
   },
 
   actions: {
