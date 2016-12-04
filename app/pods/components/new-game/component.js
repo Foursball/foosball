@@ -130,11 +130,6 @@ export default Component.extend({
     }
   }),
 
-  /*@public Function used by ember-select to get the display value */
-  retrievePlayerName(player) {
-    return get(player, 'name');
-  },
-
   /* jshint ignore:start */
   @computed('model.isNotFullyCreated')
   /* jshint ignore:end */

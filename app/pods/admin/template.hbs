@@ -18,11 +18,11 @@
       {{/paper-toolbar}}
       {{#card.content class='o-a'}}
         <div class="bc-white teams-team mb-16">
-          {{#link-to 'admin' (query-params section='players') class="tab"}}Players{{/link-to}}
-
           {{#if user.currentPlayer.isGlobalAdmin}}
             {{#link-to 'admin' (query-params section='leagues') class="tab"}}Leagues{{/link-to}}
           {{/if}}
+
+          {{#link-to 'admin' (query-params section='players') class="tab"}}Players{{/link-to}}
 
           {{#link-to 'admin' (query-params section='seasons') class="tab"}}Seasons{{/link-to}}
         </div>

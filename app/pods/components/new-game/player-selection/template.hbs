@@ -3,28 +3,24 @@
   <div class="flex-50 mr-12 fc-w-100">
     {{#paper-select
       placeholder="Player 1"
-      value=team1Player1
-      itemLabelCallback=retrievePlayerName
-      onChange=(action updatePlayer 'team1Player1')}}
-      {{#each players as |player|}}
-        {{#paper-option value=player}}
-          {{player.name}}
-        {{/paper-option}}
-      {{/each}}
+      options=players
+      selected=team1Player1
+      onChange=(action updatePlayer 'team1Player1')
+      as |player|
+    }}
+      {{player.name}}
     {{/paper-select}}
   </div>
 
   <div class="flex-50 fc-w-100">
     {{#paper-select
       placeholder="Player 2"
-      value=team1Player2
-      itemLabelCallback=retrievePlayerName
-      onChange=(action updatePlayer 'team1Player2')}}
-      {{#each players as |player|}}
-        {{#paper-option value=player}}
-          {{player.name}}
-        {{/paper-option}}
-      {{/each}}
+      selected=team1Player2
+      options=players
+      onChange=(action updatePlayer 'team1Player2')
+      as |player|
+    }}
+      {{player.name}}
     {{/paper-select}}
   </div>
 </div>
@@ -34,27 +30,23 @@
   <div class="flex-50 mr-12 fc-w-100">
     {{#paper-select
       placeholder="Player 1"
-      value=team2Player1
-      itemLabelCallback=retrievePlayerName
-      onChange=(action updatePlayer 'team2Player1')}}
-      {{#each players as |player|}}
-        {{#paper-option value=player}}
-          {{player.name}}
-        {{/paper-option}}
-      {{/each}}
+      selected=team2Player1
+      options=players
+      onChange=(action updatePlayer 'team2Player1')
+      as |player|
+    }}
+      {{player.name}}
     {{/paper-select}}
   </div>
   <div class="flex-50 fc-w-100">
     {{#paper-select
       placeholder="Player 2"
-      value=team2Player2
-      itemLabelCallback=retrievePlayerName
-      onChange=(action updatePlayer 'team2Player2')}}
-      {{#each players as |player|}}
-        {{#paper-option value=player}}
-          {{player.name}}
-        {{/paper-option}}
-      {{/each}}
+      options=players
+      selected=team2Player2
+      onChange=(action updatePlayer 'team2Player2')
+      as |player|
+    }}
+      {{player.name}}
     {{/paper-select}}
   </div>
 </div>
