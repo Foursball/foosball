@@ -1,6 +1,10 @@
 import Ember from 'ember';
 
-const { Service, get, set } = Ember;
+const {
+  Service,
+  get,
+  set
+} = Ember;
 
 export default Service.extend({
   prune(foosballers) {
@@ -14,7 +18,10 @@ export default Service.extend({
       let games = get(groupedGames, time);
       let [wins, losses] = this.winsLossesInGames(foosballer, games);
 
-      set(prev, time, { wins, losses });
+      set(prev, time, {
+        wins,
+        losses
+      });
 
       return prev;
     }, {});
@@ -46,7 +53,7 @@ export default Service.extend({
     return [wins, losses];
   },
 
-  cummulativeWinLossByTimePeriod(foosballer, groupedGames) {
+  cumulativeWinLossByTimePeriod(foosballer, groupedGames) {
     let obj = {};
     let keys = Object.keys(groupedGames);
 
@@ -56,11 +63,17 @@ export default Service.extend({
       let [wins, losses] = this.winsLossesInGames(foosballer, games);
 
       if (!i) {
-        set(obj, time, { wins, losses });
+        set(obj, time, {
+          wins,
+          losses
+        });
       } else {
         let prevWins = get(obj, keys[i - 1]).wins;
         let prevLosses = get(obj, keys[i - 1]).losses;
-        set(obj, time, { wins: wins + prevWins, losses: losses + prevLosses });
+        set(obj, time, {
+          wins: wins + prevWins,
+          losses: losses + prevLosses
+        });
       }
     }
 
@@ -79,7 +92,7 @@ export default Service.extend({
     return get(game, 'team1.player1.id') === fId || get(game, 'team1.player2.id') === fId ? 'team1' : 'team2';
   },
 
-  decorate(foosballers, decoratedTeams, shouldFilter=true) {
+  decorate(foosballers, decoratedTeams, shouldFilter = true) {
     let decoratedFoosballers;
 
     if (shouldFilter) {
