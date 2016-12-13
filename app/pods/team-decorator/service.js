@@ -1,6 +1,10 @@
 import Ember from 'ember';
 
-const { Service, set, get } = Ember;
+const {
+  Service,
+  set,
+  get
+} = Ember;
 
 export default Service.extend({
   winLossByTimePeriod(team, groupedGames) {
@@ -8,7 +12,10 @@ export default Service.extend({
       let games = get(groupedGames, time);
       let [wins, losses] = this.winsLossesInGames(team, games);
 
-      set(prev, time, { wins, losses });
+      set(prev, time, {
+        wins,
+        losses
+      });
 
       return prev;
     }, {});
@@ -40,7 +47,7 @@ export default Service.extend({
     return [wins, losses];
   },
 
-  cummulativeWinLossByTimePeriod(team, groupedGames) {
+  cumulativeWinLossByTimePeriod(team, groupedGames) {
     let obj = {};
     let keys = Object.keys(groupedGames);
 
@@ -50,11 +57,17 @@ export default Service.extend({
       let [wins, losses] = this.winsLossesInGames(team, games);
 
       if (!i) {
-        set(obj, time, { wins, losses });
+        set(obj, time, {
+          wins,
+          losses
+        });
       } else {
         let prevWins = get(obj, keys[i - 1]).wins;
         let prevLosses = get(obj, keys[i - 1]).losses;
-        set(obj, time, { wins: wins + prevWins, losses: losses + prevLosses });
+        set(obj, time, {
+          wins: wins + prevWins,
+          losses: losses + prevLosses
+        });
       }
     }
 

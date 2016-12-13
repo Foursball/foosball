@@ -1,9 +1,15 @@
 import Ember from 'ember';
 import PaperItemExpandMixin from 'foosball/mixins/paper-item-expand';
 import DarkUnicaTheme from 'foosball/highchart-themes/dark-unica';
-import computed, { alias } from 'ember-computed-decorators';
+import computed, {
+  alias
+} from 'ember-computed-decorators';
 
-const { Component, inject, get } = Ember;
+const {
+  Component,
+  inject,
+  get
+} = Ember;
 
 export default Component.extend(PaperItemExpandMixin, {
   store: inject.service(),
@@ -52,15 +58,21 @@ export default Component.extend(PaperItemExpandMixin, {
     let gamesTeamPlayedIn = gamesService.gamesTeamPlayedIn(team, games);
     let gamesByWeek = gamesService.gamesByWeek(gamesTeamPlayedIn);
     let winLossRatioByTimePeriod = teamDecorator.winLossRatioByTimePeriod(team, gamesByWeek);
-    let cummulativeWinLoss = teamDecorator.cummulativeWinLossByTimePeriod(team, gamesByWeek);
+    let cumulativeWinLoss = teamDecorator.cumulativeWinLossByTimePeriod(team, gamesByWeek);
 
-    let cummulativeWinLossRatioSeries = {
-      name: 'cummulative win/loss',
-      data: Object.keys(cummulativeWinLoss)
+    let cumulativeWinLossRatioSeries = {
+      name: 'cumulative win/loss',
+      data: Object.keys(cumulativeWinLoss)
         .map((time) => {
-          let { wins, losses } = get(cummulativeWinLoss, time);
+          let {
+            wins,
+            losses
+          } = get(cumulativeWinLoss, time);
 
-          return { x: parseInt(time, 10), y: wins / (losses || 1) };
+          return {
+            x: parseInt(time, 10),
+            y: wins / (losses || 1)
+          };
         })
     };
 
@@ -68,10 +80,13 @@ export default Component.extend(PaperItemExpandMixin, {
       name: 'win/loss',
       data: Object.keys(winLossRatioByTimePeriod)
         .map((time) => {
-          return { x: parseInt(time, 10), y: get(winLossRatioByTimePeriod, time) };
+          return {
+            x: parseInt(time, 10),
+            y: get(winLossRatioByTimePeriod, time)
+          };
         })
     };
 
-    return [winsLossRatioSeries, cummulativeWinLossRatioSeries];
+    return [winsLossRatioSeries, cumulativeWinLossRatioSeries];
   }
 });
