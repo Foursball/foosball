@@ -112,7 +112,7 @@ export default Service.extend({
         winLossRatio: 0
       };
 
-      if (!shouldLimitOnGamesPlayed || gamesPlayedIn.length >= 15) {
+      if (!shouldLimitOnGamesPlayed || gamesPlayedIn.length >= 5) {
 
         scoreKeeper = gamesPlayedIn.reduce((prev, curr) => {
           let isTeam1 = get(curr, 'team1.id') === teamId ? true : false;
@@ -145,7 +145,7 @@ export default Service.extend({
     });
 
     if (shouldLimitOnGamesPlayed) {
-      decoratedTeams = decoratedTeams.filter((t) => get(t, 'gamesPlayed') >= 15);
+      decoratedTeams = decoratedTeams.filter((t) => get(t, 'gamesPlayed') >= 5);
     }
 
     decoratedTeams
