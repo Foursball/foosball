@@ -32,10 +32,10 @@ export default Route.extend({
       let game = this.store.createRecord('game');
 
       this.transitionTo('game.new', game);
-    },
-
-    error(error, transition) {
-      this.transitionTo('something-happened');
     }
+
+    // error(error, transition) {
+    //   this.transitionTo('something-happened');
+    // }
   }
 });

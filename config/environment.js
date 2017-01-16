@@ -6,12 +6,6 @@ module.exports = function(environment) {
     environment: environment,
     contentSecurityPolicy: { 'connect-src': "'self' https://auth.firebase.com wss://*.firebaseio.com https://*.amazonaws.com" },
     podModulePrefix: 'foosball/pods',
-    firebase: {
-      apiKey: "AIzaSyAhgRJKQsY1ybOu2AYUqe1SNCft-A9gRFE",
-      authDomain: "netuitivefoosball.firebaseapp.com",
-      databaseURL: "https://netuitivefoosball.firebaseio.com",
-      storageBucket: "netuitivefoosball.appspot.com"
-    },
     torii: {
       sessionServiceName: 'session'
     },
