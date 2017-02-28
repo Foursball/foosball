@@ -6,9 +6,6 @@ module.exports = function(environment) {
     environment: environment,
     contentSecurityPolicy: { 'connect-src': "'self' https://auth.firebase.com wss://*.firebaseio.com https://*.amazonaws.com" },
     podModulePrefix: 'foosball/pods',
-    torii: {
-      sessionServiceName: 'session'
-    },
     slackRelay: 'https://ewpeg1xccj.execute-api.us-east-1.amazonaws.com/prod/slack-relay',
     baseURL: '/',
     rootURL: '/',
@@ -40,12 +37,7 @@ module.exports = function(environment) {
      'report-uri': "'none'",
      'script-src': "*"
    };
-    ENV.firebase = {
-      apiKey: "AIzaSyCAo5vuqeAccE4pcdQhGSlWc70yasWW0K0",
-      authDomain: "dev-foosball.firebaseapp.com",
-      databaseURL: "https://dev-foosball.firebaseio.com",
-      storageBucket: "dev-foosball.appspot.com"
-    };
+    ENV.apiDomain = 'http://localhost:1337';
     ENV.slackRelay = 'https://ewpeg1xccj.execute-api.us-east-1.amazonaws.com/dev/slack-relay';
   }
 

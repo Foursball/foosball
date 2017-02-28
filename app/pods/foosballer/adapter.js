@@ -5,6 +5,6 @@ export default ApplicationAdapter.extend(DS.BuildURLMixin, {
   buildURL() {
     let url = this._super(...arguments);
 
-    return url.replace('foosballer', 'player');
+    return url.replace('foosballer', 'user');
   }
 });
