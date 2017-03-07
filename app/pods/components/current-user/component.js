@@ -10,12 +10,6 @@ export default Component.extend(BusSubscriberMixin, {
 
   tagName: '',
 
-  foosballers: [],
-
-  updateFoosballers: on('foosballersFound', function(foosballers) {
-    set(this, 'foosballers', foosballers);
-  }),
-
   // {DS.Foosballer}
   controllerCurrentPlayer: null,
 
@@ -34,16 +28,14 @@ export default Component.extend(BusSubscriberMixin, {
   },
 
   /* jshint ignore:start */
-  @computed('foosballers.@each.profileImageURL', 'controllerCurrentPlayer')
+  @computed('session.currentUser', 'controllerCurrentPlayer')
   /* jshint ignore:end */
   currentPlayer(foosballers, controllerCurrentPlayer) {
     if (controllerCurrentPlayer) {
       return controllerCurrentPlayer;
     }
 
-    let session = get(this, 'session');
-
-    return foosballers.findBy('uid', get(session, 'uid'));
+    return get(this, 'session.currentUser');
   },
 
   /* jshint ignore:start */
