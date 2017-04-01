@@ -1,4 +1,5 @@
 /* jshint node: true */
+const API_URL = process.env.API_URL || 'http://127.0.0.1:1337';
 
 module.exports = function(environment) {
   var ENV = {
@@ -37,7 +38,7 @@ module.exports = function(environment) {
      'report-uri': "'none'",
      'script-src': "*"
    };
-    ENV.apiDomain = 'http://localhost:1337';
+    ENV.apiDomain = API_URL;
     ENV.slackRelay = 'https://ewpeg1xccj.execute-api.us-east-1.amazonaws.com/dev/slack-relay';
   }
 
