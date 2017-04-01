@@ -38,6 +38,6 @@ after_success:
       docker tag foursball/foosball foursball/foosball:latest-dev;
       docker push foursball/foosball:latest-dev;
     else
-      docker tag foursball/foosball foursball/foosball:latest-$TRAVIS_BRANCH;
-      docker push foursball/foosball:latest-$TRAVIS_BRANCH;
+      docker tag foursball/foosball foursball/foosball:$TRAVIS_BRANCH;
+      docker push foursball/foosball:$TRAVIS_BRANCH;
     fi
