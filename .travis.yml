@@ -29,19 +29,15 @@ script:
 after_success:
   - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
     VERSION=`node -e "console.log(require('./package.json').version);"`;
+    docker build -t foursball/foosball .;
     if [ "$TRAVIS_BRANCH" == "master" ]; then
-      docker build -t foursball/foosball .
       docker tag foursball/foosball foursball/foosball:$VERSION;
       docker push foursball/foosball:latest;
       docker push foursball/foosball:$VERSION;
     elif [ "$TRAVIS_BRANCH" == "dev" ]; then
-      sed -i "s/$VERSION/$VERSION-dev/g" package.json;
-      docker build -t foursball/foosball .;
       docker tag foursball/foosball foursball/foosball:latest-dev;
       docker push foursball/foosball:latest-dev;
     else
-      sed -i "s/$VERSION/$VERSION-$TRAVIS_BRANCH/g" package.json;
-      docker build -t foursball/foosball .;
       docker tag foursball/foosball foursball/foosball:latest-$TRAVIS_BRANCH;
       docker push foursball/foosball:latest-$TRAVIS_BRANCH;
     fi
