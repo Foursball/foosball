@@ -25,6 +25,9 @@ You will need the following things properly installed on your computer.
 * `ember server`
 * Visit your app at [http://localhost:4200](http://localhost:4200).
 
+### Docker
+To run the UI in a Docker container run `docker run -d -p 4200:4200 -e API_URL=<api-location> --name=foosball foursball/foosball:latest`.
+
 ### Code Generators
 
 Make use of the many generators for code, try `ember help generate` for more details
