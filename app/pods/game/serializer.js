@@ -3,7 +3,7 @@ import ApplicationSerializer from 'foosball/pods/application/serializer';
 export default ApplicationSerializer.extend({
   //TODO: model the teamGame
   normalize(model, hash, prop) {
-    let createdAtDate = new Date(hash.createdAt);
+    let createdAtDate = new Date(hash.dateCreated);
 
     if (hash.teamGames) {
       let teamOne = hash.teamGames[0];
@@ -13,7 +13,7 @@ export default ApplicationSerializer.extend({
       hash.team1Wins = teamOne.wins;
       hash.team2 = teamTwo.team;
       hash.team2Wins = teamTwo.wins;
-      hash.time = hash.createdAt;
+      hash.time = hash.dateCreated;
     }
 
     hash.timestamp = createdAtDate.valueOf();

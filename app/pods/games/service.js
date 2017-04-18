@@ -38,7 +38,7 @@ export default Service.extend({
 
   gamesByWeek(games) {
     return games.reduce((prev, g) => {
-      let week = moment(new Date(get(g, 'time'))).endOf('week').valueOf().toString();
+      let week = moment(get(g, 'time')).endOf('week').valueOf().toString();
       let weekGames = get(prev, week);
 
       if (!weekGames) {

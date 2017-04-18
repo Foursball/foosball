@@ -30,7 +30,7 @@ export default Service.extend({
   winLossRatioByTimePeriod(foosballer, groupedGames) {
     let winLossByTimePeriod = this.winLossByTimePeriod(foosballer, groupedGames);
 
-    return Object.keys(winLossByTimePeriod).reduce((prev, time) => {
+    return Object.keys(winLossByTimePeriod).sort().reduce((prev, time) => {
       let obj = get(winLossByTimePeriod, time);
       let losses = get(obj, 'losses');
       let wins = get(obj, 'wins');
@@ -55,7 +55,7 @@ export default Service.extend({
 
   cumulativeWinLossByTimePeriod(foosballer, groupedGames) {
     let obj = {};
-    let keys = Object.keys(groupedGames);
+    let keys = Object.keys(groupedGames).sort();
 
     for (let i = 0; i < keys.length; i++) {
       let time = keys[i];
