@@ -31,8 +31,6 @@ export default Component.extend({
 
   sortAscending: false,
 
-  shouldFilterMinimumGames: true,
-
   sortBy: 'winPercentage',
 
   /* jshint ignore:start */
@@ -45,13 +43,13 @@ export default Component.extend({
   },
 
   /* jshint ignore:start */
-  @computed('decoratedTeams.[]', 'shouldFilterMinimumGames')
+  @computed('decoratedTeams.[]')
   /* jshint ignore:end */
-  decoratedFoosballers(decoratedTeams, shouldFilterMinimumGames) {
+  decoratedFoosballers(decoratedTeams) {
     let foosballers = get(this, 'foosballers');
     let foosballerDecorator = get(this, 'foosballerDecorator');
 
-    return foosballerDecorator.decorate(foosballers, decoratedTeams, shouldFilterMinimumGames);
+    return foosballerDecorator.decorate(foosballers, decoratedTeams);
   },
 
   /* jshint ignore:start */

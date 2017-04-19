@@ -1,6 +1,4 @@
-{{#current-user
-  foosballers=model
-  as |user|}}
+{{#current-user as |user|}}
 
   {{dialogs-wrapper
     currentUser=user.currentPlayer
@@ -41,7 +39,7 @@
                 <div class="pr-8 {{unless media.isMobile 'rank'}}">{{decoratedFoosballer.rank}}</div>
                 <div class="{{unless media.isMobile 'name'}} ellipsis pr-8">
                   <a class="player-name {{if (eq user.currentPlayer.id decoratedFoosballer.foosballer.id) 'c-primary'}}" href={{href-to 'foosballer' decoratedFoosballer.foosballer}}>
-                    {{decoratedFoosballer.foosballer.name}}
+                    {{decoratedFoosballer.foosballer.displayName}}
                   </a>
                 </div>
                 {{#unless media.isMobile}}
