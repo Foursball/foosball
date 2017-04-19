@@ -15,7 +15,7 @@ export default Controller.extend({
   @equal('sortAscending', false) isDesc,
   @equal('sortBy', 'winPercentage') isSortWinPercentage,
   @equal('sortBy', 'winLossRatio') isSortWinLossRatio,
-  @equal('sortBy', 'foosballer.name') isSortName,
+  @equal('sortBy', 'foosballer.displayName') isSortName,
   @equal('sortBy', 'wins') isSortWins,
   @equal('sortBy', 'rank') isSortRank,
   @alias('model') foosballers,

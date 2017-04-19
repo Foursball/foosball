@@ -18,7 +18,7 @@
         <div class="bc-white pr-16 teams-team">
           <div class="d-f jc-sb pt-16 no-scroll {{if isAsc 'sort-asc' 'sort-desc'}}">
             <div onclick={{action 'sortBy' 'rank'}} class="pr-8 {{unless media.isMobile 'rank'}} pointer sortable {{if isSortRank 'sorted'}}">Rank</div>
-            <div onclick={{action 'sortBy' 'foosballer.name'}} class="{{unless media.isMobile 'name'}} pointer sortable {{if isSortName 'sorted'}}">Name</div>
+            <div onclick={{action 'sortBy' 'foosballer.displayName'}} class="{{unless media.isMobile 'name'}} pointer sortable {{if isSortName 'sorted'}}">Name</div>
             {{#unless media.isMobile}}
               <div onclick={{action 'sortBy' 'wins'}} class="w-l pr-16 pointer sortable {{if isSortWins 'sorted'}}">Wins : Losses</div>
               <div onclick={{action 'sortBy' 'winLossRatio'}} class="ratio pr-16 pointer sortable {{if isSortWinLossRatio 'sorted'}}">Win/Loss Ratio</div>
