@@ -52,7 +52,7 @@
     "ember-truth-helpers": "1.2.0",
     "ember-welcome-page": "^1.0.1",
     "emberfire": "2.0.1",
-    "highcharts": "8.1.0",
+    "highcharts": "8.2.0",
     "loader.js": "^4.0.1",
     "torii": "0.8.0"
   }
